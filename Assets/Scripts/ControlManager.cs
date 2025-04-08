@@ -32,7 +32,7 @@ public class ControlManager : MonoBehaviour
         //flash light
         if (Input.GetMouseButton(0))
         {
-
+            //tell player to turn on flashlight
         }
     }
 
