@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class ControlManager : MonoBehaviour
+public class ControlManager : NetworkBehaviour
 {
     //Movement
     [SerializeField] private float normSpeed = 5f;
@@ -22,6 +22,10 @@ public class ControlManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Do nothing if this is the incorrect client object
+        if (!IsOwner)
+            return;
+
         //move the player based on user input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
