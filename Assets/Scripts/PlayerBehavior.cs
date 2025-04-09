@@ -34,7 +34,7 @@ public class PlayerBehavior : NetworkBehaviour
         //set health
         curEnergy.Value = maxEnergy;
         energyBar.setMaxValue(maxEnergy);
-        curEnergy.OnValueChanged += EnergyChanged;//subscribe to health change on network varible
+        curEnergy.OnValueChanged += EnergyChanged;//subscribe to value change on network varible
     }
 
     private void EnergyChanged(float previousValue, float newValue)
