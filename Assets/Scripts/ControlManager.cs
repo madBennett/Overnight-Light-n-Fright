@@ -51,11 +51,6 @@ public class ControlManager : NetworkBehaviour
         //move through rigid body
         rigidBody.velocity = movement * currSpeed;
 
-        RotatePlayer();
-    }
-
-    void RotatePlayer()
-    {
         //rotate player accordingly
         if (movement.x != 0)
         {
