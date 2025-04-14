@@ -13,12 +13,17 @@ public class ControlManager : NetworkBehaviour
     [SerializeField] private GameObject PlayerObj;
     [SerializeField] private Rigidbody2D rigidBody;
 
+    //for flashlight controls
     [SerializeField] private GameObject Flashlight;
+    [SerializeField] private NetworkVariable<bool> isFlashlightOn = new NetworkVariable<bool>(false);
 
     // Start is called before the first frame update
     void Start()
     {
         currSpeed = normSpeed;
+        Flashlight.SetActive(false);
+
+        isFlashlightOn.OnValueChanged += IsFlashlightOnChanged;//subscribe to value change on network varible
     }
 
     // Update is called once per frame
@@ -36,7 +41,12 @@ public class ControlManager : NetworkBehaviour
         MoveServerRpc(movement, currSpeed);
 
         //flash light
-        Flashlight.SetActive(Input.GetMouseButton(0));
+        UpdateFlashlightServerRPC(Input.GetMouseButton(0));
+    }
+
+    private void IsFlashlightOnChanged(bool previousValue, bool newValue)
+    {
+        Flashlight.SetActive(newValue);
     }
 
     [ServerRpc]
@@ -67,5 +77,12 @@ public class ControlManager : NetworkBehaviour
             //rotate down
             PlayerObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         }
+    }
+
+    [ServerRpc]
+    public void UpdateFlashlightServerRPC(bool isOn)
+    {
+        //set active or not
+        isFlashlightOn.Value = (isOn);
     }
 }
