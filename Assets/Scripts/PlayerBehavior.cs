@@ -18,6 +18,11 @@ public class PlayerBehavior : NetworkBehaviour
     public float maxEnergy = 100f;
     public ValueBar energyBar;
 
+    // camera fields
+    [Header("Camera Settings")]
+    [SerializeField] private Camera playerCamera; // Assign in prefab or spawn via script
+    [SerializeField] private Vector3 cameraOffset = new Vector3(0, 0, -10); // Typical 2D offset
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +40,30 @@ public class PlayerBehavior : NetworkBehaviour
         curEnergy.Value = maxEnergy;
         energyBar.setMaxValue(maxEnergy);
         curEnergy.OnValueChanged += EnergyChanged;//subscribe to value change on network varible
+    }
+        
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            // Enable only local camera
+            if (playerCamera != null)
+            {
+                playerCamera.enabled = true;
+            }
+            else
+            {
+                Debug.LogWarning("Player camera not assigned!");
+            }
+        }
+        else
+        {
+            // Disable cameras that are not owned by the local client
+            if (playerCamera != null)
+            {
+                playerCamera.enabled = false;
+            }
+        }
     }
 
     private void EnergyChanged(float previousValue, float newValue)
