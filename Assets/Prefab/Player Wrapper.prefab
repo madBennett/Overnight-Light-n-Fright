@@ -128,6 +128,7 @@ MonoBehaviour:
   normSpeed: 5
   PlayerObj: {fileID: 4966794419736067571}
   rigidBody: {fileID: 5815548876745574209}
+  Flashlight: {fileID: 1863903852558013959}
 --- !u!114 &3202657474735805668
 MonoBehaviour:
   m_ObjectHideFlags: 0

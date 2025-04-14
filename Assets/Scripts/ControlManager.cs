@@ -13,6 +13,8 @@ public class ControlManager : NetworkBehaviour
     [SerializeField] private GameObject PlayerObj;
     [SerializeField] private Rigidbody2D rigidBody;
 
+    [SerializeField] private GameObject Flashlight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +36,7 @@ public class ControlManager : NetworkBehaviour
         MoveServerRpc(movement, currSpeed);
 
         //flash light
-        if (Input.GetMouseButton(0))
-        {
-            //tell player to turn on flashlight
-        }
+        Flashlight.SetActive(Input.GetMouseButton(0));
     }
 
     [ServerRpc]
