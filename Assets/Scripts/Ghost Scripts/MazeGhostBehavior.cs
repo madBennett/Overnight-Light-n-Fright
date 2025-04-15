@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MazeGhostBehavior : AbstractGhostBehavior
 {
-    float moveDistnce = 1f;
-
     public override void StartMove()
     {
         moveStartTime = Time.time;
 
         //choose a direction
-        moveDestination = transform.position + new Vector3(0, moveDistnce, 0);
+        movement = new Vector2(0,1);
 
         //choose effect
         effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
@@ -23,22 +21,19 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     public override void Move()
     {
         //check if has reached the position
-        if ((transform.position == moveDestination) || (Time.time - moveStartTime >= maxMoveTime))
+        if (Time.time - moveStartTime >= maxMoveTime)
         {
-            currState = GhostStates.IDLE;
+            StartIdle();
         }
         else
         {
-            //Move in choosen direction until the desitnation is reached
-            Vector2 newPos = Vector2.Lerp(transform.position, moveDestination, speed);
-
-            //move the player
-            transform.position = newPos;
+            //Move in choosen direction move through rigid body
+            rigidBody.velocity = movement * speed;
         }
 
     }
 
-    public override void Attack()
+    public override void Attack(PlayerBehavior player)
     {
         //
     }

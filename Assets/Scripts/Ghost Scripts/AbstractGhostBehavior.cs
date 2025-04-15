@@ -8,7 +8,6 @@ public enum GhostStates
     START_MOVE,
     MOVE,
     ATTACK,
-    START_RUN,
     RUN,
     NUM_STATES
 }
@@ -33,27 +32,26 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public float idleTime = 1f;
 
     //varibles for start move state
-    public Vector3 startPos;
-    public Vector3 moveDestination;
+    public Vector2 movement;
     public EffectTypes effectToApply;
     public float moveStartTime;
 
     //Varibles for move
-    public float speed = 0.01f;
-    public Vector2 screenBoundry;
+    public float speed = 1f;
     public float maxMoveTime = 3f;
 
     //Varibles for Run state
     public Vector3 playerPos;
-
+    public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
     void Start()
     {
+        //set default values
         currState = GhostStates.IDLE;
         idleEnterTime = Time.time;
         effectToApply = EffectTypes.VISUAL_DISTORTION;
-        screenBoundry = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -74,35 +72,46 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
             case GhostStates.MOVE:
                 Move();
                 break;
-            case GhostStates.START_RUN:
-                StartRun();
-                break;
             case GhostStates.RUN:
                 Run();
                 break;
         }
     }
-    private void OnCollisionEnter(Collision collision)
+
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Flashlight")
-        {
-            //on collision with flashlight
-            currState = GhostStates.RUN;
-            playerPos = collision.gameObject.transform.position;
-        }
 
         if (collision.gameObject.tag == "Player")
         {
             //if collision with a player attack
-            Attack();
+            PlayerBehavior player = collision.gameObject.GetComponent<PlayerBehavior>();
+            Attack(player);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Flashlight")
+        {
+            //on collision with flashlight
+            StartRun();
+            currState = GhostStates.RUN;
+            playerPos = collision.gameObject.transform.position;
+        }
+    }
+
+    public virtual void StartIdle()
+    {
+        idleEnterTime = Time.time;
+        rigidBody.velocity = Vector2.zero;
+        currState = GhostStates.IDLE;
     }
 
     public abstract void StartMove();
 
     public abstract void Move();
 
-    public abstract void Attack();
+    public abstract void Attack(PlayerBehavior player);
 
     public abstract void StartRun();
 
