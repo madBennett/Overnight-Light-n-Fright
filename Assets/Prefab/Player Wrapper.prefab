@@ -129,6 +129,8 @@ MonoBehaviour:
   PlayerObj: {fileID: 4966794419736067571}
   rigidBody: {fileID: 5815548876745574209}
   Flashlight: {fileID: 1863903852558013959}
+  isFlashlightOn:
+    m_InternalValue: 0
 --- !u!114 &3202657474735805668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +263,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
