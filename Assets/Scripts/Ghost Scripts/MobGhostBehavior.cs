@@ -37,7 +37,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
         // }
     }
 
-    public override void Attack()
+    public override void Attack(PlayerBehavior player)
     {
         
     }
