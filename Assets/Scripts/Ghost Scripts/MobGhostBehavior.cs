@@ -4,37 +4,104 @@ using UnityEngine;
 
 public class MobGhostBehavior : AbstractGhostBehavior
 {
-    float moveDistance = 1f;
+    public float moveDistance = 2f;
+    public float detectionRange = 5f;
+    private GameObject player;
+    private Vector3 moveDestination;
+    private float idleWanderCooldown = 0f;
+    public ParticleSystem despawnParticles;
+
+    protected override void Start()
+    {
+        base.Start();
+        isActive = true;
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        if (currState == GhostStates.IDLE)
+        {
+            // Wander while idle
+            if (isActive && Time.time >= idleWanderCooldown)
+            {
+                WanderWhileIdle();
+                idleWanderCooldown = Time.time + idleTime;
+            }
+        }
+
+        base.Update(); // Run the base state machine logic
+    }
+
+    private void WanderWhileIdle()
+    {
+        // Pick a small random direction to move slightly while in idle
+        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        Vector2 velocity = randomDir * (speed * 0.5f); // slower speed while idle
+        rigidBody.velocity = velocity;
+    }
 
     public override void StartMove()
     {
-        // moveStartTime = Time.time;
+        moveStartTime = Time.time;
 
-        // //choose a direction
-        // moveDestination = transform.position + new Vector3(0, moveDistance, 0);
+        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        movement = randomDir;
+        moveDestination = transform.position + (Vector3)(randomDir * moveDistance);
 
-        // //choose effect
-        // effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
-
-        // //change State to move
-        // currState = GhostStates.MOVE;
+        effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
+        currState = GhostStates.MOVE;
     }
 
     public override void Move()
     {
-        // //check if has reached the position
-        // if ((transform.position == moveDestination) || (Time.time - moveStartTime >= maxMoveTime))
-        // {
-        //     currState = GhostStates.IDLE;
-        // }
-        // else
-        // {
-        //     //Move in choosen direction until the desitnation is reached
-        //     Vector2 newPos = Vector2.Lerp(transform.position, moveDestination, speed);
+        Vector2 direction;
 
-        //     //move the player
-        //     transform.position = newPos;
-        // }
+        if (player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
+        {
+            // Chase the player
+            direction = (player.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            // Wander in chosen random direction
+            direction = (moveDestination - transform.position).normalized;
+        }
+
+        rigidBody.velocity = direction * speed;
+
+        if ((Vector2.Distance(transform.position, moveDestination) <= 0.1f) || (Time.time - moveStartTime >= maxMoveTime))
+        {
+            StartIdle();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Flashlight"))
+        {
+            StartCoroutine(DespawnWithEffect());
+        }
+    }
+
+    private IEnumerator DespawnWithEffect()
+    {
+        // Play particle effect
+        if (despawnParticles != null)
+        {
+            despawnParticles.transform.parent = null; // Detach from ghost
+            despawnParticles.Play();
+        }
+
+        // // Optional: disable ghost visuals or collider here
+        // GetComponent<SpriteRenderer>().enabled = false;
+        // GetComponent<Collider2D>().enabled = false;
+        // rigidBody.velocity = Vector2.zero;
+
+        // Wait for particle duration
+        yield return new WaitForSeconds(.1f); // particle duration
+
+        Destroy(gameObject);
     }
 
     public override void Attack(PlayerBehavior player)

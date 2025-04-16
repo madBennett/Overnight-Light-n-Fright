@@ -54,7 +54,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    protected virtual void  Update()
     {
         switch(currState)
         {
