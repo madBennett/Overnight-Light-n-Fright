@@ -45,7 +45,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         //set default values
         currState = GhostStates.IDLE;
