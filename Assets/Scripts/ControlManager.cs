@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class ControlManager : NetworkBehaviour
+public class ControlManager : MonoBehaviour
 {
     //Movement
     [SerializeField] private float normSpeed = 5f;
@@ -15,42 +14,30 @@ public class ControlManager : NetworkBehaviour
 
     //for flashlight controls
     [SerializeField] private GameObject Flashlight;
-    [SerializeField] private NetworkVariable<bool> isFlashlightOn = new NetworkVariable<bool>(false);
+    [SerializeField] private bool isFlashlightOn = false;
 
     // Start is called before the first frame update
     void Start()
     {
         currSpeed = normSpeed;
         Flashlight.SetActive(false);
-
-        isFlashlightOn.OnValueChanged += IsFlashlightOnChanged;//subscribe to value change on network varible
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Do nothing if this is the incorrect client object
-        if (!IsOwner)
-            return;
-
         //move the player based on user input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         //move the player according to inputs on the server
-        MoveServerRpc(movement, currSpeed);
+        Move(movement, currSpeed);
 
         //flash light
-        UpdateFlashlightServerRPC(Input.GetMouseButton(0));
+        Flashlight.SetActive(Input.GetMouseButton(0));
     }
 
-    private void IsFlashlightOnChanged(bool previousValue, bool newValue)
-    {
-        Flashlight.SetActive(newValue);
-    }
-
-    [ServerRpc]
-    public void MoveServerRpc(Vector2 movement, float curSpeed)
+    public void Move(Vector2 movement, float curSpeed)
     {
         //get componates for movement
         rigidBody = GetComponent<Rigidbody2D>();
@@ -77,12 +64,5 @@ public class ControlManager : NetworkBehaviour
             //rotate down
             PlayerObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         }
-    }
-
-    [ServerRpc]
-    public void UpdateFlashlightServerRPC(bool isOn)
-    {
-        //set active or not
-        isFlashlightOn.Value = (isOn);
     }
 }
