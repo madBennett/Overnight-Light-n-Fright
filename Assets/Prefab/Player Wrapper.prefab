@@ -181,11 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a76ab861ee29449dba3f18249da1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerId: 0
-  healthBarText: {fileID: 0}
   curEnergy: 0
   maxEnergy: 100
-  energyBar: {fileID: 0}
   playerCamera: {fileID: 1019758186867171623}
   cameraOffset: {x: 0, y: 0, z: -10}
 --- !u!70 &2507659060119905311
@@ -201,8 +198,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: 0.0059485435}
+  m_Size: {x: 0.5, y: 0.5}
   m_Direction: 0
 --- !u!1 &1863903852558013959
 GameObject:
