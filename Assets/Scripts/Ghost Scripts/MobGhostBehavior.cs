@@ -16,6 +16,10 @@ public class MobGhostBehavior : AbstractGhostBehavior
     public ParticleSystem despawnParticles;
     private SnowEffectController snowEffect;
 
+    private SpriteRenderer spriteRenderer;
+    private Color defaultColor = Color.white; // or whatever its default color is
+    private Color chaseColor = Color.red;
+
     protected override void Start()
     {
         base.Start();
@@ -23,6 +27,13 @@ public class MobGhostBehavior : AbstractGhostBehavior
         player = GameObject.FindGameObjectWithTag("Player");
         snowEffect = Camera.main.GetComponent<SnowEffectController>();
         currentSpeed = speed; // start at normal speed
+
+        // Get SpriteRenderer
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            defaultColor = spriteRenderer.color;
+        }
     }
 
     private void Update()
@@ -71,6 +82,11 @@ public class MobGhostBehavior : AbstractGhostBehavior
             direction = (player.transform.position - transform.position).normalized;
             targetSpeed = chaseSpeed;
 
+            // Turn red
+            if (spriteRenderer != null)
+            spriteRenderer.color = chaseColor;
+
+            // Chase effect on
             if (snowEffect != null)
             snowEffect.isActive = true;
         }
@@ -79,6 +95,11 @@ public class MobGhostBehavior : AbstractGhostBehavior
             // Wander in chosen random direction
             direction = (moveDestination - transform.position).normalized;
             
+            // Reset color
+            if (spriteRenderer != null)
+            spriteRenderer.color = defaultColor;
+
+            // Chase effect off
             if (snowEffect != null)
             snowEffect.isActive = false;
         }
