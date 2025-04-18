@@ -7,6 +7,9 @@ public class MobGhostBehavior : AbstractGhostBehavior
     public float moveDistance = 1f;
     public float detectionRange = 5f;
     public float chaseSpeed = 3f;
+    public float acceleration = 5f;
+    private float currentSpeed;
+
     private GameObject player;
     private Vector3 moveDestination;
     private float idleWanderCooldown = 0f;
@@ -19,6 +22,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
         isActive = true;
         player = GameObject.FindGameObjectWithTag("Player");
         snowEffect = Camera.main.GetComponent<SnowEffectController>();
+        currentSpeed = speed; // start at normal speed
     }
 
     private void Update()
@@ -40,7 +44,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
     {
         // Pick a small random direction to move slightly while in idle
         Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector2 velocity = randomDir * (speed * 0.2f); // slower speed while idle
+        Vector2 velocity = randomDir * (speed);
         rigidBody.velocity = velocity;
     }
 
@@ -59,13 +63,13 @@ public class MobGhostBehavior : AbstractGhostBehavior
     public override void Move()
     {
         Vector2 direction;
-        float currentSpeed = speed;
+        float targetSpeed = speed;
 
         if (player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
         {
             // Chase the player
             direction = (player.transform.position - transform.position).normalized;
-            currentSpeed = chaseSpeed;
+            targetSpeed = chaseSpeed;
 
             if (snowEffect != null)
             snowEffect.isActive = true;
@@ -79,6 +83,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
             snowEffect.isActive = false;
         }
 
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
         rigidBody.velocity = direction * currentSpeed;
 
         if ((Vector2.Distance(transform.position, moveDestination) <= 0.1f) || (Time.time - moveStartTime >= maxMoveTime))
