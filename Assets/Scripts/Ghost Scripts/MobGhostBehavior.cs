@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class MobGhostBehavior : AbstractGhostBehavior
 {
-    public float moveDistance = 1f;
-    public float detectionRange = 5f;
     private Vector3 moveDestination;
+    public float moveDistance = 0.5f;
+    
+    private float currentSpeed;
+    public float chaseSpeed = 2f;
+    public float acceleration = 5f;
+
+    private GameObject player;
+    public float detectionRange = 3f;
+    
     public ParticleSystem despawnParticles;
     private SnowEffectController snowEffect;
 
-    public float chaseSpeed = 3f;
-    public float acceleration = 5f;
-    private float currentSpeed;
-
     private SpriteRenderer spriteRenderer;
-    private Color defaultColor = Color.white; // or whatever its default color is
+    private Color defaultColor = Color.white;
     private Color chaseColor = Color.red;
 
     protected override void Start()
     {
         base.Start();
         isActive = true;
-        Player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         snowEffect = Camera.main.GetComponent<SnowEffectController>();
         currentSpeed = speed; // start at normal speed
 
@@ -36,36 +39,44 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     private void Update()
     {
-        switch (currState)
+        if (currState == GhostStates.IDLE)
         {
-            case GhostStates.IDLE:
-                Idle();
-                break;
-            case GhostStates.START_MOVE:
-                StartMove();
-                break;
-            case GhostStates.MOVE:
-                Move();
-                break;
+            // Wander while idle
+            if (isActive)
+            {
+                Wander();
+            }
         }
+
+        switch(currState)
+       {
+           case GhostStates.IDLE:
+               //if the ghost is not active do not allow out of the idle state
+               //in addition if the ghost is active but enters the idle state is must stay in it for x time
+               if (isActive)
+               {
+                   currState = GhostStates.START_MOVE;
+               }
+               break;
+           case GhostStates.START_MOVE:
+               StartMove();
+               break;
+           case GhostStates.MOVE:
+               Move();
+               break;
+       }
+
     }
 
-    public override void Idle()
+    private void Wander()
     {
-        if (isActive && (Time.time - idleEnterTime >= idleTime))
-        {
-            // Pick a small random direction to move slightly while in idle
-            Vector2 randomDir = Random.insideUnitCircle.normalized;
-            Vector2 velocity = randomDir * (speed * 0.5f); // slower speed while idle
-            rigidBody.velocity = velocity;
-        }
-        else
-        {
-            currState = GhostStates.START_MOVE;
-        }
+        // Pick a small random direction to move slightly while in idle
+        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        Vector2 velocity = randomDir * (speed);
+        rigidBody.velocity = velocity;
     }
 
-    public void StartMove()
+    private void StartMove()
     {
         moveStartTime = Time.time;
 
@@ -73,7 +84,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
         movement = randomDir;
         moveDestination = transform.position + (Vector3)(randomDir * moveDistance);
 
-        effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
+        //effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
         currState = GhostStates.MOVE;
     }
 
@@ -82,10 +93,10 @@ public class MobGhostBehavior : AbstractGhostBehavior
         Vector2 direction;
         float targetSpeed = speed;
 
-        if (Player != null && Vector3.Distance(transform.position, Player.transform.position) <= detectionRange)
+        if (player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
         {
             // Chase the player
-            direction = (Player.transform.position - transform.position).normalized;
+            direction = (player.transform.position - transform.position).normalized;
             targetSpeed = chaseSpeed;
 
             // Turn red
@@ -136,24 +147,13 @@ public class MobGhostBehavior : AbstractGhostBehavior
             despawnParticles.Play();
         }
 
-        // // Optional: disable ghost visuals or collider here
-        // GetComponent<SpriteRenderer>().enabled = false;
-        // GetComponent<Collider2D>().enabled = false;
-        // rigidBody.velocity = Vector2.zero;
-
         // Wait for particle duration
         yield return new WaitForSeconds(.1f); // particle duration
 
         Destroy(gameObject);
     }
 
-    public override void Attack(PlayerBehavior player)
-    {
-        
-    }
-
-    public override void OnInteractWithFlashLight()
-    {
-        StartCoroutine(DespawnWithEffect());
-    }
+    public override void Idle() {}
+    public override void Attack(PlayerBehavior player) {}
+    public override void OnInteractWithFlashLight() {}
 }
