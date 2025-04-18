@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class MobGhostBehavior : AbstractGhostBehavior
 {
-    public float moveDistance = 2f;
+    public float moveDistance = 1f;
     public float detectionRange = 5f;
     private GameObject player;
     private Vector3 moveDestination;
     private float idleWanderCooldown = 0f;
     public ParticleSystem despawnParticles;
+    private SnowEffectController snowEffect;
 
     protected override void Start()
     {
         base.Start();
         isActive = true;
         player = GameObject.FindGameObjectWithTag("Player");
+        snowEffect = Camera.main.GetComponent<SnowEffectController>();
     }
 
     private void Update()
@@ -61,11 +63,17 @@ public class MobGhostBehavior : AbstractGhostBehavior
         {
             // Chase the player
             direction = (player.transform.position - transform.position).normalized;
+
+            if (snowEffect != null)
+            snowEffect.isActive = true;
         }
         else
         {
             // Wander in chosen random direction
             direction = (moveDestination - transform.position).normalized;
+            
+            if (snowEffect != null)
+            snowEffect.isActive = false;
         }
 
         rigidBody.velocity = direction * speed;
@@ -92,11 +100,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
             despawnParticles.transform.parent = null; // Detach from ghost
             despawnParticles.Play();
         }
-
-        // // Optional: disable ghost visuals or collider here
-        // GetComponent<SpriteRenderer>().enabled = false;
-        // GetComponent<Collider2D>().enabled = false;
-        // rigidBody.velocity = Vector2.zero;
 
         // Wait for particle duration
         yield return new WaitForSeconds(.1f); // particle duration
