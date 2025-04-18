@@ -6,6 +6,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
 {
     public float moveDistance = 1f;
     public float detectionRange = 5f;
+    public float chaseSpeed = 3f;
     private GameObject player;
     private Vector3 moveDestination;
     private float idleWanderCooldown = 0f;
@@ -39,7 +40,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
     {
         // Pick a small random direction to move slightly while in idle
         Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector2 velocity = randomDir * (speed * 0.5f); // slower speed while idle
+        Vector2 velocity = randomDir * (speed * 0.2f); // slower speed while idle
         rigidBody.velocity = velocity;
     }
 
@@ -58,11 +59,13 @@ public class MobGhostBehavior : AbstractGhostBehavior
     public override void Move()
     {
         Vector2 direction;
+        float currentSpeed = speed;
 
         if (player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
         {
             // Chase the player
             direction = (player.transform.position - transform.position).normalized;
+            currentSpeed = chaseSpeed;
 
             if (snowEffect != null)
             snowEffect.isActive = true;
@@ -76,7 +79,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
             snowEffect.isActive = false;
         }
 
-        rigidBody.velocity = direction * speed;
+        rigidBody.velocity = direction * currentSpeed;
 
         if ((Vector2.Distance(transform.position, moveDestination) <= 0.1f) || (Time.time - moveStartTime >= maxMoveTime))
         {

@@ -392,6 +392,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1019758186867171623, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.2264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019758186867171623, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.1918239
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019758186867171623, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.16981132
+      objectReference: {fileID: 0}
     - target: {fileID: 1863903852211714089, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: m_Name
       value: Player Wrapper
