@@ -6,15 +6,13 @@ public class MobGhostBehavior : AbstractGhostBehavior
 {
     public float moveDistance = 1f;
     public float detectionRange = 5f;
+    private Vector3 moveDestination;
+    public ParticleSystem despawnParticles;
+    private SnowEffectController snowEffect;
+
     public float chaseSpeed = 3f;
     public float acceleration = 5f;
     private float currentSpeed;
-
-    private GameObject player;
-    private Vector3 moveDestination;
-    private float idleWanderCooldown = 0f;
-    public ParticleSystem despawnParticles;
-    private SnowEffectController snowEffect;
 
     private SpriteRenderer spriteRenderer;
     private Color defaultColor = Color.white; // or whatever its default color is
@@ -24,7 +22,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
     {
         base.Start();
         isActive = true;
-        player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
         snowEffect = Camera.main.GetComponent<SnowEffectController>();
         currentSpeed = speed; // start at normal speed
 
@@ -38,28 +36,36 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     private void Update()
     {
-        if (currState == GhostStates.IDLE)
+        switch (currState)
         {
-            // Wander while idle
-            if (isActive && Time.time >= idleWanderCooldown)
-            {
-                WanderWhileIdle();
-                idleWanderCooldown = Time.time + idleTime;
-            }
+            case GhostStates.IDLE:
+                Idle();
+                break;
+            case GhostStates.START_MOVE:
+                StartMove();
+                break;
+            case GhostStates.MOVE:
+                Move();
+                break;
         }
-
-        base.Update(); // Run the base state machine logic
     }
 
-    private void WanderWhileIdle()
+    public override void Idle()
     {
-        // Pick a small random direction to move slightly while in idle
-        Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector2 velocity = randomDir * (speed);
-        rigidBody.velocity = velocity;
+        if (isActive && (Time.time - idleEnterTime >= idleTime))
+        {
+            // Pick a small random direction to move slightly while in idle
+            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            Vector2 velocity = randomDir * (speed * 0.5f); // slower speed while idle
+            rigidBody.velocity = velocity;
+        }
+        else
+        {
+            currState = GhostStates.START_MOVE;
+        }
     }
 
-    public override void StartMove()
+    public void StartMove()
     {
         moveStartTime = Time.time;
 
@@ -76,10 +82,10 @@ public class MobGhostBehavior : AbstractGhostBehavior
         Vector2 direction;
         float targetSpeed = speed;
 
-        if (player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
+        if (Player != null && Vector3.Distance(transform.position, Player.transform.position) <= detectionRange)
         {
             // Chase the player
-            direction = (player.transform.position - transform.position).normalized;
+            direction = (Player.transform.position - transform.position).normalized;
             targetSpeed = chaseSpeed;
 
             // Turn red
@@ -130,6 +136,11 @@ public class MobGhostBehavior : AbstractGhostBehavior
             despawnParticles.Play();
         }
 
+        // // Optional: disable ghost visuals or collider here
+        // GetComponent<SpriteRenderer>().enabled = false;
+        // GetComponent<Collider2D>().enabled = false;
+        // rigidBody.velocity = Vector2.zero;
+
         // Wait for particle duration
         yield return new WaitForSeconds(.1f); // particle duration
 
@@ -141,13 +152,8 @@ public class MobGhostBehavior : AbstractGhostBehavior
         
     }
 
-    public override void StartRun()
+    public override void OnInteractWithFlashLight()
     {
-
-    }
-
-    public override void Run()
-    {
-
+        StartCoroutine(DespawnWithEffect());
     }
 }

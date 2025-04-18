@@ -4,7 +4,31 @@ using UnityEngine;
 
 public class MazeGhostBehavior : AbstractGhostBehavior
 {
-    public override void StartMove()
+    protected override void Start()
+    {
+        base.Start();
+    }
+    
+    public void Update()
+    {
+        switch (currState)
+        {
+            case GhostStates.IDLE:
+                Idle();
+                break;
+            case GhostStates.START_MOVE:
+                StartMove();
+                break;
+            case GhostStates.MOVE:
+                Move();
+                break;
+            case GhostStates.RUN:
+                Run();
+                break;
+        }
+    }
+
+    public void StartMove()
     {
         moveStartTime = Time.time;
 
@@ -33,17 +57,33 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     }
 
+    public override void Idle()
+    {
+        //if the ghost is not active do not allow out of the idle state
+        //in addition if the ghost is active but enters the idle state is must stay in it for x time
+        if (isActive && (Time.time - idleEnterTime >= idleTime))
+        {
+            currState = GhostStates.START_MOVE;
+        }
+    }
+
     public override void Attack(PlayerBehavior player)
     {
         //
     }
 
-    public override void StartRun()
+    public override void OnInteractWithFlashLight()
+    {
+        currState = GhostStates.RUN;
+        StartRun();
+    }
+
+    public void StartRun()
     {
         //select movment destination and move towards it
     }
 
-    public override void Run()
+    public void Run()
     {
         //If the ghost is in contact with the flashlight move in the oppistae dircetion of the player
     }

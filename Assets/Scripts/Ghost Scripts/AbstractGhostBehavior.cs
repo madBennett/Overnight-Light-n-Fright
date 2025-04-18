@@ -9,23 +9,15 @@ public enum GhostStates
     MOVE,
     ATTACK,
     RUN,
+    DEATH,//haha died twice
     NUM_STATES
-}
-
-public enum EffectTypes
-{
-    VISUAL_DISTORTION,
-    REVERSE_CONTROLS,
-    STUN,
-    DAMAGE,
-    TELEPORT,
-    NUM_EFFECTS
 }
 
 public abstract class AbstractGhostBehavior : MonoBehaviour
 {
     public GhostStates currState;
     public bool isActive = false; //bool to determine if the ghost should be moving or not
+    public GameObject Player;
 
     //varibles for idle state
     public float idleEnterTime;
@@ -39,9 +31,6 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     //Varibles for move
     public float speed = 1f;
     public float maxMoveTime = 3f;
-
-    //Varibles for Run state
-    public Vector3 playerPos;
     public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
@@ -52,30 +41,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         idleEnterTime = Time.time;
         effectToApply = EffectTypes.VISUAL_DISTORTION;
         rigidBody = GetComponent<Rigidbody2D>();
-    }
-
-    protected virtual void  Update()
-    {
-        switch(currState)
-        {
-            case GhostStates.IDLE:
-                //if the ghost is not active do not allow out of the idle state
-                //in addition if the ghost is active but enters the idle state is must stay in it for x time
-                if (isActive && (Time.time - idleEnterTime >= idleTime))
-                {
-                    currState = GhostStates.START_MOVE;
-                }
-                break;
-            case GhostStates.START_MOVE:
-                StartMove();
-                break;
-            case GhostStates.MOVE:
-                Move();
-                break;
-            case GhostStates.RUN:
-                Run();
-                break;
-        }
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -84,8 +50,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //if collision with a player attack
-            PlayerBehavior player = collision.gameObject.GetComponent<PlayerBehavior>();
-            Attack(player);
+            Attack(Player.GetComponent<PlayerBehavior>());
         }
     }
 
@@ -94,9 +59,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Flashlight")
         {
             //on collision with flashlight
-            StartRun();
-            currState = GhostStates.RUN;
-            playerPos = collision.gameObject.transform.position;
+            OnInteractWithFlashLight();
         }
     }
 
@@ -107,13 +70,11 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         currState = GhostStates.IDLE;
     }
 
-    public abstract void StartMove();
+    public abstract void Idle();
 
     public abstract void Move();
 
     public abstract void Attack(PlayerBehavior player);
 
-    public abstract void StartRun();
-
-    public abstract void Run();
+    public abstract void OnInteractWithFlashLight();
 }
