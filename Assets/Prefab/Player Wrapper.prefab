@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normSpeed: 5
+  currSpeed: 0
+  movement: {x: 0, y: 0}
   PlayerObj: {fileID: 4966794419736067571}
   rigidBody: {fileID: 5815548876745574209}
   Flashlight: {fileID: 1863903852558013959}
@@ -185,6 +187,7 @@ MonoBehaviour:
   maxEnergy: 100
   playerCamera: {fileID: 1019758186867171623}
   cameraOffset: {x: 0, y: 0, z: -10}
+  currEffect: 2
 --- !u!70 &2507659060119905311
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -326,6 +329,7 @@ GameObject:
   - component: {fileID: 6570709086383508991}
   - component: {fileID: 1019758186867171623}
   - component: {fileID: 2360263953167457181}
+  - component: {fileID: 4610826853466205799}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -399,6 +403,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4954606115621901870}
   m_Enabled: 0
+--- !u!114 &4610826853466205799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4954606115621901870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c5e3a3c22cf2b44a02901509c17cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 3202657474735805668}
+  visualMaterials:
+  - {fileID: 2100000, guid: c65e8e4304a14450481af3b95ded5f08, type: 2}
+  currentMat: {fileID: 0}
+  PlayerControls: {fileID: 4748989975070169129}
 --- !u!1 &4966794419736067571
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         movement = new Vector2(0,1);
 
         //choose effect
-        effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
+        effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS));
 
         //change State to move
         currState = GhostStates.MOVE;

@@ -6,8 +6,8 @@ public class ControlManager : MonoBehaviour
 {
     //Movement
     [SerializeField] private float normSpeed = 5f;
-    private float currSpeed;
-    private Vector2 movement;
+    public  float currSpeed;
+    public Vector2 movement;
 
     [SerializeField] private GameObject PlayerObj;
     [SerializeField] private Rigidbody2D rigidBody;

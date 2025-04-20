@@ -14,6 +14,9 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private Camera playerCamera; // Assign in prefab or spawn via script
     [SerializeField] private Vector3 cameraOffset = new Vector3(0, 0, -10); // Typical 2D offset
 
+    //
+    public EffectTypes currEffect = EffectTypes.DEFAULT;
+
     // Start is called before the first frame update
     void Start()
     {
