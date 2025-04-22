@@ -70,6 +70,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     public override void Attack(PlayerBehavior player)
     {
         //
+        EffectsManager.ApplyEffect(effectToApply);
     }
 
     public override void OnInteractWithFlashLight()

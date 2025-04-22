@@ -8,20 +8,19 @@ public enum EffectTypes
     VISUAL_DISTORTION,
     REVERSE_CONTROLS,
     STUN,
-    TELEPORT,
     DAMAGE,
     NUM_EFFECTS
 }
 
 public enum VisualTypes
 {
-    SNOW,
-    TILE
+    SNOW
 }
 
 public class EffectsManager : MonoBehaviour
 {
     [SerializeField] private PlayerBehavior Player;
+    [SerializeField] private float effectTime = 2f;
 
     //visual effects
     [SerializeField] private List<Material> visualMaterials;
@@ -33,32 +32,34 @@ public class EffectsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentMat = visualMaterials[0];
+        currentMat = null;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyEffect(EffectTypes effect, VisualTypes visEffect = VisualTypes.SNOW, int damageAmt = 1)
     {
-        switch (Player.currEffect)
+        switch (effect)
         {
+            case EffectTypes.VISUAL_DISTORTION:
+                currentMat = visualMaterials[(int)visEffect]; currentMat = visualMaterials[(int)visEffect];
+                break;
             case EffectTypes.REVERSE_CONTROLS:
-                ReverseControls();
+                PlayerControls.currMoveState = MovementStates.REVERSE;
                 break;
             case EffectTypes.STUN:
-                StunPlayer();
+                PlayerControls.currMoveState = MovementStates.STUN;
+                break;
+            case EffectTypes.DAMAGE:
+                Player.DamagePlayer(damageAmt);
                 break;
         }
+
+        Invoke("ResetToDefault", effectTime);
     }
 
     //Apply Visual Effects
-    public void ApplyVisualDistortion(VisualTypes visEffect)
-    {
-        currentMat = visualMaterials[(int)visEffect];
-    }
-
     private void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
-        if (Player.currEffect == EffectTypes.VISUAL_DISTORTION)
+        if (currentMat != null)
         {
             Graphics.Blit(src, dest, currentMat);
         }
@@ -68,27 +69,10 @@ public class EffectsManager : MonoBehaviour
         }
     }
 
-    //Apply Movement Effects
-    public void ReverseControls()
-    {
-        //TODO FIX
-        PlayerControls.movement = PlayerControls.movement * - 1;
-    }
-
-    public void StunPlayer()
-    {
-        PlayerControls.currSpeed = 0;
-        //TODO PREVENT FLASHLIGHT
-    }
-
-    public void TeleportPlayerr()
-    {
-        //TODO IMPLEMENT
-    }
-
     //
-    public void DamagePlayer()
+    public void ResetToDefault()
     {
-        //TODO IMPLEMENT
+        PlayerControls.currMoveState = MovementStates.DEFAULT;
+        currentMat = null;
     }
 }

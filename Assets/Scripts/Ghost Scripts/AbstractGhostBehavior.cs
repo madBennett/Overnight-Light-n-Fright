@@ -18,6 +18,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public GhostStates currState;
     public bool isActive = false; //bool to determine if the ghost should be moving or not
     public GameObject Player;
+    public EffectsManager EffectsManager;
 
     //varibles for idle state
     public float idleEnterTime;

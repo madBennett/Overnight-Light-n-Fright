@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovementStates
+{
+    DEFAULT,
+    DASH,
+    STUN,
+    REVERSE
+}
+
 public class ControlManager : MonoBehaviour
 {
     //Movement
+    public MovementStates currMoveState;
     [SerializeField] private float normSpeed = 5f;
     public  float currSpeed;
     public Vector2 movement;
@@ -21,32 +30,47 @@ public class ControlManager : MonoBehaviour
     {
         currSpeed = normSpeed;
         Flashlight.SetActive(false);
+
+        //get componates for movement
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //move the player based on user input
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
 
-        //move the player according to inputs on the server
-        Move(movement, currSpeed);
+        if (currMoveState != MovementStates.STUN)
+        {
+            //move the player based on user input
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-        //flash light
-        Flashlight.SetActive(Input.GetMouseButton(0));
+            //move the player according to inputs on the server
+            Move();
+
+            //flash light
+            Flashlight.SetActive(Input.GetMouseButton(0));
+        }
     }
 
-    public void Move(Vector2 movement, float curSpeed)
+    public void Move()
     {
-        //get componates for movement
-        rigidBody = GetComponent<Rigidbody2D>();
+        //Reverse Movement if Applicable
+        if (currMoveState == MovementStates.REVERSE)
+        {
+            movement *= -1;
+        }
         //prevent odd input
         movement.Normalize();
 
+        RotatePlayer();
+
         //move through rigid body
         rigidBody.velocity = movement * currSpeed;
+    }
 
+    public void RotatePlayer()
+    {
         //rotate player accordingly
         if (movement.x != 0)
         {
