@@ -14,7 +14,7 @@ public class ControlManager : MonoBehaviour
 
     //for flashlight controls
     [SerializeField] private GameObject Flashlight;
-    [SerializeField] private bool isFlashlightOn = false;
+    //[SerializeField] private bool isFlashlightOn = false;
 
     // Start is called before the first frame update
     void Start()
