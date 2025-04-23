@@ -19,9 +19,6 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private Camera playerCamera; // Assign in prefab or spawn via script
     [SerializeField] private Vector3 cameraOffset = new Vector3(0, 0, -10); // Typical 2D offset
 
-    //
-    public EffectTypes currEffect = EffectTypes.DEFAULT;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +37,38 @@ public class PlayerBehavior : MonoBehaviour
 
     }
 
-    public void DamagePlayer(int damageAmt)
+    public void ChangePlayerHealth(int changeAmt)
     {
-        currHealth -= damageAmt;
+        currHealth += changeAmt;
+
+        //check it is not below zero or above max
+        if (currHealth > maxHealth)
+        {
+            currHealth = maxHealth;
+        }
+        else if (currHealth < 0)
+        {
+            currHealth = 0;
+        }
+
         HealthBar.setValue(currHealth);
+    }
+
+    public void ChangePlayerEnergy(int changeAmt)
+    {
+        currEnergy += changeAmt;
+
+        //check it is not below zero or above max
+        if (currEnergy > maxEnergy)
+        {
+            currEnergy = maxEnergy;
+        }
+        else if (currEnergy < 0)
+        {
+            currEnergy = 0;
+        }
+
+        //set value bar
+        EnergyBar.setValue(currEnergy);
     }
 }

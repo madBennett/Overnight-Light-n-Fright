@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Martinez_Shooter Scene.unity
     guid: 2baee09accc3945788342cedf261d465
   - enabled: 1
-    path: Assets/Scenes/Potter_Dexterity.unity
+    path: Assets/Scenes/Potter_Dexterity Scene.unity
     guid: b1d56da13268ebd448e22f8632489cf4
   m_configObjects: {}

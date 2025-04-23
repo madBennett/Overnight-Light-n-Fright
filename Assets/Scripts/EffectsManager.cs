@@ -21,10 +21,11 @@ public class EffectsManager : MonoBehaviour
 {
     [SerializeField] private PlayerBehavior Player;
     [SerializeField] private float effectTime = 2f;
+    [SerializeField] private bool[] appliedEffects = new bool[(int)EffectTypes.NUM_EFFECTS]; //bool map to verify which effect is curretnly active
 
     //visual effects
     [SerializeField] private List<Material> visualMaterials;
-    [SerializeField] private Material currentMat;
+    [SerializeField] private CameraBehavior mainCameraBehavior;
 
     //movement effects
     [SerializeField] private ControlManager PlayerControls;
@@ -32,47 +33,62 @@ public class EffectsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentMat = null;
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
+        PlayerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<ControlManager>();
+        mainCameraBehavior = Camera.main.GetComponent<CameraBehavior>();
+
+        //inmtialize map
+        for (int i = 0; i < (int)EffectTypes.NUM_EFFECTS; i++)
+        {
+            appliedEffects[i] = false;
+        }
     }
 
     public void ApplyEffect(EffectTypes effect, VisualTypes visEffect = VisualTypes.SNOW, int damageAmt = 1)
     {
-        switch (effect)
+        if (!appliedEffects[(int)effect])
         {
-            case EffectTypes.VISUAL_DISTORTION:
-                currentMat = visualMaterials[(int)visEffect]; currentMat = visualMaterials[(int)visEffect];
-                break;
-            case EffectTypes.REVERSE_CONTROLS:
-                PlayerControls.currMoveState = MovementStates.REVERSE;
-                break;
-            case EffectTypes.STUN:
-                PlayerControls.currMoveState = MovementStates.STUN;
-                break;
-            case EffectTypes.DAMAGE:
-                Player.DamagePlayer(damageAmt);
-                break;
-        }
+            switch (effect)
+            {
+                case EffectTypes.VISUAL_DISTORTION:
+                    mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
+                    break;
+                case EffectTypes.REVERSE_CONTROLS:
+                    PlayerControls.currMoveState = MovementStates.REVERSE;
+                    break;
+                case EffectTypes.STUN:
+                    PlayerControls.currMoveState = MovementStates.STUN;
+                    break;
+                case EffectTypes.DAMAGE:
+                    Player.ChangePlayerHealth(-1 * damageAmt);
+                    break;
+            }
 
-        Invoke("ResetToDefault", effectTime);
-    }
+            appliedEffects[(int)effect] = true;
 
-    //Apply Visual Effects
-    private void OnRenderImage(RenderTexture src, RenderTexture dest)
-    {
-        if (currentMat != null)
-        {
-            Graphics.Blit(src, dest, currentMat);
+            StartCoroutine(ResetToDefault(effect));
         }
-        else
-        {
-            Graphics.Blit(src, dest);
-        }
+        
+
     }
 
     //
-    public void ResetToDefault()
+    IEnumerator ResetToDefault(EffectTypes effect)
     {
-        PlayerControls.currMoveState = MovementStates.DEFAULT;
-        currentMat = null;
+        //Wait for effect time
+        yield return new WaitForSeconds(effectTime);
+
+        //reset the applied effect after waiting for the duration
+        switch (effect)
+        {
+            case EffectTypes.VISUAL_DISTORTION:
+                mainCameraBehavior.currMat = null;
+                break;
+            case EffectTypes.REVERSE_CONTROLS:
+            case EffectTypes.STUN:
+                PlayerControls.currMoveState = MovementStates.DEFAULT; break;
+        }
+
+        appliedEffects[(int)effect] = false;
     }
 }

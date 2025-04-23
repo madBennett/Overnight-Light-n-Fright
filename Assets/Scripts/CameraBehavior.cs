@@ -28,6 +28,7 @@ public class CameraBehavior : MonoBehaviour
     Vector2 VelVec;
 
 
+    public Material currMat;
 
 
 
@@ -63,5 +64,18 @@ public class CameraBehavior : MonoBehaviour
 
         transform.Translate(VelVec * Time.deltaTime);
 
+    }    
+    
+    //Apply Visual Effects
+    private void OnRenderImage(RenderTexture src, RenderTexture dest)
+    {
+        if (currMat != null)
+        {
+            Graphics.Blit(src, dest, currMat);
+        }
+        else
+        {
+            Graphics.Blit(src, dest);
+        }
     }
 }

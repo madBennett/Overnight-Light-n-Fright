@@ -50,7 +50,6 @@ public class ControlManager : MonoBehaviour
             Move();
 
             //flash light
-            //Flashlight.SetActive(Input.GetMouseButton(0));
             setFlashlightState();
         }
     }
