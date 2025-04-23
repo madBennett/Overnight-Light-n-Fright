@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MobGhostBehavior : AbstractGhostBehavior
 {
+    public delegate void GhostDespawned(MobGhostBehavior ghost);
+    public event GhostDespawned onGhostDespawned;
+
     private Vector3 moveDestination;
     public float moveDistance = 0.5f;
 
@@ -142,23 +145,44 @@ public class MobGhostBehavior : AbstractGhostBehavior
         }
     }
 
+    // private IEnumerator DespawnWithEffect()
+    // {
+    //     // disable shader chase effect
+    //     if (isChasing && snowEffect != null)
+    //     {
+    //         snowEffect.RemoveChasingGhost();
+    //     }
+
+    //     // Play particle effect
+    //     if (despawnParticles != null)
+    //     {
+    //         despawnParticles.transform.parent = null; // Detach from ghost
+    //         despawnParticles.Play();
+    //     }
+
+    //     // Wait for particle duration
+    //     yield return new WaitForSeconds(.1f); // particle duration
+
+    //     Destroy(gameObject);
+    // }
+
     private IEnumerator DespawnWithEffect()
     {
-        // disable shader chase effect
         if (isChasing && snowEffect != null)
         {
             snowEffect.RemoveChasingGhost();
         }
-        
-        // Play particle effect
+
         if (despawnParticles != null)
         {
-            despawnParticles.transform.parent = null; // Detach from ghost
+            despawnParticles.transform.parent = null;
             despawnParticles.Play();
         }
 
-        // Wait for particle duration
-        yield return new WaitForSeconds(.1f); // particle duration
+        yield return new WaitForSeconds(.1f);
+
+        if (onGhostDespawned != null)
+            onGhostDespawned(this);
 
         Destroy(gameObject);
     }
