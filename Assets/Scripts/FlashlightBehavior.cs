@@ -6,13 +6,16 @@ public class FlashlightBehavior : MonoBehaviour
 {
     GameObject rotationPoint;
     Vector2 rotationPointPos;
-    Rigidbody2D RPBody;
+    //Rigidbody2D RPBody;
 
     Vector2 mousePosInWorld;
     Vector3 mousePos3D;
     Vector2 mousePosOnScreen;
 
     Vector2 us2Mouse;
+    Vector3 us2Mouse3D;
+
+    Quaternion currentAngle;
 
     Camera mainCam;
 
@@ -23,8 +26,9 @@ public class FlashlightBehavior : MonoBehaviour
     void Start()
     {
         rotationPoint = gameObject;
-        RPBody = rotationPoint.GetComponent<Rigidbody2D>();
+        //RPBody = rotationPoint.GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
+        us2Mouse3D = Vector3.zero;
     }
 
     void Update()
@@ -54,10 +58,13 @@ public class FlashlightBehavior : MonoBehaviour
             mouseAngle = 360 - mouseAngle;
         }
 
-        Debug.Log("Angle: " + mouseAngle);
+        us2Mouse3D.z = us2Mouse.x;
+        us2Mouse3D.z = us2Mouse.y;
+
+        currentAngle = Quaternion.AngleAxis(mouseAngle, Vector3.forward);
 
         //step 4: rotate the rotationPoint to that angle
-        RPBody.rotation = mouseAngle;
+        transform.rotation = currentAngle;
 
     }
 }

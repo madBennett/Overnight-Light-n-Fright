@@ -123,32 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &123889623 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5585224354813032359, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
-  m_PrefabInstance: {fileID: 1710072526}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &123889626
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123889623}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &142279246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1100,30 @@ PrefabInstance:
     - target: {fileID: 1863903852558013958, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135495084949709987, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135495084949709987, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135495084949709987, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135495084949709987, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135495084949709987, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135495084949709987, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4977335954693680282, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
