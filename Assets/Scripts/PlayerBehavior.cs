@@ -22,6 +22,10 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //get objects
+        EnergyBar = GameObject.FindGameObjectWithTag("Energy Bar").GetComponent<ValueBar>();
+        HealthBar = GameObject.FindGameObjectWithTag("Health Bar").GetComponent<ValueBar>();
+
         //set health
         currEnergy = maxEnergy;
         currHealth = maxHealth;
