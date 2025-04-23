@@ -69,7 +69,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
                Move();
                break;
        }
-
     }
 
     private void Wander()
@@ -145,45 +144,33 @@ public class MobGhostBehavior : AbstractGhostBehavior
         }
     }
 
-    // private IEnumerator DespawnWithEffect()
-    // {
-    //     // disable shader chase effect
-    //     if (isChasing && snowEffect != null)
-    //     {
-    //         snowEffect.RemoveChasingGhost();
-    //     }
-
-    //     // Play particle effect
-    //     if (despawnParticles != null)
-    //     {
-    //         despawnParticles.transform.parent = null; // Detach from ghost
-    //         despawnParticles.Play();
-    //     }
-
-    //     // Wait for particle duration
-    //     yield return new WaitForSeconds(.1f); // particle duration
-
-    //     Destroy(gameObject);
-    // }
-
     private IEnumerator DespawnWithEffect()
     {
+        // disable shader chase effect
         if (isChasing && snowEffect != null)
         {
             snowEffect.RemoveChasingGhost();
         }
 
+        // play despawn particle effect
         if (despawnParticles != null)
         {
-            despawnParticles.transform.parent = null;
-            despawnParticles.Play();
+            ParticleSystem particles = Instantiate(despawnParticles, transform.position, Quaternion.identity);
+            float duration = particles.main.duration + particles.main.startLifetime.constantMax;
+            particles.Play(); // play particle
+            Destroy(particles.gameObject, duration);// destroy particle
         }
 
+        // wait for particle duration
         yield return new WaitForSeconds(.1f);
 
+        // notify spawner
         if (onGhostDespawned != null)
+        {
             onGhostDespawned(this);
+        }
 
+        // destroy the ghost object
         Destroy(gameObject);
     }
 
