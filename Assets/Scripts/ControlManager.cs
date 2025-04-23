@@ -23,7 +23,8 @@ public class ControlManager : MonoBehaviour
 
     //for flashlight controls
     [SerializeField] private GameObject Flashlight;
-    //[SerializeField] private bool isFlashlightOn = false;
+
+    private bool lastFrameClick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +50,8 @@ public class ControlManager : MonoBehaviour
             Move();
 
             //flash light
-            Flashlight.SetActive(Input.GetMouseButton(0));
+            //Flashlight.SetActive(Input.GetMouseButton(0));
+            setFlashlightState();
         }
     }
 
@@ -88,5 +90,18 @@ public class ControlManager : MonoBehaviour
             //rotate down
             PlayerObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         }
+    }
+
+    private void setFlashlightState()
+    {
+        //if click was not on last frame and is on this frame, switch the current state of flashlight.
+
+        if (!lastFrameClick && Input.GetMouseButton(0))
+        {
+            Flashlight.SetActive(!Flashlight.activeSelf);
+        }
+
+
+        lastFrameClick = Input.GetMouseButton(0);
     }
 }
