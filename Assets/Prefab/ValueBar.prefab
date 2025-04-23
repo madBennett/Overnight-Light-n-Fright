@@ -218,7 +218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a942f85d4231f5458439f4d1cdc03b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbaaec24d47ecb54f985ffdacbc68d09, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5834708291159958842}
   - component: {fileID: 5834708291159958840}
-  - component: {fileID: 5834708291159958843}
+  - component: {fileID: 7438423007603558664}
   m_Layer: 5
   m_Name: ValueBar
   m_TagString: Untagged
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5834708291159958843
+--- !u!114 &7438423007603558664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5834708291159958821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8ab4da2cbe0d84483809ce82c7d66f, type: 3}
+  m_Script: {fileID: 11500000, guid: 61104aa8ebfae654f86e6071fbd66df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 5834708291159958840}

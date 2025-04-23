@@ -3,7 +3,11 @@ guid: 9fb2e2087173c4e40b210697b398a754
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Player: {fileID: 1863903852211714089, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  - EffectsManager: {instanceID: 0}
+  - rigidBody: {instanceID: 0}
+  - despawnParticles: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
