@@ -5,7 +5,7 @@ using UnityEngine;
 public class MobGhostSpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    public GameObject mobGhostPrefab;  // ghost prefabs to spawn
+    public GameObject mobGhostPrefab;  // ghost prefab to spawn
     public int numberOfGhosts = 8;     // total ghosts to spawn
     public float spawnRadius = 5f;     // radius of the circle
 

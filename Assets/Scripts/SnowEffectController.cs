@@ -4,11 +4,14 @@ using UnityEngine;
 public class SnowEffectController : MonoBehaviour
 {
     public Material snowMaterial;
-    public bool isActive = false;
+    private int chasingGhostCount = 0;
+
+    public void AddChasingGhost() => chasingGhostCount++;
+    public void RemoveChasingGhost() => chasingGhostCount--;
 
     private void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
-        if (isActive && snowMaterial != null)
+        if (chasingGhostCount > 0 && snowMaterial != null)
         {
             Graphics.Blit(src, dest, snowMaterial);
         }

@@ -6,14 +6,15 @@ public class MobGhostBehavior : AbstractGhostBehavior
 {
     private Vector3 moveDestination;
     public float moveDistance = 0.5f;
-    
+
     private float currentSpeed;
     public float chaseSpeed = 2f;
     public float acceleration = 5f;
 
     private GameObject player;
     public float detectionRange = 3f;
-    
+    private bool isChasing = false;
+
     public ParticleSystem despawnParticles;
     private SnowEffectController snowEffect;
 
@@ -92,38 +93,41 @@ public class MobGhostBehavior : AbstractGhostBehavior
     {
         Vector2 direction;
         float targetSpeed = speed;
+        bool withinRange = player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange;
 
-        if (player != null && Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
+        if (withinRange)
         {
             // Chase the player
             direction = (player.transform.position - transform.position).normalized;
             targetSpeed = chaseSpeed;
 
-            // Turn red
-            if (spriteRenderer != null)
-            spriteRenderer.color = chaseColor;
+            if (!isChasing) 
+            {
+                isChasing = true;
+                if (snowEffect != null) snowEffect.AddChasingGhost();
+            }
 
-            // Chase effect on
-            if (snowEffect != null)
-            snowEffect.isActive = true;
-        }
-        else
+            if (spriteRenderer != null) spriteRenderer.color = chaseColor;
+        } 
+        else 
         {
-            // Wander in chosen random direction
             direction = (moveDestination - transform.position).normalized;
-            
-            // Reset color
-            if (spriteRenderer != null)
-            spriteRenderer.color = defaultColor;
+            targetSpeed = speed;
 
-            // Chase effect off
-            if (snowEffect != null)
-            snowEffect.isActive = false;
+            if (isChasing)
+            {
+                isChasing = false;
+                if (snowEffect != null) snowEffect.RemoveChasingGhost(); 
+            }
+
+            if (spriteRenderer != null) spriteRenderer.color = defaultColor;
         }
 
+        // Chase logic
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
         rigidBody.velocity = direction * currentSpeed;
 
+        // if out of range idle
         if ((Vector2.Distance(transform.position, moveDestination) <= 0.1f) || (Time.time - moveStartTime >= maxMoveTime))
         {
             StartIdle();
@@ -140,6 +144,12 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     private IEnumerator DespawnWithEffect()
     {
+        // disable shader chase effect
+        if (isChasing && snowEffect != null)
+        {
+            snowEffect.RemoveChasingGhost();
+        }
+        
         // Play particle effect
         if (despawnParticles != null)
         {
