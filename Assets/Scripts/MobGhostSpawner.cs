@@ -38,14 +38,6 @@ public class MobGhostSpawner : MonoBehaviour
 
             activeGhosts.Add(ghost);
         }
-
-
-        // for (int i = 0; i < numberOfGhosts; i++)
-        // {
-        //     float angle = i * Mathf.PI * 2f / numberOfGhosts;
-        //     Vector3 spawnPos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * spawnRadius + center;
-        //     Instantiate(mobGhostPrefab, spawnPos, Quaternion.identity);
-        // }
     }
 
     private void OnGhostDespawned(MobGhostBehavior ghost)
