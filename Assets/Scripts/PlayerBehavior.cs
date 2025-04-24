@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    //health
+    //energy
     [SerializeField] private float currEnergy = 0f;
     public float maxEnergy = 100f;
+    [SerializeField] private ValueBar EnergyBar;
+    [SerializeField] private GameObject Flashlight;
+    public float energyDelpetionRate = 1;
+
+    //health
     [SerializeField] private float currHealth = 0f;
     public float maxHealth = 100f;
-
-    [SerializeField] private ValueBar EnergyBar;
     [SerializeField] private ValueBar HealthBar;
 
     // camera fields
@@ -25,6 +28,7 @@ public class PlayerBehavior : MonoBehaviour
         //get objects
         EnergyBar = GameObject.FindGameObjectWithTag("Energy Bar").GetComponent<ValueBar>();
         HealthBar = GameObject.FindGameObjectWithTag("Health Bar").GetComponent<ValueBar>();
+        Flashlight = GameObject.FindGameObjectWithTag("Flashlight");
 
         //set health
         currEnergy = maxEnergy;
@@ -35,13 +39,16 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-
+        //deplet energy for flashlight when active
+        if (Flashlight.activeSelf)
+        {
+            ChangePlayerEnergy(-1* energyDelpetionRate*  Time.deltaTime);
+        }
     }
 
-    public void ChangePlayerHealth(int changeAmt)
+    public void ChangePlayerHealth(float changeAmt)
     {
         currHealth += changeAmt;
 
@@ -58,7 +65,7 @@ public class PlayerBehavior : MonoBehaviour
         HealthBar.setValue(currHealth);
     }
 
-    public void ChangePlayerEnergy(int changeAmt)
+    public void ChangePlayerEnergy(float changeAmt)
     {
         currEnergy += changeAmt;
 
