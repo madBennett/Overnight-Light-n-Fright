@@ -65,6 +65,14 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         }
     }
 
+    public virtual void Wander()
+    {
+        // Pick a small random direction to move slightly while in idle
+        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        Vector2 velocity = randomDir * (speed);
+        rigidBody.velocity = velocity;
+    }
+
     public virtual void StartIdle()
     {
         idleEnterTime = Time.time;

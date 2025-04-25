@@ -71,14 +71,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
        }
     }
 
-    private void Wander()
-    {
-        // Pick a small random direction to move slightly while in idle
-        Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector2 velocity = randomDir * (speed);
-        rigidBody.velocity = velocity;
-    }
-
     private void StartMove()
     {
         moveStartTime = Time.time;
