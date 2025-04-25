@@ -533,6 +533,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6879754760065684140, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879754760116627961, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8192759682011757914, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 10000
@@ -1291,7 +1299,7 @@ GameObject:
   - component: {fileID: 1706091143}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Game Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1310,6 +1318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 300
   TimerText: {fileID: 37420389}
+  TimeBar: {fileID: 0}
+  maxEnergy: 100
+  EnergyBar: {fileID: 0}
 --- !u!4 &1706091144
 Transform:
   m_ObjectHideFlags: 0
@@ -1419,6 +1430,10 @@ PrefabInstance:
     - target: {fileID: 6057081000603419721, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_Name
       value: Effect Manager 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057081000603419721, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6057081000603419723, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_RootOrder

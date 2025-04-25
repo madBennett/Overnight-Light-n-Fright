@@ -93,14 +93,17 @@ public class ControlManager : MonoBehaviour
 
     private void setFlashlightState()
     {
-        //if click was not on last frame and is on this frame, switch the current state of flashlight.
-
-        if (!lastFrameClick && Input.GetMouseButton(0))
+        //Change nothing if the player has no energy
+        if (GameManager.currEnergy > 0)
         {
-            Flashlight.SetActive(!Flashlight.activeSelf);
+            //if click was not on last frame and is on this frame, switch the current state of flashlight.
+
+            if (!lastFrameClick && Input.GetMouseButton(0))
+            {
+                Flashlight.SetActive(!Flashlight.activeSelf);
+            }
+
+            lastFrameClick = Input.GetMouseButton(0);
         }
-
-
-        lastFrameClick = Input.GetMouseButton(0);
     }
 }
