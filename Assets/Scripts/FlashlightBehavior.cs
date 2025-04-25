@@ -6,7 +6,6 @@ public class FlashlightBehavior : MonoBehaviour
 {
     GameObject rotationPoint;
     Vector2 rotationPointPos;
-    //Rigidbody2D RPBody;
 
     Vector2 mousePosInWorld;
     Vector3 mousePos3D;
@@ -19,14 +18,11 @@ public class FlashlightBehavior : MonoBehaviour
 
     Camera mainCam;
 
-
-    
-
+    public Transform playerTransform; // reference to the player to get the facing direction
 
     void Start()
     {
         rotationPoint = gameObject;
-        //RPBody = rotationPoint.GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
         us2Mouse3D = Vector3.zero;
     }
@@ -36,35 +32,30 @@ public class FlashlightBehavior : MonoBehaviour
         //find the angle from rotationPoint to the mouse
         //step 1: acquire vector2 positions of mouse and rotation point
 
-        mousePosOnScreen.x = Input.mousePosition.x;
-        mousePosOnScreen.y = Input.mousePosition.y;
-
+        // world mouse position
+        mousePosOnScreen = Input.mousePosition;
         mousePos3D = mainCam.ScreenToWorldPoint(mousePosOnScreen);
+        mousePosInWorld = new Vector2(mousePos3D.x, mousePos3D.y);
 
-        mousePosInWorld.x = mousePos3D.x;
-        mousePosInWorld.y = mousePos3D.y;
-
-        rotationPointPos.x = rotationPoint.transform.position.x;
-        rotationPointPos.y = rotationPoint.transform.position.y;
+        rotationPointPos = rotationPoint.transform.position;
 
         //step 2: acquire the vector between those positions
         us2Mouse = mousePosInWorld - rotationPointPos;
 
         //step 3: get the angle, between 0 and 360 degrees, from 'up' to that point
-        float mouseAngle = Vector2.Angle(Vector2.up, us2Mouse);
+        float targetAngle = Mathf.Atan2(us2Mouse.y, us2Mouse.x) * Mathf.Rad2Deg - 90f;
 
-        if (mousePosInWorld.x > rotationPointPos.x)
-        {
-            mouseAngle = 360 - mouseAngle;
-        }
+        // step 4: get player's facing direction
+        Vector2 playerForward = playerTransform.up;
+        float playerFacingAngle = Mathf.Atan2(playerForward.y, playerForward.x) * Mathf.Rad2Deg - 90f;
 
-        us2Mouse3D.z = us2Mouse.x;
-        us2Mouse3D.z = us2Mouse.y;
+        // step 5: calculate relative angle and clamp to ±80
+        float angleOffset = Mathf.DeltaAngle(playerFacingAngle, targetAngle);
+        angleOffset = Mathf.Clamp(angleOffset, -80f, 80f);
 
-        currentAngle = Quaternion.AngleAxis(mouseAngle, Vector3.forward);
+        float clampedAngle = playerFacingAngle + angleOffset;
 
-        //step 4: rotate the rotationPoint to that angle
-        transform.rotation = currentAngle;
-
+        // step 6: apply rotation
+        transform.rotation = Quaternion.Euler(0, 0, clampedAngle);
     }
 }
