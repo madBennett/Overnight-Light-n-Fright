@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SnowEffectMaterial
+  m_Name: ChaseEffectMaterial
   m_Shader: {fileID: 4800000, guid: 55bd0af9fcf8c46ed9ee2b869f01cf2a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

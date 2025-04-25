@@ -14,7 +14,7 @@ public enum EffectTypes
 
 public enum VisualTypes
 {
-    SNOW
+    MOBCHASE
 }
 
 public class EffectsManager : MonoBehaviour
@@ -46,7 +46,7 @@ public class EffectsManager : MonoBehaviour
         }
     }
 
-    public void ApplyEffect(EffectTypes effect, VisualTypes visEffect = VisualTypes.SNOW, int damageAmt = 1)
+    public void ApplyEffect(EffectTypes effect, VisualTypes visEffect = VisualTypes.MOBCHASE, int damageAmt = 1)
     {
         if (!appliedEffects[(int)effect])
         {

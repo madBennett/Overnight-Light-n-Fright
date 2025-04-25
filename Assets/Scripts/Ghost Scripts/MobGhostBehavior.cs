@@ -19,18 +19,20 @@ public class MobGhostBehavior : AbstractGhostBehavior
     private bool isChasing = false;
 
     public ParticleSystem despawnParticles;
-    private SnowEffectController snowEffect;
+    private MobShaderController shaderEffects;
 
     private SpriteRenderer spriteRenderer;
     private Color defaultColor = Color.white;
     private Color chaseColor = Color.red;
+
+    private bool chaseShaderActive = false;
 
     protected override void Start()
     {
         base.Start();
         isActive = true;
         player = GameObject.FindGameObjectWithTag("Player");
-        snowEffect = Camera.main.GetComponent<SnowEffectController>();
+        shaderEffects = FindObjectOfType<MobShaderController>();
         currentSpeed = speed; // start at normal speed
 
         // Get SpriteRenderer
@@ -87,7 +89,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
         movement = randomDir;
         moveDestination = transform.position + (Vector3)(randomDir * moveDistance);
 
-        //effectToApply = (EffectTypes)(Random.Range(0, (int)EffectTypes.NUM_EFFECTS));
         currState = GhostStates.MOVE;
     }
 
@@ -99,16 +100,21 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
         if (withinRange)
         {
-            // Chase the player
             direction = (player.transform.position - transform.position).normalized;
             targetSpeed = chaseSpeed;
 
+            // start chasing 
             if (!isChasing) 
             {
                 isChasing = true;
-                if (snowEffect != null) snowEffect.AddChasingGhost();
+                
+                if (shaderEffects != null && !chaseShaderActive)
+                {
+                    chaseShaderActive = true;
+                    shaderEffects.AddChasingGhost();
+                }
             }
-
+            // make ghost chase color
             if (spriteRenderer != null) spriteRenderer.color = chaseColor;
         } 
         else 
@@ -116,12 +122,18 @@ public class MobGhostBehavior : AbstractGhostBehavior
             direction = (moveDestination - transform.position).normalized;
             targetSpeed = speed;
 
+            // stop chasing
             if (isChasing)
             {
                 isChasing = false;
-                if (snowEffect != null) snowEffect.RemoveChasingGhost(); 
-            }
 
+                if (shaderEffects != null && chaseShaderActive)
+                {
+                    chaseShaderActive = false;
+                    shaderEffects.RemoveChasingGhost();
+                }
+            }
+            // make ghost default color
             if (spriteRenderer != null) spriteRenderer.color = defaultColor;
         }
 
@@ -147,9 +159,10 @@ public class MobGhostBehavior : AbstractGhostBehavior
     private IEnumerator DespawnWithEffect()
     {
         // disable shader chase effect
-        if (isChasing && snowEffect != null)
+        if (shaderEffects != null && chaseShaderActive)
         {
-            snowEffect.RemoveChasingGhost();
+            chaseShaderActive = false;
+            shaderEffects.RemoveChasingGhost();
         }
 
         // play despawn particle effect
