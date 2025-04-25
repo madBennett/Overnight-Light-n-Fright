@@ -139,8 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currState: 0
   isActive: 1
-  Player: {fileID: 0}
-  EffectsManager: {fileID: 0}
+  Player: {fileID: 1863903852211714089, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  EffectsManager: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
   idleEnterTime: 1
   idleTime: 1
   movement: {x: 0, y: 0}
