@@ -49,9 +49,9 @@ public class FlashlightBehavior : MonoBehaviour
         Vector2 playerForward = playerTransform.up;
         float playerFacingAngle = Mathf.Atan2(playerForward.y, playerForward.x) * Mathf.Rad2Deg - 90f;
 
-        // step 5: calculate relative angle and clamp to ±80
+        // step 5: calculate relative angle and clamp to ±90
         float angleOffset = Mathf.DeltaAngle(playerFacingAngle, targetAngle);
-        angleOffset = Mathf.Clamp(angleOffset, -80f, 80f);
+        angleOffset = Mathf.Clamp(angleOffset, -360f, 360f); // full rotation for now
 
         float clampedAngle = playerFacingAngle + angleOffset;
 
