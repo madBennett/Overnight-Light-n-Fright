@@ -38,6 +38,6 @@ public class GameManager : MonoBehaviour
         float remainingMins = Mathf.Floor(timeRemaining / 60);
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
 
-        TimerText.text = "Time Remaining\n" + remainingMins + ":" + remaingingSecs;
+        TimerText.text = "Time Remaining" + remainingMins + ":" + remaingingSecs;
     }
 }
