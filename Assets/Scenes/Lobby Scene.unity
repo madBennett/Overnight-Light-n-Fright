@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 3202657474735805668, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 2132476220}
+      objectReference: {fileID: 0}
     - target: {fileID: 3202657474735805668, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: Flashlight
       value: 
@@ -532,6 +532,14 @@ PrefabInstance:
     - target: {fileID: 6879754758595553481, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879754760065684140, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879754760116627961, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8192759682011757914, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1291,7 +1299,7 @@ GameObject:
   - component: {fileID: 1706091143}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Game Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1310,6 +1318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 300
   TimerText: {fileID: 37420389}
+  TimeBar: {fileID: 0}
+  maxEnergy: 100
+  EnergyBar: {fileID: 0}
 --- !u!4 &1706091144
 Transform:
   m_ObjectHideFlags: 0
@@ -1335,6 +1346,10 @@ PrefabInstance:
     - target: {fileID: 6057081000603419721, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_Name
       value: Effect Manager 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057081000603419721, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6057081000603419723, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_RootOrder
@@ -1385,17 +1400,6 @@ PrefabInstance:
 --- !u!114 &2079324142 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7546439330766374356, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
-  m_PrefabInstance: {fileID: 345637897}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61104aa8ebfae654f86e6071fbd66df9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2132476220 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2625598778311720846, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
   m_PrefabInstance: {fileID: 345637897}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

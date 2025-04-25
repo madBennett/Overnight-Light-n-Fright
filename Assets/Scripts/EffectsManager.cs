@@ -60,7 +60,7 @@ public class EffectsManager : MonoBehaviour
                     PlayerControls.currMoveState = MovementStates.STUN;
                     break;
                 case EffectTypes.DAMAGE:
-                    Player.ChangePlayerHealth(-1 * damageAmt);
+                    //
                     break;
             }
 

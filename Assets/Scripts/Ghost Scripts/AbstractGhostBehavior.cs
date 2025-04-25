@@ -43,7 +43,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         effectToApply = EffectTypes.VISUAL_DISTORTION;
         rigidBody = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        EffectsManager = GameObject.FindGameObjectWithTag("Effect Manager").GetComponent<EffectsManager>();
+        EffectsManager = GameObject.FindGameObjectWithTag("EffectManager").GetComponent<EffectsManager>();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
