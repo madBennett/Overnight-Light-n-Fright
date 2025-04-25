@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Netcode;
+using TMPro;
 
 public class ValueBar : MonoBehaviour
 {
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public TMP_Text Text;
 
     public void setValue(float val)
     {

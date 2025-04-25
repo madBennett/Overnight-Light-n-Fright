@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5834708291159958821, guid: d05002fe5b49bf6459cef3d33b515216, type: 3}
       propertyPath: m_TagString
-      value: Time Bar
+      value: TimeIndicator
       objectReference: {fileID: 0}
     - target: {fileID: 5834708291159958840, guid: d05002fe5b49bf6459cef3d33b515216, type: 3}
       propertyPath: m_Value
@@ -340,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5834708291159958821, guid: d05002fe5b49bf6459cef3d33b515216, type: 3}
       propertyPath: m_TagString
-      value: Energy Bar
+      value: EnergyBar
       objectReference: {fileID: 0}
     - target: {fileID: 5834708291159958840, guid: d05002fe5b49bf6459cef3d33b515216, type: 3}
       propertyPath: m_Value

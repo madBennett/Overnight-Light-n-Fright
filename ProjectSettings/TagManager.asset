@@ -6,10 +6,10 @@ TagManager:
   tags:
   - Ghost
   - Flashlight
-  - Effect Manager
-  - Energy Bar
-  - Game Manager
-  - Time Bar
+  - EffectManager
+  - EnergyBar
+  - TimeIndicator
+  - GameManager
   layers:
   - Default
   - TransparentFX

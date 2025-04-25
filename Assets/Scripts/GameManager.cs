@@ -6,12 +6,11 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     //timer
-    [SerializeField] private float timeRemaining = 300;
-    [SerializeField] private TMP_Text TimerText;
+    public float timeRemaining = 300;
     public ValueBar TimeBar;
 
     //energy
-    public static float currEnergy = 0f;
+    public static float currEnergy;
     public float maxEnergy = 100f;
     public ValueBar EnergyBar;
 
@@ -19,14 +18,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectsInCurrScene();
+
         //set Energy
         currEnergy = maxEnergy;
         EnergyBar.setMaxValue(maxEnergy);
 
-        //get objects
-        EnergyBar = GameObject.FindGameObjectWithTag("EnergyBar").GetComponent<ValueBar>();
-        TimeBar = GameObject.FindGameObjectWithTag("TimeBar").GetComponent<ValueBar>();
-
+        //set Time
+        TimeBar.setMaxValue(timeRemaining);
     }
 
     // Update is called once per frame
@@ -46,12 +45,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FindObjectsInCurrScene()
+    {
+        //get objects
+        EnergyBar = GameObject.FindGameObjectWithTag("EnergyBar").GetComponent<ValueBar>();
+        TimeBar = GameObject.FindGameObjectWithTag("TimeIndicator").GetComponent<ValueBar>();
+    }
+
     private void UpdateTimer()
     {
+        TimeBar.setValue(timeRemaining);
+
         float remainingMins = Mathf.Floor(timeRemaining / 60);
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
 
-        TimerText.text = "Time Remaining" + remainingMins + ":" + remaingingSecs;
+        TimeBar.Text.text = "Time Remaining " + remainingMins + ":" + remaingingSecs;
     }
 
     public void ChangePlayerEnergy(float changeAmt)
