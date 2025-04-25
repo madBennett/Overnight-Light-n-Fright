@@ -23,6 +23,8 @@ public class EffectsManager : MonoBehaviour
     [SerializeField] private float effectTime = 2f;
     [SerializeField] private bool[] appliedEffects = new bool[(int)EffectTypes.NUM_EFFECTS]; //bool map to verify which effect is curretnly active
 
+    [SerializeField] private bool switchMode = false;
+
     //visual effects
     [SerializeField] private List<Material> visualMaterials;
     [SerializeField] private CameraBehavior mainCameraBehavior;
@@ -66,18 +68,26 @@ public class EffectsManager : MonoBehaviour
 
             appliedEffects[(int)effect] = true;
 
-            StartCoroutine(ResetToDefault(effect));
+            if (!switchMode)
+            {
+                StartCoroutine(ResetToDefaultTimed(effect));
+            }
         }
         
 
     }
 
     //
-    IEnumerator ResetToDefault(EffectTypes effect)
+    IEnumerator ResetToDefaultTimed(EffectTypes effect)
     {
         //Wait for effect time
         yield return new WaitForSeconds(effectTime);
 
+        ReturnToDefalut(effect);
+    }
+
+    public void ReturnToDefalut(EffectTypes effect)
+    {
         //reset the applied effect after waiting for the duration
         switch (effect)
         {
@@ -86,7 +96,8 @@ public class EffectsManager : MonoBehaviour
                 break;
             case EffectTypes.REVERSE_CONTROLS:
             case EffectTypes.STUN:
-                PlayerControls.currMoveState = MovementStates.DEFAULT; break;
+                PlayerControls.currMoveState = MovementStates.DEFAULT; 
+                break;
         }
 
         appliedEffects[(int)effect] = false;
