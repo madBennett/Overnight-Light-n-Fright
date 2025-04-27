@@ -33,7 +33,7 @@ Material:
     - _MaskHardness: 0
     - _MaskPower: 5
     - _MaskScale: 1
-    - _NoiseOpacity: 0.3
+    - _NoiseOpacity: 0.5
     - _NoiseScale: 5
     - _NoiseSpeed: 1
     - _NoiseTimeScale: 1

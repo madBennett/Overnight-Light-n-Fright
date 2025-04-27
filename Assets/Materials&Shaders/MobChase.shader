@@ -24,41 +24,43 @@ Shader "CustomRenderTexture/MOBCHASE"
 
     SubShader
     {
-        LOD 0
-        ZTest Always
-        Cull Off
-        ZWrite Off
+        Tags { "RenderType"="Opaque" "Queue"="Overlay" "RenderPipeline"="UniversalRenderPipeline" }
+        LOD 100
 
         Pass
         {
-            CGPROGRAM
-            #pragma vertex vert_img_custom
+            Name "MOBCHASEPass"
+            Tags { "LightMode" = "UniversalForward" }
+
+            Cull Off
+            ZWrite Off
+            ZTest Always
+            Blend SrcAlpha OneMinusSrcAlpha
+
+            HLSLPROGRAM
+            #pragma vertex vert
             #pragma fragment frag
             #pragma target 3.0
-            #include "UnityCG.cginc"
-            #include "UnityShaderVariables.cginc"
 
-            struct appdata_img_custom
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            struct Attributes
             {
-                float4 vertex : POSITION;
-                half2 texcoord : TEXCOORD0;
+                float4 positionOS : POSITION;
+                float2 uv : TEXCOORD0;
             };
 
-            struct v2f_img_custom
+            struct Varyings
             {
-                float4 pos : SV_POSITION;
-                half2 uv : TEXCOORD0;
-                half2 stereoUV : TEXCOORD2;
-                #if UNITY_UV_STARTS_AT_TOP
-                half4 uv2 : TEXCOORD1;
-                half4 stereoUV2 : TEXCOORD3;
-                #endif
+                float4 positionCS : SV_POSITION;
+                float2 uv : TEXCOORD0;
             };
 
             // Motion Lines Variables
-            sampler2D _MainTex;
-            half4 _MainTex_TexelSize;
-            half4 _MainTex_ST;
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
+            float4 _MainTex_TexelSize;
+            float4 _MainTex_ST;
             float _SpeedLinesRadialScale;
             float _SpeedLinesTiling;
             float _SpeedLinesAnimation;
@@ -103,30 +105,22 @@ Shader "CustomRenderTexture/MOBCHASE"
             }
             // --------------------------------------
 
-            v2f_img_custom vert_img_custom(appdata_img_custom v)
+            Varyings vert(Attributes IN)
             {
-                v2f_img_custom o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = float4(v.texcoord.xy, 1, 1);
-
-                #if UNITY_UV_STARTS_AT_TOP
-                    o.uv2 = float4(v.texcoord.xy, 1, 1);
-                    o.stereoUV2 = UnityStereoScreenSpaceUVAdjust(o.uv2, _MainTex_ST);
-                    if (_MainTex_TexelSize.y < 0.0)
-                        o.uv.y = 1.0 - o.uv.y;
-                #endif
-                o.stereoUV = UnityStereoScreenSpaceUVAdjust(o.uv, _MainTex_ST);
-                return o;
+                Varyings OUT;
+                OUT.positionCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
+                return OUT;
             }
 
-            half4 frag(v2f_img_custom i) : SV_Target
+            half4 frag(Varyings i) : SV_Target
             {
                 // Base Scene Color
-                float2 uv_MainTex = i.uv.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-                float4 SceneColour7 = tex2D(_MainTex, uv_MainTex);
+                float2 uv_MainTex = i.uv;
+                float4 SceneColour7 = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv_MainTex);
 
                 // Snow Effect
-                float2 snowUV = i.uv.xy * _NoiseScale;
+                float2 snowUV = i.uv * _NoiseScale;
                 float timeFactor = frac(_Time.y * _NoiseSpeed * _NoiseTimeScale);
                 float2 timedUV = snowUV + float2(timeFactor, timeFactor);
                 float n = frac(sin(dot(timedUV, float2(12.9898, 78.233))) * 43758.5453);
@@ -134,7 +128,7 @@ Shader "CustomRenderTexture/MOBCHASE"
                 float4 sceneWithSnow = lerp(SceneColour7, snowColor, _NoiseOpacity);
 
                 // Motion Lines Calculation
-                float2 CenteredUV15_g1 = (i.uv.xy - float2(0.5, 0.5));
+                float2 CenteredUV15_g1 = (i.uv - float2(0.5, 0.5));
                 float2 break17_g1 = CenteredUV15_g1;
                 float2 appendResult23_g1 = float2(
                     (length(CenteredUV15_g1) * _SpeedLinesRadialScale * 2.0),
@@ -148,7 +142,7 @@ Shader "CustomRenderTexture/MOBCHASE"
                 float SpeedLines21 = saturate((pow(simplePerlin2D10, _SpeedLinesPower) - temp_output_1_0_g6) / (1.0 - temp_output_1_0_g6));
                 
                 // Motion Mask
-                float2 texCoord60 = i.uv.xy * float2(2, 2) + float2(-1, -1);
+                float2 texCoord60 = i.uv * float2(2, 2) + float2(-1, -1);
                 float temp_output_1_0_g5 = _MaskScale;
                 float lerpResult71 = lerp(0.0, _MaskScale, _MaskHardness);
                 float Mask24 = pow((1.0 - saturate(((length(texCoord60) - temp_output_1_0_g5) / ((lerpResult71 - 0.001) - temp_output_1_0_g5)))), _MaskPower);
@@ -165,7 +159,7 @@ Shader "CustomRenderTexture/MOBCHASE"
 
                 return lerpResult2;
             }
-            ENDCG
+            ENDHLSL
         }
     }
     CustomEditor "ASEMaterialInspector"

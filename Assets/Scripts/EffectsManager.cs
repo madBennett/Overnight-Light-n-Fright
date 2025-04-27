@@ -54,6 +54,7 @@ public class EffectsManager : MonoBehaviour
             {
                 case EffectTypes.VISUAL_DISTORTION:
                     mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
+                    MobChaseRenderFeature.Instance?.EnableEffect();
                     break;
                 case EffectTypes.REVERSE_CONTROLS:
                     PlayerControls.currMoveState = MovementStates.REVERSE;
@@ -93,6 +94,7 @@ public class EffectsManager : MonoBehaviour
         {
             case EffectTypes.VISUAL_DISTORTION:
                 mainCameraBehavior.currMat = null;
+                MobChaseRenderFeature.Instance?.DisableEffect();
                 break;
             case EffectTypes.REVERSE_CONTROLS:
             case EffectTypes.STUN:

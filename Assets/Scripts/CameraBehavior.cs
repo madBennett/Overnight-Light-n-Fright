@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [ExecuteInEditMode]
 public class CameraBehavior : MonoBehaviour
@@ -28,15 +30,13 @@ public class CameraBehavior : MonoBehaviour
 
     Vector2 VelVec;
 
-
     public Material currMat;
-
-
 
     void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         Camera mainCam = Camera.main;
+        
         float camHalfHeight = mainCam.orthographicSize;
         float camHalfWidth = camHalfHeight * mainCam.aspect;
         targetMaxX = XUpperBound - camHalfWidth;
