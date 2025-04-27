@@ -1,100 +1,172 @@
-Shader "Unlit/MobChase"
+Shader "CustomRenderTexture/MOBCHASE"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "red" {} // default texture image
-        _NoiseSpeed ("Noise Speed", Float) = 1.0 // speed for noise movement
-        _NoiseTimeScale ("Noise Time Scale", Float) = 1.0 // time scale modifier for noise speed
-        _NoiseOpacity ("Noise Opacity", Range(0,1)) = 0.5 // noise opacity
-        _NoiseScale ("Noise UV Scale", Float) = 5.0 // scales UVs for noise variation
+        // Motion Lines Properties
+        _MainTex ("Screen", 2D) = "black" {}
+        _Colour("Colour", Color) = (1,1,1,1)
+        _SpeedLinesTiling("Speed Lines Tiling", Float) = 200
+        _SpeedLinesRadialScale("Speed Lines Radial Scale", Range(0,10)) = 0.1
+        _SpeedLinesPower("Speed Lines Power", Float) = 1
+        _SpeedLinesRemap("Speed Lines Remap", Range(0,1)) = 0.8
+        _SpeedLinesAnimation("Speed Lines Animation", Float) = 3
+        _MaskScale("Mask Scale", Range(0,2)) = 1
+        _MaskHardness("Mask Hardness", Range(0,1)) = 0
+        _MaskPower("Mask Power", Float) = 5
+        [HideInInspector] _texcoord("", 2D) = "white" {}
+
+        // Snow Properties
+        _NoiseSpeed("Noise Speed", Float) = 1.0
+        _NoiseTimeScale("Noise Time Scale", Float) = 1.0
+        _NoiseOpacity("Noise Opacity", Range(0,1)) = 0.5
+        _NoiseScale("Noise UV Scale", Float) = 5.0
     }
+
     SubShader
     {
-        Tags { "RenderType"="Opaque" } // render type
-        LOD 100 // detail setting level
-        Blend SrcAlpha OneMinusSrcAlpha // blending mode for transparency
+        LOD 0
+        ZTest Always
+        Cull Off
+        ZWrite Off
 
         Pass
         {
             CGPROGRAM
-            #pragma vertex vert // vertex shader function
-            #pragma fragment frag // fragment shader function
-            #pragma multi_compile_fog
+            #pragma vertex vert_img_custom
+            #pragma fragment frag
+            #pragma target 3.0
+            #include "UnityCG.cginc"
+            #include "UnityShaderVariables.cginc"
 
-            #include "UnityCG.cginc" // Unity's shader utilities
-
-            // Vertex input structure
-            struct appdata
+            struct appdata_img_custom
             {
-                float4 vertex : POSITION; // vertex position of object
-                float2 uv : TEXCOORD0; // texture coordinates
+                float4 vertex : POSITION;
+                half2 texcoord : TEXCOORD0;
             };
 
-            // Passes data from vertex shader to fragment shader
-            struct v2f
+            struct v2f_img_custom
             {
-                float2 uv : TEXCOORD0; // UV coordinates after modification for rolling effect
-                float2 noiseUV : TEXCOORD1; // UV coordinates used for noise effect
-                UNITY_FOG_COORDS(2) // coordinates for fog calculations
-                float4 vertex : SV_POSITION; // new vertex position
+                float4 pos : SV_POSITION;
+                half2 uv : TEXCOORD0;
+                half2 stereoUV : TEXCOORD2;
+                #if UNITY_UV_STARTS_AT_TOP
+                half4 uv2 : TEXCOORD1;
+                half4 stereoUV2 : TEXCOORD3;
+                #endif
             };
 
-            // Texture samplers
-            sampler2D _MainTex; // default texture image
-            float4 _MainTex_ST; // texture scaling and transformation
+            // Motion Lines Variables
+            sampler2D _MainTex;
+            half4 _MainTex_TexelSize;
+            half4 _MainTex_ST;
+            float _SpeedLinesRadialScale;
+            float _SpeedLinesTiling;
+            float _SpeedLinesAnimation;
+            float _SpeedLinesPower;
+            float _SpeedLinesRemap;
+            float _MaskScale;
+            float _MaskHardness;
+            float _MaskPower;
+            float4 _Colour;
 
-            // Shader properties
-            float _NoiseSpeed; // speed for noise movemen
-            float _NoiseTimeScale; // time scale modifier for noise speed
-            float _NoiseOpacity; // noise opacity
-            float _NoiseScale; // scales UVs for noise variation
+            // Snow Variables
+            float _NoiseSpeed;
+            float _NoiseTimeScale;
+            float _NoiseOpacity;
+            float _NoiseScale;
 
-            // Noise function with time factor to control movement speed
-            float noise(float2 p)
+            // --- Simplex Noise Helper Functions ---
+            float3 mod2D289(float3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            float2 mod2D289(float2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            float3 permute(float3 x) { return mod2D289(((x * 34.0) + 1.0) * x); }
+            float snoise(float2 v)
             {
-                // Uses time-based factor to animate the noise and keep it in a [0,1] range
-                float timeFactor = frac(_Time.y * _NoiseSpeed * _NoiseTimeScale);
-                // Simple noise generation based on sine wave, dot product, and a large prime number
-                return frac(sin(dot(p + timeFactor, float2(12.9898, 78.233))) * 43758.5453); // algorithm given to us in class on WolframAlpha
+                const float4 C = float4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+                float2 i = floor(v + dot(v, C.yy));
+                float2 x0 = v - i + dot(i, C.xx);
+                float2 i1 = (x0.x > x0.y) ? float2(1.0, 0.0) : float2(0.0, 1.0);
+                float4 x12 = x0.xyxy + C.xxzz;
+                x12.xy -= i1;
+                i = mod2D289(i);
+                float3 p = permute(permute(i.y + float3(0.0, i1.y, 1.0)) + i.x + float3(0.0, i1.x, 1.0));
+                float3 m = max(0.5 - float3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
+                m = m * m; m = m * m;
+                float3 x = 2.0 * frac(p * C.www) - 1.0;
+                float3 h = abs(x) - 0.5;
+                float3 ox = floor(x + 0.5);
+                float3 a0 = x - ox;
+                m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
+                float3 g;
+                g.x = a0.x * x0.x + h.x * x0.y;
+                g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                return 130.0 * dot(m, g);
             }
+            // --------------------------------------
 
-            // Vertex shader function 
-            v2f vert (appdata v)
+            v2f_img_custom vert_img_custom(appdata_img_custom v)
             {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex); // vertex to clip
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                
-                // Separate UVs for noise
-                o.noiseUV = v.uv * _NoiseScale;
+                v2f_img_custom o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.uv = float4(v.texcoord.xy, 1, 1);
 
-                // Calculate fog
-                UNITY_TRANSFER_FOG(o, o.vertex);
+                #if UNITY_UV_STARTS_AT_TOP
+                    o.uv2 = float4(v.texcoord.xy, 1, 1);
+                    o.stereoUV2 = UnityStereoScreenSpaceUVAdjust(o.uv2, _MainTex_ST);
+                    if (_MainTex_TexelSize.y < 0.0)
+                        o.uv.y = 1.0 - o.uv.y;
+                #endif
+                o.stereoUV = UnityStereoScreenSpaceUVAdjust(o.uv, _MainTex_ST);
                 return o;
             }
 
-            // Fragment shader function
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag(v2f_img_custom i) : SV_Target
             {
-                // Use the separate noise UVs to create noise effect
-                float n = noise(i.noiseUV);
+                // Base Scene Color
+                float2 uv_MainTex = i.uv.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+                float4 SceneColour7 = tex2D(_MainTex, uv_MainTex);
 
-                // Sample the main texture using the transformed UVs
-                fixed4 texColor = tex2D(_MainTex, frac(i.uv)); // Ensure UVs stay within [0,1]
+                // Snow Effect
+                float2 snowUV = i.uv.xy * _NoiseScale;
+                float timeFactor = frac(_Time.y * _NoiseSpeed * _NoiseTimeScale);
+                float2 timedUV = snowUV + float2(timeFactor, timeFactor);
+                float n = frac(sin(dot(timedUV, float2(12.9898, 78.233))) * 43758.5453);
+                float4 snowColor = float4(n, n, n, _NoiseOpacity);
+                float4 sceneWithSnow = lerp(SceneColour7, snowColor, _NoiseOpacity);
 
-                // Grayscale noise color with opacity
-                fixed4 noiseColor = fixed4(n, n, n, _NoiseOpacity);
+                // Motion Lines Calculation
+                float2 CenteredUV15_g1 = (i.uv.xy - float2(0.5, 0.5));
+                float2 break17_g1 = CenteredUV15_g1;
+                float2 appendResult23_g1 = float2(
+                    (length(CenteredUV15_g1) * _SpeedLinesRadialScale * 2.0),
+                    (atan2(break17_g1.x, break17_g1.y) * (1.0 / 6.28318548202515) * _SpeedLinesTiling)
+                );
+                float2 appendResult58 = float2((-_SpeedLinesAnimation * _Time.y), 0.0);
 
-                // Lerp between the texture color and the noise color based on opacity
-                fixed4 col = lerp(texColor, noiseColor, _NoiseOpacity);
+                float simplePerlin2D10 = snoise(appendResult23_g1 + appendResult58);
+                simplePerlin2D10 = simplePerlin2D10 * 0.5 + 0.5;
+                float temp_output_1_0_g6 = _SpeedLinesRemap;
+                float SpeedLines21 = saturate((pow(simplePerlin2D10, _SpeedLinesPower) - temp_output_1_0_g6) / (1.0 - temp_output_1_0_g6));
+                
+                // Motion Mask
+                float2 texCoord60 = i.uv.xy * float2(2, 2) + float2(-1, -1);
+                float temp_output_1_0_g5 = _MaskScale;
+                float lerpResult71 = lerp(0.0, _MaskScale, _MaskHardness);
+                float Mask24 = pow((1.0 - saturate(((length(texCoord60) - temp_output_1_0_g5) / ((lerpResult71 - 0.001) - temp_output_1_0_g5)))), _MaskPower);
+                float MaskedSpeedLines29 = (SpeedLines21 * Mask24);
 
-                // Apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                // Final Composition
+                float3 ColourRGB38 = _Colour.rgb;
+                float ColourA40 = _Colour.a;
+                float4 lerpResult2 = lerp(
+                    sceneWithSnow,
+                    float4((MaskedSpeedLines29 * ColourRGB38), 0.0),
+                    (MaskedSpeedLines29 * ColourA40)
+                );
 
-                // Output final color
-                return col;
+                return lerpResult2;
             }
             ENDCG
         }
     }
+    CustomEditor "ASEMaterialInspector"
 }

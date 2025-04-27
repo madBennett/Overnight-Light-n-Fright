@@ -49,6 +49,6 @@ MonoBehaviour:
   appliedEffects: 0000000000
   switchMode: 0
   visualMaterials:
-  - {fileID: 2100000, guid: beef4e1e06f694d36bb8abd0532cd8e2, type: 2}
+  - {fileID: 2100000, guid: a506f1ca7f71044e989a43e115dcb119, type: 2}
   mainCameraBehavior: {fileID: 0}
   PlayerControls: {fileID: 0}
