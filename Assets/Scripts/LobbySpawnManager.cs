@@ -7,6 +7,7 @@ public class LobbySpawnManager : MonoBehaviour
     public DoorData doorData;
     public Transform defaultSpawnPoint;
     public Transform[] doorSpawnPoints;
+    public static bool isFreshStart = true;
 
     // Match this with the doorID from TeleportDoor
     public string[] doorIDs;
@@ -15,12 +16,15 @@ public class LobbySpawnManager : MonoBehaviour
     {
         Transform spawnPoint = defaultSpawnPoint;
 
-        for (int i = 0; i < doorIDs.Length; i++)
+        if (!isFreshStart)
         {
-            if (doorData.lastDoorUsed == doorIDs[i])
+            for (int i = 0; i < doorIDs.Length; i++)
             {
-                spawnPoint = doorSpawnPoints[i];
-                break;
+                if (doorData.lastDoorUsed == doorIDs[i])
+                {
+                    spawnPoint = doorSpawnPoints[i];
+                    break;
+                }
             }
         }
 
@@ -31,5 +35,6 @@ public class LobbySpawnManager : MonoBehaviour
         }
 
         doorData.lastDoorUsed = ""; // Reset
+        isFreshStart = false; // No longer a fresh start
     }
 }
