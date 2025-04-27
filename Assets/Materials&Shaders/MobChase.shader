@@ -1,7 +1,8 @@
-Shader "Unlit/Snow"
+Shader "Unlit/MobChase"
 {
     Properties
     {
+        // comment
         _MainTex ("Texture", 2D) = "red" {} // default texture image
         _NoiseSpeed ("Noise Speed", Float) = 1.0 // speed for noise movement
         _NoiseTimeScale ("Noise Time Scale", Float) = 1.0 // time scale modifier for noise speed
