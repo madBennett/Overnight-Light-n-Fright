@@ -2,6 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MazeGhostStates
+{
+    IDLE,
+    WANDER,
+    START_MOVE,
+    MOVE,
+    CAMP,
+    SNEAK,
+    SCARED,
+    HIDE,
+    RUN,
+    NUM_STATES
+}
+
 public class MazeGhostBehavior : AbstractGhostBehavior
 {
     protected override void Start()
