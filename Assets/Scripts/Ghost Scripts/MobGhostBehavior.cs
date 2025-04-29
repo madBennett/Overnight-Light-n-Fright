@@ -2,10 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobGhostBehavior : AbstractGhostBehavior
+public class MobGhostBehavior : MonoBehaviour
 {
     public delegate void GhostDespawned(MobGhostBehavior ghost);
     public event GhostDespawned onGhostDespawned;
+
+    public GhostStates currState;
+    public bool isActive = false; //bool to determine if the ghost should be moving or not
+    public GameObject Player;
+    public EffectsManager EffectsManager;
+
+    // variables for idle state
+    public float idleEnterTime;
+    public float idleTime = 1f;
+
+    // variables for start move state
+    public Vector2 movement;
+    public EffectTypes effectToApply;
+    public float moveStartTime;
+
+    // Variables for move
+    public float speed = 1f;
+    public float maxMoveTime = 3f;
+    public Rigidbody2D rigidBody;
 
     private Vector3 moveDestination;
     public float moveDistance = 0.5f;
@@ -27,9 +46,16 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     private bool chaseShaderActive = false;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
+        //set default values
+        currState = GhostStates.IDLE;
+        idleEnterTime = Time.time;
+        effectToApply = EffectTypes.VISUAL_DISTORTION;
+        rigidBody = GetComponent<Rigidbody2D>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        EffectsManager = GameObject.FindGameObjectWithTag("EffectManager").GetComponent<EffectsManager>();
+
         isActive = true;
         player = GameObject.FindGameObjectWithTag("Player");
         shaderEffects = FindObjectOfType<MobShaderController>();
@@ -54,23 +80,23 @@ public class MobGhostBehavior : AbstractGhostBehavior
             }
         }
 
-        switch(currState)
-       {
-           case GhostStates.IDLE:
-               //if the ghost is not active do not allow out of the idle state
-               //in addition if the ghost is active but enters the idle state is must stay in it for x time
-               if (isActive)
-               {
-                   currState = GhostStates.START_MOVE;
-               }
-               break;
-           case GhostStates.START_MOVE:
-               StartMove();
-               break;
-           case GhostStates.MOVE:
-               Move();
-               break;
-       }
+        switch (currState)
+        {
+            case GhostStates.IDLE:
+                //if the ghost is not active do not allow out of the idle state
+                //in addition if the ghost is active but enters the idle state is must stay in it for x time
+                if (isActive)
+                {
+                    currState = GhostStates.START_MOVE;
+                }
+                break;
+            case GhostStates.START_MOVE:
+                StartMove();
+                break;
+            case GhostStates.MOVE:
+                Move();
+                break;
+        }
     }
 
     private void StartMove()
@@ -84,7 +110,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
         currState = GhostStates.MOVE;
     }
 
-    public override void Move()
+    public void Move()
     {
         Vector2 direction;
         float targetSpeed = speed;
@@ -96,10 +122,10 @@ public class MobGhostBehavior : AbstractGhostBehavior
             targetSpeed = chaseSpeed;
 
             // start chasing 
-            if (!isChasing) 
+            if (!isChasing)
             {
                 isChasing = true;
-                
+
                 if (shaderEffects != null && !chaseShaderActive)
                 {
                     chaseShaderActive = true;
@@ -108,8 +134,8 @@ public class MobGhostBehavior : AbstractGhostBehavior
             }
             // make ghost chase color
             if (spriteRenderer != null) spriteRenderer.color = chaseColor;
-        } 
-        else 
+        }
+        else
         {
             direction = (moveDestination - transform.position).normalized;
             targetSpeed = speed;
@@ -140,6 +166,15 @@ public class MobGhostBehavior : AbstractGhostBehavior
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //if collision with a player attack
+            Attack(Player.GetComponent<PlayerBehavior>());
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Flashlight"))
@@ -163,7 +198,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
             ParticleSystem particles = Instantiate(despawnParticles, transform.position, Quaternion.identity);
             float duration = particles.main.duration + particles.main.startLifetime.constantMax;
             particles.Play(); // play particle
-            Destroy(particles.gameObject, duration);// destroy particle
+            Destroy(particles.gameObject, duration); // destroy particle
         }
 
         // wait for particle duration
@@ -179,7 +214,22 @@ public class MobGhostBehavior : AbstractGhostBehavior
         Destroy(gameObject);
     }
 
-    public override void Idle() {}
-    public override void Attack(PlayerBehavior player) {}
-    public override void OnInteractWithFlashLight() {}
+    public void Wander()
+    {
+        // Pick a small random direction to move slightly while in idle
+        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        Vector2 velocity = randomDir * (speed);
+        rigidBody.velocity = velocity;
+    }
+
+    public void StartIdle()
+    {
+        idleEnterTime = Time.time;
+        rigidBody.velocity = Vector2.zero;
+        currState = GhostStates.IDLE;
+    }
+
+    public void Idle() { }
+    public void Attack(PlayerBehavior player) { }
+    public void OnInteractWithFlashLight() { }
 }
