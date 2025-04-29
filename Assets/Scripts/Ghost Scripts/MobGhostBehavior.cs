@@ -2,26 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MobGhostStates
+{
+    IDLE_WANDER,
+    START_CHASE,
+    CHASE,
+    FLEE
+}
+
 public class MobGhostBehavior : MonoBehaviour
 {
     public delegate void GhostDespawned(MobGhostBehavior ghost);
     public event GhostDespawned onGhostDespawned;
 
-    public GhostStates currState;
-    public bool isActive = false; //bool to determine if the ghost should be moving or not
+    public MobGhostStates currState;
+    public bool isActive = false;
     public GameObject Player;
     public EffectsManager EffectsManager;
 
-    // variables for idle state
+    // variables for idle wander state
     public float idleEnterTime;
     public float idleTime = 1f;
 
-    // variables for start move state
+    // variables for start chase state
     public Vector2 movement;
     public EffectTypes effectToApply;
     public float moveStartTime;
 
-    // Variables for move
+    // variables for chase state
     public float speed = 1f;
     public float maxMoveTime = 3f;
     public Rigidbody2D rigidBody;
@@ -37,19 +45,24 @@ public class MobGhostBehavior : MonoBehaviour
     public float detectionRange = 3f;
     private bool isChasing = false;
 
+    // variables for flee state
+    public float fleeSpeed = 2.5f;
+    public float fleeRange = 4f;
+    private bool isFleeing = false;
+    
+    // cosmetic
     public ParticleSystem despawnParticles;
     private MobShaderController shaderEffects;
-
     private SpriteRenderer spriteRenderer;
     private Color defaultColor = Color.white;
     private Color chaseColor = Color.red;
-
+    private Color fleeColor = Color.blue;
     private bool chaseShaderActive = false;
 
     private void Start()
     {
         //set default values
-        currState = GhostStates.IDLE;
+        currState = MobGhostStates.IDLE_WANDER;
         idleEnterTime = Time.time;
         effectToApply = EffectTypes.VISUAL_DISTORTION;
         rigidBody = GetComponent<Rigidbody2D>();
@@ -71,30 +84,28 @@ public class MobGhostBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (currState == GhostStates.IDLE)
-        {
-            // Wander while idle
-            if (isActive)
-            {
-                Wander();
-            }
-        }
+        if (!isActive) return;
 
         switch (currState)
         {
-            case GhostStates.IDLE:
-                //if the ghost is not active do not allow out of the idle state
-                //in addition if the ghost is active but enters the idle state is must stay in it for x time
-                if (isActive)
-                {
-                    currState = GhostStates.START_MOVE;
-                }
+            case MobGhostStates.IDLE_WANDER:
+                Wander();
+
+                // Go to CHASE state after 1 second
+                if (Time.time - idleEnterTime > idleTime)
+                    currState = MobGhostStates.START_CHASE;
                 break;
-            case GhostStates.START_MOVE:
+
+            case MobGhostStates.START_CHASE:
                 StartMove();
                 break;
-            case GhostStates.MOVE:
+
+            case MobGhostStates.CHASE:
                 Move();
+                break;
+
+            case MobGhostStates.FLEE:
+                Flee();
                 break;
         }
     }
@@ -107,7 +118,7 @@ public class MobGhostBehavior : MonoBehaviour
         movement = randomDir;
         moveDestination = transform.position + (Vector3)(randomDir * moveDistance);
 
-        currState = GhostStates.MOVE;
+        currState = MobGhostStates.CHASE;
     }
 
     public void Move()
@@ -181,6 +192,10 @@ public class MobGhostBehavior : MonoBehaviour
         {
             StartCoroutine(DespawnWithEffect());
         }
+        else if (collision.gameObject.CompareTag("Scare"))
+        {
+            TriggerFlee();
+        }
     }
 
     private IEnumerator DespawnWithEffect()
@@ -226,10 +241,40 @@ public class MobGhostBehavior : MonoBehaviour
     {
         idleEnterTime = Time.time;
         rigidBody.velocity = Vector2.zero;
-        currState = GhostStates.IDLE;
+        currState = MobGhostStates.IDLE_WANDER;
+            
+        if (spriteRenderer != null) spriteRenderer.color = defaultColor; // Reset ghost color
     }
 
-    public void Idle() { }
+    private void TriggerFlee()
+    {
+        if (!isFleeing)
+        {
+            isFleeing = true;
+            currState = MobGhostStates.FLEE;
+            rigidBody.velocity = Vector2.zero;
+        }
+    }
+
+    private void Flee()
+    {
+        if (player == null) return;
+
+        Vector2 directionAway = (transform.position - player.transform.position).normalized;
+        rigidBody.velocity = directionAway * fleeSpeed;
+
+        // Turn blue while fleeing
+        if (spriteRenderer != null) spriteRenderer.color = fleeColor;
+
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance >= fleeRange)
+        {
+            isFleeing = false;
+            StartIdle(); // Return to idle before chase resumes
+        }
+    }
+
+    // public void Idle() { }
     public void Attack(PlayerBehavior player) { }
-    public void OnInteractWithFlashLight() { }
+    // public void OnInteractWithFlashLight() { }
 }
