@@ -5,9 +5,7 @@ using UnityEngine;
 public class MazeWallBehavior : MonoBehaviour
 {
     [SerializeField] private bool isEvil = false;
-    [SerializeField] private bool isRotatable = false;
-
-    [SerializeField] private float rotateAmount = 90f;
+    [SerializeField] private bool isDisappearingWall = false;
 
     // Start is called before the first frame update
     void Start()
