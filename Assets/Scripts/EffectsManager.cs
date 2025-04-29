@@ -14,7 +14,8 @@ public enum EffectTypes
 
 public enum VisualTypes
 {
-    MOBCHASE
+    MOBCHASE,
+    MOBDAMAGE
 }
 
 public class EffectsManager : MonoBehaviour
@@ -63,7 +64,8 @@ public class EffectsManager : MonoBehaviour
                     PlayerControls.currMoveState = MovementStates.STUN;
                     break;
                 case EffectTypes.DAMAGE:
-                    //
+                    mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
+                    MobChaseRenderFeature.Instance?.EnableEffect();
                     break;
             }
 
@@ -93,6 +95,7 @@ public class EffectsManager : MonoBehaviour
         switch (effect)
         {
             case EffectTypes.VISUAL_DISTORTION:
+            case EffectTypes.DAMAGE:
                 mainCameraBehavior.currMat = null;
                 MobChaseRenderFeature.Instance?.DisableEffect();
                 break;

@@ -50,5 +50,6 @@ MonoBehaviour:
   switchMode: 0
   visualMaterials:
   - {fileID: 2100000, guid: a506f1ca7f71044e989a43e115dcb119, type: 2}
+  - {fileID: 2100000, guid: 98e5d35f9001c4798a27003e03fbf768, type: 2}
   mainCameraBehavior: {fileID: 0}
   PlayerControls: {fileID: 0}

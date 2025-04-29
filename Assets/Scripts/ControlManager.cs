@@ -24,6 +24,8 @@ public class ControlManager : MonoBehaviour
     //for flashlight controls
     [SerializeField] private GameObject Flashlight;
 
+    public bool canMove = true; // to freeze player
+
     private bool lastFrameClick = false;
 
     // Start is called before the first frame update
@@ -39,6 +41,11 @@ public class ControlManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // prevent movement or flashlight use if canMove is false
+        if (!canMove) {
+            rigidBody.velocity = Vector2.zero;
+            return;
+        }
 
         if (currMoveState != MovementStates.STUN)
         {

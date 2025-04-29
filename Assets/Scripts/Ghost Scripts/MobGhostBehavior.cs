@@ -6,13 +6,15 @@ public enum MobGhostStates
 {
     IDLE_WANDER,
     CHASE,
-    FLEE
+    FLEE,
+    DAMAGE
 }
 
 public class MobGhostBehavior : MonoBehaviour
 {
     public delegate void GhostDespawned(MobGhostBehavior ghost);
     public event GhostDespawned onGhostDespawned;
+    public static bool GlobalFreeze = false;
 
     public MobGhostStates currState;
     public bool isActive = false;
@@ -20,7 +22,7 @@ public class MobGhostBehavior : MonoBehaviour
     public EffectsManager EffectsManager;
 
     public float idleEnterTime;
-    public float idleTime = 1f; // Wander time before chase
+    public float idleTime = 1f;
     public float speed = 1f;
     public float chaseSpeed = 2f;
     public float fleeSpeed = 2.5f;
@@ -64,7 +66,7 @@ public class MobGhostBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (!isActive) return;
+        if (!isActive || GlobalFreeze) return;
 
         switch (currState)
         {
@@ -77,8 +79,12 @@ public class MobGhostBehavior : MonoBehaviour
             case MobGhostStates.FLEE:
                 HandleFlee();
                 break;
+            case MobGhostStates.DAMAGE:
+            // Do nothing — frozen
+            break;
         }
     }
+
 
     private void HandleWander()
     {
@@ -174,7 +180,7 @@ public class MobGhostBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Attack(Player.GetComponent<PlayerBehavior>());
+            StartCoroutine(TriggerDamageState());
         }
     }
 
@@ -216,5 +222,59 @@ public class MobGhostBehavior : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Attack(PlayerBehavior player) { }
+    private IEnumerator TriggerDamageState()
+    {
+        // Freeze all ghosts
+        MobGhostBehavior.GlobalFreeze = true;
+
+        // Change state to DAMAGE
+        currState = MobGhostStates.DAMAGE;
+        rigidBody.velocity = Vector2.zero;
+
+        // Stop player movement
+        var playerController = Player.GetComponent<ControlManager>();
+        if (playerController != null)
+        {
+            playerController.canMove = false;
+
+            // Change player color to red
+            SpriteRenderer playerSR = Player.GetComponent<SpriteRenderer>();
+            if (playerSR != null)
+                playerSR.color = Color.red;
+        }
+
+        // Trigger lightning flash effect
+        if (shaderEffects != null)
+        {
+            EffectsManager.ApplyEffect(EffectTypes.VISUAL_DISTORTION, VisualTypes.MOBDAMAGE);
+        }
+
+        // Freeze time for dramatic effect (optional)
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(0.5f); // screen flash
+        Time.timeScale = 1f;
+
+        // Unfreeze after short delay
+        yield return new WaitForSeconds(0.5f);
+
+        // Reset player color and movement
+        if (playerController != null)
+        {
+            playerController.canMove = true;
+
+            SpriteRenderer playerSR = Player.GetComponent<SpriteRenderer>();
+            if (playerSR != null)
+                playerSR.color = Color.white;
+        }
+
+        // End shader effect
+        if (shaderEffects != null)
+        {
+            EffectsManager.ReturnToDefalut(EffectTypes.VISUAL_DISTORTION);
+        }
+
+        // Resume ghost behavior
+        MobGhostBehavior.GlobalFreeze = false;
+        StartIdleWander(); // return to WANDER then CHASE
+    }
 }

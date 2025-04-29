@@ -33,6 +33,5 @@ public class PlayerBehavior : MonoBehaviour
             GM.ChangePlayerEnergy(-1* energyDelpetionRate*  Time.deltaTime);
         }
     }
-
     
 }
