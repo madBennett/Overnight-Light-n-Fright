@@ -1871,18 +1871,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &225487010
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2145,18 +2145,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &235156637
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3190,6 +3190,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEvil: 0
   isDisappearingWall: 0
+--- !u!1 &433955658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4985100639672191590, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+  m_PrefabInstance: {fileID: 1259420247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &444872978
 GameObject:
   m_ObjectHideFlags: 0
@@ -5392,18 +5397,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &758867073
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7209,18 +7214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &948720281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11669,18 +11674,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &1422312569
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -12368,18 +12373,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!50 &1469072880
 Rigidbody2D:
   serializedVersion: 4
@@ -12865,18 +12870,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &1559931689
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13265,7 +13270,7 @@ MonoBehaviour:
   - {fileID: 1581637166}
   - {fileID: 911888409}
   - {fileID: 2098840914}
-  ReturnPoint: {fileID: 0}
+  ReturnPoint: {fileID: 433955658}
   DisappearingWalls:
   - {fileID: 536635067}
   - {fileID: 1497865955}
@@ -16460,7 +16465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1906900347
 Transform:
   m_ObjectHideFlags: 0
@@ -16790,18 +16795,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &1931493912
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -17694,18 +17699,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 0}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
   movement: {x: 0, y: 0}
   effectToApply: 0
-  moveStartTime: 0
   speed: 1
-  maxMoveTime: 3
   rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  minMoveDistance: 1
+  hideOdds: 0.5
 --- !u!58 &2020256179
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19233,88 +19238,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
---- !u!1 &2140704220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2140704221}
-  - component: {fileID: 2140704222}
-  m_Layer: 0
-  m_Name: Test Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2140704221
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2140704220}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2140704222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2140704220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 1
-  m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 15
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &316894271436435876
 PrefabInstance:
   m_ObjectHideFlags: 0
