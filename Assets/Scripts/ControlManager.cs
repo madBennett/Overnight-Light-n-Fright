@@ -12,6 +12,8 @@ public enum MovementStates
 
 public class ControlManager : MonoBehaviour
 {
+    private Animator animator;
+
     //Movement
     public MovementStates currMoveState;
     [SerializeField] private float normSpeed = 5f;
@@ -36,6 +38,8 @@ public class ControlManager : MonoBehaviour
 
         //get componates for movement
         rigidBody = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -63,6 +67,25 @@ public class ControlManager : MonoBehaviour
 
     public void Move()
     {
+        animator.SetBool("isWalking", true);
+
+        if (movement != Vector2.zero)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetFloat("InputX", movement.x);
+            animator.SetFloat("InputY", movement.y);
+            animator.SetFloat("LastInputX", movement.x);
+            animator.SetFloat("LastInputY", movement.y);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+
+        animator.SetFloat("InputX", movement.x);
+        animator.SetFloat("InputY", movement.y);
+
+
         //Reverse Movement if Applicable
         if (currMoveState == MovementStates.REVERSE)
         {
