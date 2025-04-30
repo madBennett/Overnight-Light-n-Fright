@@ -18,6 +18,15 @@ public enum MazeGhostStates
 
 public class MazeGhostBehavior : AbstractGhostBehavior
 {
+
+    //varibles for idle state
+    public float idleEnterTime;
+    public float idleTime = 1f;
+
+    private float moveStartTime;
+    private float maxMoveTime = 3f;
+
+    public MazeGhostStates currState;
     protected override void Start()
     {
         base.Start();
@@ -27,19 +36,52 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     {
         switch (currState)
         {
-            case GhostStates.IDLE:
+            case  MazeGhostStates.IDLE:
                 Idle();
                 break;
-            case GhostStates.START_MOVE:
+            case  MazeGhostStates.START_MOVE:
                 StartMove();
                 break;
-            case GhostStates.MOVE:
+            case  MazeGhostStates.MOVE:
                 Move();
                 break;
-            case GhostStates.RUN:
+            case  MazeGhostStates.RUN:
                 Run();
                 break;
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //if collision with a player attack
+            Attack(Player.GetComponent<PlayerBehavior>());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Flashlight")
+        {
+            //on collision with flashlight
+            OnInteractWithFlashLight();
+        }
+    }
+
+    public virtual void Wander()
+    {
+        // Pick a small random direction to move slightly while in idle
+        Vector2 randomDir = Random.insideUnitCircle.normalized;
+        Vector2 velocity = randomDir * (speed);
+        rigidBody.velocity = velocity;
+    }
+
+    public virtual void StartIdle()
+    {
+        idleEnterTime = Time.time;
+        rigidBody.velocity = Vector2.zero;
     }
 
     public void StartMove()
@@ -53,10 +95,10 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS));
 
         //change State to move
-        currState = GhostStates.MOVE;
+        currState =  MazeGhostStates.MOVE;
     }
 
-    public override void Move()
+    public void Move()
     {
         //check if has reached the position
         if (Time.time - moveStartTime >= maxMoveTime)
@@ -71,25 +113,25 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     }
 
-    public override void Idle()
+    public void Idle()
     {
         //if the ghost is not active do not allow out of the idle state
         //in addition if the ghost is active but enters the idle state is must stay in it for x time
         if (isActive && (Time.time - idleEnterTime >= idleTime))
         {
-            currState = GhostStates.START_MOVE;
+            currState =  MazeGhostStates.START_MOVE;
         }
     }
 
-    public override void Attack(PlayerBehavior player)
+    public void Attack(PlayerBehavior player)
     {
         //
         EffectsManager.ApplyEffect(effectToApply);
     }
 
-    public override void OnInteractWithFlashLight()
+    public void OnInteractWithFlashLight()
     {
-        currState = GhostStates.RUN;
+        currState =  MazeGhostStates.RUN;
         StartRun();
     }
 
