@@ -10,6 +10,8 @@ TagManager:
   - EnergyBar
   - TimeIndicator
   - GameManager
+  - Scare
+  - Wall
   layers:
   - Default
   - TransparentFX
