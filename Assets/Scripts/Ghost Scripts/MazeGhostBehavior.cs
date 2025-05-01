@@ -121,9 +121,10 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 break;
             case MazeGhostStates.WANDER:
                 //choose a random cardinal direction
-                int xDir = Random.Range(-1, 1);
-                int yDir = Random.Range(-1, 1);
-                movement = new Vector2(xDir, yDir);
+                int numDir = 3;
+                Vector2[] cardDir = {new Vector2(-1,0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1)};
+                int randIndex = Random.Range(0, numDir);
+                movement = cardDir[randIndex];
                 break;
         }
 
