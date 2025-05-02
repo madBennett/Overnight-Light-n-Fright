@@ -44,4 +44,12 @@ public class MobShaderController : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        if (chaseShaderActive && effectsManager != null)
+        {
+            effectsManager.ReturnToDefalut(EffectTypes.VISUAL_DISTORTION);
+        }
+    }
 }
