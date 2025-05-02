@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class MazeWallBehavior : MonoBehaviour
 {
-    [SerializeField] private bool isEvil = false;
+    [SerializeField] private bool isHaunted = false;
     [SerializeField] private bool isDisappearingWall = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        HideWall();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HideWall()
     {
-        
+        if (isDisappearingWall)
+        {
+            gameObject.SetActive(Random.Range(0f, 1f) >= MazeManager.oddsOfActiveDisaperingWall);
+        }
+    }
+
+    public void StartHaunt()
+    {
+
     }
 }

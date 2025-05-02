@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &15070029
 GameObject:
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &38826482
 GameObject:
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &48383695
 GameObject:
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &60082603
 GameObject:
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &87356409
 GameObject:
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &94591340
 GameObject:
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &112379369
 GameObject:
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &131645785
 GameObject:
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &136124416
 GameObject:
@@ -1303,8 +1303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &136124419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &140909428
 GameObject:
@@ -1633,7 +1633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1001 &165775974
 PrefabInstance:
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &225487007
 GameObject:
@@ -1883,6 +1883,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &225487010
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2090,7 +2096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &235156634
 GameObject:
@@ -2157,6 +2163,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &235156637
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2364,7 +2376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &255934717
 GameObject:
@@ -2412,8 +2424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &255934720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2616,7 +2628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &283202888
 GameObject:
@@ -2742,7 +2754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &306622750
 GameObject:
@@ -2936,7 +2948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &389915665
 GameObject:
@@ -3062,7 +3074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &432375684
 GameObject:
@@ -3188,7 +3200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &433955658 stripped
 GameObject:
@@ -3403,7 +3415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &449564711
 GameObject:
@@ -3529,7 +3541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &457012930
 GameObject:
@@ -3655,7 +3667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &506354620
 GameObject:
@@ -3818,7 +3830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &536635067
 GameObject:
@@ -3866,8 +3878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &536635070
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4070,8 +4082,172 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
+--- !u!43 &547608478
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 42
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 16
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 00000100020003000100000003000400010005000400030006000400050004000600070002000800000000000900030001000a00020004000b00010003000c00050007000d00040005000e00060006000f000700
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 16
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 704
+    _typelessdata: 0000003f000000bf000000000000803f0000008000000080000000800000003f000000bf0000003f000000bf0000003f0000003f00000000000000800000803f00000080000000800000003f0000003f0000003f0000003f0000003f00000000000000000000803f0000008000000080000000800000003f0000003f0000003f000000bf00000000000000bf0000000000000080000080bf00000000000000800000003f000000bf000000bf000000bf000000000000003f00000000000000800000803f0000008000000080000000bf0000003f0000003f0000003f000000bf000000bf0000000000000080000080bf0000000000000080000000bf000000bf000000bf000000bf000000bf0000000000000000000080bf000000800000008000000080000000bf000000bf000000bf0000003f000000bf0000003f00000000000080bf000000800000008000000080000000bf0000003f000000bf0000003f0000003f00000000000000000000803f0000008000000080000000800000003f0000003f0000003f000000bf0000003f000000bf0000000000000080000080bf00000000000000800000003f000000bf0000003f000000bf0000003f0000003f000000000000803f0000008000000080000000800000003f0000003f0000003f0000003f000000000000003f00000000000000800000803f0000008000000080000000bf0000003f0000003f0000003f00000000000000bf0000000000000080000080bf00000000000000800000003f000000bf000000bf000000bf000000bf0000003f00000000000000800000803f0000008000000080000000bf0000003f000000bf0000003f000000bf000000bf00000000000080bf000000800000008000000080000000bf000000bf000000bf000000bf000000bf0000000000000000000080bf000000800000008000000080000000bf000000bf000000bf0000003f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &580754665
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,7 +4372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &589776022
 GameObject:
@@ -4322,7 +4498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &591258621
 GameObject:
@@ -4370,8 +4546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &591258624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4838,7 +5014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &661819921
 GameObject:
@@ -4964,7 +5140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &740761528
 GameObject:
@@ -5090,7 +5266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &741392288
 GameObject:
@@ -5216,7 +5392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &757732010
 GameObject:
@@ -5342,7 +5518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &758867070
 GameObject:
@@ -5409,6 +5585,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &758867073
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5616,7 +5798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &792609527
 GameObject:
@@ -5742,7 +5924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &804572563
 GameObject:
@@ -5868,7 +6050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &810387082
 GameObject:
@@ -5916,8 +6098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &810387085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6120,7 +6302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &818193157
 GameObject:
@@ -6246,7 +6428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &826757590
 GameObject:
@@ -6372,7 +6554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &854355180
 GameObject:
@@ -6420,8 +6602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &854355183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6624,7 +6806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &877587836
 GameObject:
@@ -6750,7 +6932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &883469536
 GameObject:
@@ -6876,7 +7058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &897476563
 GameObject:
@@ -7002,7 +7184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &898526830
 GameObject:
@@ -7050,8 +7232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &898526833
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7226,6 +7408,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &948720281
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7433,7 +7621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &961176770
 GameObject:
@@ -7559,7 +7747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &972833243
 GameObject:
@@ -7685,7 +7873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &979231886
 GameObject:
@@ -7922,7 +8110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1006293907
 GameObject:
@@ -8048,7 +8236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1007355245
 GameObject:
@@ -8174,7 +8362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1007371753
 GameObject:
@@ -8300,7 +8488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1013877656
 GameObject:
@@ -8426,7 +8614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1021147025
 GameObject:
@@ -8552,7 +8740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1022176303
 GameObject:
@@ -8678,7 +8866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1023071433
 GameObject:
@@ -8804,7 +8992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1001 &1023728552
 PrefabInstance:
@@ -8820,6 +9008,14 @@ PrefabInstance:
     - target: {fileID: 1863903852211714091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863903852211714091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863903852211714091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1863903852211714091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8864,6 +9060,10 @@ PrefabInstance:
     - target: {fileID: 3202657474735805668, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: currEffect
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173186482116076145, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
@@ -8991,7 +9191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1064949769
 GameObject:
@@ -9117,7 +9317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1085458530
 GameObject:
@@ -9243,7 +9443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1089470946
 GameObject:
@@ -9402,8 +9602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &1127184614
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9648,7 +9848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1179968232
 GameObject:
@@ -9774,7 +9974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1187833491
 GameObject:
@@ -9900,7 +10100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1188541549
 GameObject:
@@ -10026,7 +10226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1194487094
 GameObject:
@@ -10152,7 +10352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1198509814
 GameObject:
@@ -10278,7 +10478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1239152729
 GameObject:
@@ -10404,7 +10604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1240572817
 GameObject:
@@ -10530,7 +10730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1001 &1259420247
 PrefabInstance:
@@ -10737,7 +10937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1284818625
 GameObject:
@@ -10863,7 +11063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1314596544
 GameObject:
@@ -10989,7 +11189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1333650881
 GameObject:
@@ -11115,7 +11315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1342709118
 GameObject:
@@ -11241,7 +11441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1363418836
 GameObject:
@@ -11289,8 +11489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &1363418839
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11493,7 +11693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1392289088
 GameObject:
@@ -11619,7 +11819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1422312566
 GameObject:
@@ -11686,6 +11886,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &1422312569
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -12004,7 +12210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1456354493
 GameObject:
@@ -12130,7 +12336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1463518291
 GameObject:
@@ -12256,7 +12462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1469072875
 GameObject:
@@ -12385,6 +12591,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!50 &1469072880
 Rigidbody2D:
   serializedVersion: 4
@@ -12563,7 +12775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1497865955
 GameObject:
@@ -12611,8 +12823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &1497865958
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12815,7 +13027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1559931686
 GameObject:
@@ -12882,6 +13094,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &1559931689
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13089,7 +13307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1565492596
 GameObject:
@@ -13215,7 +13433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1567027902
 GameObject:
@@ -13271,19 +13489,6 @@ MonoBehaviour:
   - {fileID: 911888409}
   - {fileID: 2098840914}
   ReturnPoint: {fileID: 433955658}
-  DisappearingWalls:
-  - {fileID: 536635067}
-  - {fileID: 1497865955}
-  - {fileID: 136124416}
-  - {fileID: 810387082}
-  - {fileID: 898526830}
-  - {fileID: 854355180}
-  - {fileID: 1127184611}
-  - {fileID: 255934717}
-  - {fileID: 1676443950}
-  - {fileID: 1363418836}
-  - {fileID: 591258621}
-  oddsOfActiveDisaperingWall: 0.5
 --- !u!1 &1581637165
 GameObject:
   m_ObjectHideFlags: 0
@@ -13439,7 +13644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1673314286
 GameObject:
@@ -13565,7 +13770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1676443950
 GameObject:
@@ -13613,8 +13818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
-  isDisappearingWall: 0
+  isHaunted: 0
+  isDisappearingWall: 1
 --- !u!61 &1676443953
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13817,7 +14022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1687636873
 GameObject:
@@ -13943,7 +14148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1691038710
 GameObject:
@@ -14069,7 +14274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1692134166
 GameObject:
@@ -14195,7 +14400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1698934442
 GameObject:
@@ -14321,7 +14526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1711998388
 GameObject:
@@ -14447,7 +14652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1712536181
 GameObject:
@@ -14573,7 +14778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1720987680
 GameObject:
@@ -14699,7 +14904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1723813990
 GameObject:
@@ -14825,7 +15030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1730734567
 GameObject:
@@ -14951,7 +15156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1747467330
 GameObject:
@@ -15077,7 +15282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1778314967
 GameObject:
@@ -15203,7 +15408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1788521812
 GameObject:
@@ -15329,7 +15534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1791411064
 GameObject:
@@ -15455,7 +15660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1791600047
 GameObject:
@@ -15581,7 +15786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1824392586
 GameObject:
@@ -15707,7 +15912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1824932960
 GameObject:
@@ -15944,7 +16149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1892979868
 GameObject:
@@ -16070,7 +16275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1903248019
 GameObject:
@@ -16196,7 +16401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1905112933
 GameObject:
@@ -16322,7 +16527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1906785664
 GameObject:
@@ -16448,7 +16653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1906900346
 GameObject:
@@ -16614,7 +16819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1916989061
 GameObject:
@@ -16740,7 +16945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1931493909
 GameObject:
@@ -16807,6 +17012,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &1931493912
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -17014,7 +17225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1949830130
 GameObject:
@@ -17140,7 +17351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1955102017
 GameObject:
@@ -17266,7 +17477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &1955716764
 GameObject:
@@ -17392,7 +17603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2010927457
 GameObject:
@@ -17518,7 +17729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2014622794
 GameObject:
@@ -17644,7 +17855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2020256176
 GameObject:
@@ -17711,6 +17922,12 @@ MonoBehaviour:
   idleTime: 1
   minMoveDistance: 1
   hideOdds: 0.5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 255, g: 0, b: 0, a: 255}
+  - {r: 0, g: 255, b: 0, a: 255}
+  - {r: 0, g: 0, b: 255, a: 255}
+  - {r: 0, g: 255, b: 255, a: 255}
 --- !u!58 &2020256179
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -17918,7 +18135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2025588272
 GameObject:
@@ -18044,7 +18261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2046653774
 GameObject:
@@ -18058,6 +18275,7 @@ GameObject:
   - component: {fileID: 2046653777}
   - component: {fileID: 2046653776}
   - component: {fileID: 2046653778}
+  - component: {fileID: 2046653779}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -18170,8 +18388,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
+--- !u!114 &2046653779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046653774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 547608478}
+  m_InstanceId: -11310
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
 --- !u!1 &2061638966
 GameObject:
   m_ObjectHideFlags: 0
@@ -18380,7 +18628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2091936876
 GameObject:
@@ -18506,7 +18754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2098840913
 GameObject:
@@ -18663,7 +18911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2119251873
 GameObject:
@@ -18789,7 +19037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2125091685
 GameObject:
@@ -18915,7 +19163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2132154870
 GameObject:
@@ -19041,7 +19289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1 &2138991877
 GameObject:
@@ -19167,7 +19415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceaa4afb615ff04f9e61579ce7a7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEvil: 0
+  isHaunted: 0
   isDisappearingWall: 0
 --- !u!1001 &2140280455
 PrefabInstance:

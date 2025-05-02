@@ -9,8 +9,7 @@ public class MazeManager : MonoBehaviour
     [SerializeField] private GameObject ReturnPoint;
     
     //Varibles to Set a random a random number of Disappearingwalls
-    [SerializeField] private List<GameObject> DisappearingWalls = new List<GameObject>();
-    [SerializeField] private float oddsOfActiveDisaperingWall = 0.5f;
+    static public float oddsOfActiveDisaperingWall = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +17,6 @@ public class MazeManager : MonoBehaviour
         //set varibles for random spawn
         int randReturnIndex = Random.Range(0, ReturnSpawnLocs.Count);
         ReturnPoint.transform.position = ReturnSpawnLocs[randReturnIndex].position;
-
-        //randomly deactivate walls
-        for (int i = 0; i < DisappearingWalls.Count; i++)
-        {
-            DisappearingWalls[i].SetActive(Random.Range(0f, 1f) >= oddsOfActiveDisaperingWall);
-        }
     }
 
     // Update is called once per frame

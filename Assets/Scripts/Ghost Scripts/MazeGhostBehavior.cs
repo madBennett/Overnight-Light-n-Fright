@@ -30,10 +30,14 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     //Scared Varibles
     [SerializeField] private float hideOdds = 0.5f;
 
+    //color varibles
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private List<Color> colorMap = new List<Color>() { new Color (0,0,0,255), new Color(255,0,0,128), new Color(0,255,0,128), new Color(0,0,255,128), new Color(0,255,255,128)};
 
     protected override void Start()
     {
         base.Start();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     public void Update()
@@ -75,7 +79,10 @@ public class MazeGhostBehavior : AbstractGhostBehavior
             //if collision with a player attack
             EffectsManager.ApplyEffect(effectToApply);
         }
-        //if collide with power up stay and camp??
+        else if ((collision.gameObject.tag == "Wall") && (currState == MazeGhostStates.SCARED))
+        {
+            StartHide(collision.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,15 +92,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
             //on collision with flashlight
             //scared animation??
 
-            if (Random.Range(0f, 1f) < hideOdds)
-            {
-                //Hide
-            }
-            else
-            {
-                //Run
-                StartMoveStates(MazeGhostStates.SCARED);
-            }
+            //Run
+            StartMoveStates(MazeGhostStates.SCARED);
         }
     }
 
@@ -102,6 +102,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         idleEnterTime = Time.time;
         rigidBody.velocity = Vector2.zero;
         currState = MazeGhostStates.IDLE;
+
+        spriteRenderer.color = colorMap[0];
     }
 
     private void StartMoveStates(MazeGhostStates newState)
@@ -118,12 +120,13 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 movement = (Player.transform.position - transform.position).normalized;
                 //choose effect
                 effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS));
+                spriteRenderer.color = colorMap[(int)effectToApply];
                 break;
             case MazeGhostStates.WANDER:
                 //choose a random cardinal direction
-                int numDir = 3;
+                int numDir = 4;
                 Vector2[] cardDir = {new Vector2(-1,0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1)};
-                int randIndex = Random.Range(0, numDir);
+                int randIndex = Random.Range(0, numDir-1);
                 movement = cardDir[randIndex];
                 break;
         }
@@ -149,9 +152,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         }
     }
 
-    private void StartHide()
+    private void StartHide(GameObject wall)
     {
-        // find wall to hide in
-        Physics.CheckSphere(transform.position, 5f);
+        //
     }
 }
