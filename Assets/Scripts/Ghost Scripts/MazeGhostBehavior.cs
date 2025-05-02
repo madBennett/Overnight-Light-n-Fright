@@ -7,10 +7,8 @@ public enum MazeGhostStates
     IDLE,
     WANDER,
     HUNT,
-    SNEAK,
     SCARED,
     HIDE,
-    RUN,
     NUM_STATES
 }
 
@@ -25,19 +23,29 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     //varibles for move
     private float moveStartTime;
     private float maxMoveTime = 3f;
-    [SerializeField] private float minMoveDistance = 1f;
 
     //Scared Varibles
     [SerializeField] private float hideOdds = 0.5f;
 
+    //hunt
+    [SerializeField] private float detectionRange = 5f;
+
     //color varibles
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private List<Color> colorMap = new List<Color>() { new Color (0,0,0,255), new Color(255,0,0,128), new Color(0,255,0,128), new Color(0,0,255,128), new Color(0,255,255,128)};
+    [SerializeField] private List<Color> colorMap = new List<Color>() 
+        {  
+            Color.white,    //default
+            Color.yellow,   //Visual Distortion
+            Color.blue,     //Reverse Controls
+            Color.green,    //Stun
+            Color.red       //Damage
+        };
 
     protected override void Start()
     {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = colorMap[0];
     }
     
     public void Update()
@@ -50,19 +58,25 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 if (isActive && (Time.time - idleEnterTime >= idleTime))
                 {
                     //if player is in range move
-                    if (Vector2.Distance(transform.position, Player.transform.position) < minMoveDistance)
+                    if (Vector2.Distance(transform.position, Player.transform.position) < detectionRange)
                     {
-                        StartMoveStates(MazeGhostStates.HUNT);
+                        StartHunt();
                     }
                     else
                     {
-                        StartMoveStates(MazeGhostStates.WANDER);
+                        StartWander();
                     }
                 }
                 break;
             case MazeGhostStates.WANDER:
+                Move();
+                break;
             case MazeGhostStates.SCARED:
+                movement = -1 * (Player.transform.position - transform.position).normalized;
+                Move();
+                break;
             case  MazeGhostStates.HUNT:
+                movement = (Player.transform.position - transform.position).normalized;
                 Move();
                 break;
             case MazeGhostStates.HIDE:
@@ -79,9 +93,17 @@ public class MazeGhostBehavior : AbstractGhostBehavior
             //if collision with a player attack
             EffectsManager.ApplyEffect(effectToApply);
         }
-        else if ((collision.gameObject.tag == "Wall") && (currState == MazeGhostStates.SCARED))
+        else if (collision.gameObject.tag == "Wall")
         {
-            StartHide(collision.gameObject);
+            if (currState == MazeGhostStates.SCARED)
+            {
+                StartHide(collision.gameObject);
+            }
+            else if (currState == MazeGhostStates.WANDER)
+            {
+                //if it wall in wander reverse the movement
+                movement *= -1;
+            }
         }
     }
 
@@ -93,7 +115,14 @@ public class MazeGhostBehavior : AbstractGhostBehavior
             //scared animation??
 
             //Run
-            StartMoveStates(MazeGhostStates.SCARED);
+            StartScared();
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            if (currState == MazeGhostStates.WANDER)
+            {
+                StartHunt();
+            }
         }
     }
 
@@ -106,42 +135,48 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         spriteRenderer.color = colorMap[0];
     }
 
-    private void StartMoveStates(MazeGhostStates newState)
+    private void StartHunt()
     {
-        //select movment destination and move towards it based on state
-        switch (newState)
-        {
-            case MazeGhostStates.SCARED:
-                //choose a direction that is opposite the player
-                movement = -1 * (Player.transform.position - transform.position).normalized;
-                break;
-            case MazeGhostStates.HUNT:
-                //choose a direction towards the player
-                movement = (Player.transform.position - transform.position).normalized;
-                //choose effect
-                effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS));
-                spriteRenderer.color = colorMap[(int)effectToApply];
-                break;
-            case MazeGhostStates.WANDER:
-                //choose a random cardinal direction
-                int numDir = 4;
-                Vector2[] cardDir = {new Vector2(-1,0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1)};
-                int randIndex = Random.Range(0, numDir-1);
-                movement = cardDir[randIndex];
-                break;
-        }
+        //choose effect
+        effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS - 1));
+        spriteRenderer.color = colorMap[(int)effectToApply];//todo fix sometimes goes out of index
 
-        //set start move time
+        currState = MazeGhostStates.HUNT;
+    }
+
+    private void StartWander()
+    {
+        //choose a random cardinal direction
+        int numDir = 4;
+        Vector2[] cardDir = 
+            { 
+                Vector2.left,
+                Vector2.right,
+                Vector2.down,
+                Vector2.up
+            };
+        int randIndex = Random.Range(0, numDir - 1);
+        movement = cardDir[randIndex];
+
+        currState = MazeGhostStates.WANDER;
         moveStartTime = Time.time;
+    }
 
-        //set new state
-        currState = newState;
+    private void StartScared()
+    {
+        //
+
+        currState = MazeGhostStates.SCARED;
+        moveStartTime = Time.time;
     }
 
     private void Move()
     {
         //check if exceeded move time
-        if (Time.time - moveStartTime >= maxMoveTime)
+        if (((currState == MazeGhostStates.HUNT) 
+                && (Vector2.Distance(transform.position, Player.transform.position) > detectionRange))
+            || ((currState == MazeGhostStates.WANDER || currState == MazeGhostStates.SCARED) 
+                && (Time.time - moveStartTime >= maxMoveTime)))
         {
             StartIdle();
         }
