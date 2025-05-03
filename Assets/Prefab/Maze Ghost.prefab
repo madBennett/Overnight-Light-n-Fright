@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7952565733101437560
 Transform:
   m_ObjectHideFlags: 0
@@ -58,9 +58,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8209685672674516447}
   - component: {fileID: 8209685672674516446}
-  - component: {fileID: 8209685672674516445}
   - component: {fileID: 8209685672674516444}
   - component: {fileID: 8209685672674516419}
+  - component: {fileID: 7241874938052985932}
   m_Layer: 0
   m_Name: Maze Ghost
   m_TagString: Ghost
@@ -136,22 +136,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8209685672674516445
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8209685672674516440}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.16
 --- !u!114 &8209685672674516444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,8 +158,8 @@ MonoBehaviour:
   currState: 0
   idleEnterTime: 0
   idleTime: 1
-  minMoveDistance: 1
   hideOdds: 0.5
+  detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
   - {r: 255, g: 0, b: 0, a: 255}
@@ -203,3 +187,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!60 &7241874938052985932
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209685672674516440}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.099999994, y: 0.13}
+      - {x: -0.11, y: 0.12}
+      - {x: -0.11, y: -0.04}
+      - {x: -0.08, y: -0.12}
+      - {x: 0.13, y: -0.12}
+      - {x: 0.13, y: 0.12}
+      - {x: 0.089999996, y: 0.13}

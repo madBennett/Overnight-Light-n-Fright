@@ -139,7 +139,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     {
         //choose effect
         effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS - 1));
-        spriteRenderer.color = colorMap[(int)effectToApply];//todo fix sometimes goes out of index
+        spriteRenderer.color = colorMap[(int)effectToApply];//todo fix sometimes wrong color
 
         currState = MazeGhostStates.HUNT;
     }
@@ -189,6 +189,9 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     private void StartHide(GameObject wall)
     {
-        //
+        // 
+        transform.position = wall.transform.position;
+
+        currState = MazeGhostStates.HIDE;
     }
 }
