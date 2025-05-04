@@ -44,6 +44,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     protected override void Start()
     {
         base.Start();
+        isActive = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = colorMap[0];
     }
@@ -57,8 +58,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 //in addition if the ghost is active but enters the idle state is must stay in it for x time
                 if (isActive && (Time.time - idleEnterTime >= idleTime))
                 {
-                    //if player is in range move
-                    if (Vector2.Distance(transform.position, Player.transform.position) < detectionRange)
+                    //if player is in range hunt
+                    if (CheckPlayerInRange())
                     {
                         StartHunt();
                     }
@@ -69,6 +70,11 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 }
                 break;
             case MazeGhostStates.WANDER:
+                //if player is in range hunt
+                if (CheckPlayerInRange())
+                {
+                    StartHunt();
+                }
                 Move();
                 break;
             case MazeGhostStates.SCARED:
@@ -95,8 +101,10 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         }
         else if (collision.gameObject.tag == "Wall")
         {
-            if (currState == MazeGhostStates.SCARED)
+            if ((currState == MazeGhostStates.SCARED) 
+                || (currState == MazeGhostStates.WANDER && (Random.Range(0f, 1f) <= hideOdds)))
             {
+                //if scared or if wander dd scucced then hide
                 StartHide(collision.gameObject);
             }
             else if (currState == MazeGhostStates.WANDER)
@@ -105,6 +113,11 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 movement *= -1;
             }
         }
+    }
+
+    private bool CheckPlayerInRange()
+    {
+        return (Vector2.Distance(transform.position, Player.transform.position) < detectionRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -116,13 +129,6 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
             //Run
             StartScared();
-        }
-        else if (collision.gameObject.tag == "Player")
-        {
-            if (currState == MazeGhostStates.WANDER)
-            {
-                StartHunt();
-            }
         }
     }
 
@@ -189,8 +195,16 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     private void StartHide(GameObject wall)
     {
-        // 
+        // play particle effect
+
+        //turn off sprite render
+        spriteRenderer.enabled = false;
+
+        //move pos
         transform.position = wall.transform.position;
+
+        //call start hide on the wall
+
 
         currState = MazeGhostStates.HIDE;
     }

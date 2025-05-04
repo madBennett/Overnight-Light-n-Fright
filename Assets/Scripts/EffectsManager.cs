@@ -61,7 +61,7 @@ public class EffectsManager : MonoBehaviour
                     PlayerControls.currMoveState = MovementStates.REVERSE;
                     break;
                 case EffectTypes.STUN:
-                    PlayerControls.currMoveState = MovementStates.STUN;
+                    PlayerControls.canMove = false;
                     break;
                 case EffectTypes.DAMAGE:
                     mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
@@ -101,7 +101,7 @@ public class EffectsManager : MonoBehaviour
                 break;
             case EffectTypes.REVERSE_CONTROLS:
             case EffectTypes.STUN:
-                PlayerControls.currMoveState = MovementStates.DEFAULT; 
+                PlayerControls.canMove = true;
                 break;
         }
 
