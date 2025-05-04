@@ -624,6 +624,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -632,6 +633,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!43 &125865084
 Mesh:
   m_ObjectHideFlags: 0
@@ -4740,6 +4742,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -4748,6 +4751,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!1001 &485026205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4838,6 +4842,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -4846,6 +4851,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!1001 &488361230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7041,6 +7047,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -7049,6 +7056,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!1001 &665248576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7217,6 +7225,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -7225,6 +7234,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!1001 &670599911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9912,7 +9922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &855118561
 Transform:
   m_ObjectHideFlags: 0
@@ -15705,6 +15715,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -15713,6 +15724,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!43 &1392722535
 Mesh:
   m_ObjectHideFlags: 0
@@ -18202,6 +18214,11 @@ MonoBehaviour:
   - {fileID: 911888409}
   - {fileID: 2098840914}
   ReturnPoint: {fileID: 433955658}
+  GhostPrefab: {fileID: 5229574546387589240, guid: c4b29b1fdc3e231428beee67725cc77f, type: 3}
+  numGhostToSpawn: 10
+  returnSpawnRoundTime: 60
+  maxXCord: 20
+  maxYCord: 12
 --- !u!4 &1574497714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7779596618078257265, guid: 13675b302e085a0428b6230f5691ba5e, type: 3}
@@ -21003,6 +21020,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -21011,6 +21029,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!43 &1778931942
 Mesh:
   m_ObjectHideFlags: 0
@@ -22651,6 +22670,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -22659,6 +22679,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!1001 &1893840385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23440,6 +23461,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -23448,6 +23470,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!43 &1991542922
 Mesh:
   m_ObjectHideFlags: 0
@@ -24845,6 +24868,7 @@ MonoBehaviour:
   idleEnterTime: 0
   idleTime: 1
   hideOdds: 0.5
+  hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}
   colorMap:
@@ -24853,6 +24877,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
 --- !u!43 &2093325517
 Mesh:
   m_ObjectHideFlags: 0

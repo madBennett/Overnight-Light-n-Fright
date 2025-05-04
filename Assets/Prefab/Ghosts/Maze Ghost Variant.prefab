@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3720345965428998307
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_Name
+      value: Maze Ghost
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+--- !u!1 &5229574546387589240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+  m_PrefabInstance: {fileID: 3720345965428998307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563571501670942326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229574546387589240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30685e454b870c43ad902bc8c50dc38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  Player: {fileID: 0}
+  EffectsManager: {fileID: 0}
+  movement: {x: 0, y: 0}
+  effectToApply: 0
+  speed: 1
+  rigidBody: {fileID: 0}
+  currState: 0
+  idleEnterTime: 0
+  idleTime: 1
+  hideOdds: 0.5
+  hideCoolDown: 2
+  detectionRange: 5
+  spriteRenderer: {fileID: 0}
+  colorMap:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  collider: {fileID: 0}
