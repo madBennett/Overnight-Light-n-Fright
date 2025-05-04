@@ -25,7 +25,9 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     private float maxMoveTime = 3f;
 
     //Scared Varibles
-    [SerializeField] private float hideOdds = 0.5f;
+    [SerializeField] private float hideOdds = 0.05f;
+    [SerializeField] private float hideCoolDown = 2f;
+    private float lastHideTime = 0f;
 
     //hunt
     [SerializeField] private float detectionRange = 5f;
@@ -41,12 +43,17 @@ public class MazeGhostBehavior : AbstractGhostBehavior
             Color.red       //Damage
         };
 
+    [SerializeField] private Collider2D collider;
+
     protected override void Start()
     {
         base.Start();
         isActive = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = colorMap[0];
+        speed = 3;
+
+        collider = GetComponent<Collider2D>();
     }
     
     public void Update()
@@ -85,19 +92,19 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 movement = (Player.transform.position - transform.position).normalized;
                 Move();
                 break;
-            case MazeGhostStates.HIDE:
-                //if player in range attack else if timer up get out of wall and idle
-                break;
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if ((collision.gameObject.tag == "Player") && (currState != MazeGhostStates.SCARED))
+        if (collision.gameObject.tag == "Player")
         {
-            //if collision with a player attack
-            EffectsManager.ApplyEffect(effectToApply);
+            if ((currState != MazeGhostStates.SCARED) && (currState != MazeGhostStates.HIDE))
+            {
+                //if collision with a player attack
+                EffectsManager.ApplyEffect(effectToApply);
+            }
         }
         else if (collision.gameObject.tag == "Wall")
         {
@@ -122,7 +129,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Flashlight")
+        if ((collision.gameObject.tag == "Flashlight") && (currState != MazeGhostStates.HIDE))
         {
             //on collision with flashlight
             //scared animation??
@@ -195,17 +202,40 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     private void StartHide(GameObject wall)
     {
-        // play particle effect
+        if (Time.time - lastHideTime >= hideCoolDown)
+        {
+            // play particle effect
 
-        //turn off sprite render
-        spriteRenderer.enabled = false;
+            //turn off sprite render
+            spriteRenderer.enabled = false;
+            rigidBody.velocity = Vector2.zero;
+            collider.enabled = false;
 
-        //move pos
-        transform.position = wall.transform.position;
+            //move pos
+            transform.position = wall.transform.position;
 
-        //call start hide on the wall
+            //call start hide on the wall
+            wall.GetComponent<MazeWallBehavior>().StartHaunt(this);
 
+            currState = MazeGhostStates.HIDE;
 
-        currState = MazeGhostStates.HIDE;
+        }
+    }
+
+    public void EndHide(bool hitPlayer)
+    {
+        transform.position = Player.transform.position;
+        spriteRenderer.enabled = true;
+        collider.enabled = true;
+        lastHideTime = Time.time;
+
+        if (hitPlayer)
+        {
+            StartHunt();
+        }
+        else
+        {
+            StartIdle();
+        }
     }
 }
