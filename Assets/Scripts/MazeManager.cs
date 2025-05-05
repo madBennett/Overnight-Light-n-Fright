@@ -14,7 +14,7 @@ public class MazeManager : MonoBehaviour
 
     //varibles to spawn ghosts
     [SerializeField] private GameObject GhostPrefab;
-    [SerializeField] private int numGhostToSpawn = 10;
+    [SerializeField] private int numGhostToSpawn = 5;
     [SerializeField] private float returnSpawnRoundTime = 60f;
     private float roundStartTime = 0f;
     [SerializeField] private float maxXCord = 20f;

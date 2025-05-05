@@ -138,10 +138,6 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 //Run
                 StartScared();
             }
-            else if (currState != MazeGhostStates.SCARED)
-            {
-                Destroy(gameObject);
-            }
         }
     }
 
