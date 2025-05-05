@@ -34,4 +34,9 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
     
+
+    private void UpdateEnergy(float changeAmt)
+    {
+        GM.ChangePlayerEnergy(changeAmt);
+    }
 }
