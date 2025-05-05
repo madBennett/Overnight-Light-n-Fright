@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_Name
-      value: Maze Ghost
+      value: Maze Ghost Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
@@ -84,7 +84,7 @@ MonoBehaviour:
   currState: 0
   idleEnterTime: 0
   idleTime: 1
-  hideOdds: 0.5
+  hideOdds: 0.05
   hideCoolDown: 2
   detectionRange: 5
   spriteRenderer: {fileID: 0}

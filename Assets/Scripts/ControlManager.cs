@@ -46,12 +46,12 @@ public class ControlManager : MonoBehaviour
     void Update()
     {
         // prevent movement or flashlight use if canMove is false
-        if (!canMove) {
+        if (currMoveState == MovementStates.STUN || !canMove)
+        {
             rigidBody.velocity = Vector2.zero;
             return;
         }
-
-        if (currMoveState != MovementStates.STUN)
+        else
         {
             //move the player based on user input
             movement.x = Input.GetAxisRaw("Horizontal");

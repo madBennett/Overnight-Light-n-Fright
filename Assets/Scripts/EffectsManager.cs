@@ -21,10 +21,13 @@ public enum VisualTypes
 public class EffectsManager : MonoBehaviour
 {
     [SerializeField] private PlayerBehavior Player;
+
     [SerializeField] private float effectTime = 2f;
+    [SerializeField] private bool switchMode = false;
     [SerializeField] private bool[] appliedEffects = new bool[(int)EffectTypes.NUM_EFFECTS]; //bool map to verify which effect is curretnly active
 
-    [SerializeField] private bool switchMode = false;
+    //color effects
+    [SerializeField] private SpriteRenderer PlayerSpriteRenderer;
 
     //visual effects
     [SerializeField] private List<Material> visualMaterials;
@@ -38,6 +41,7 @@ public class EffectsManager : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
         PlayerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<ControlManager>();
+        PlayerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
         mainCameraBehavior = Camera.main.GetComponent<CameraBehavior>();
 
         //inmtialize map
@@ -61,7 +65,7 @@ public class EffectsManager : MonoBehaviour
                     PlayerControls.currMoveState = MovementStates.REVERSE;
                     break;
                 case EffectTypes.STUN:
-                    PlayerControls.canMove = false;
+                    PlayerControls.currMoveState = MovementStates.STUN;
                     break;
                 case EffectTypes.DAMAGE:
                     mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
@@ -70,6 +74,7 @@ public class EffectsManager : MonoBehaviour
             }
 
             appliedEffects[(int)effect] = true;
+            ChangePlayerColor(effect);
 
             if (!switchMode)
             {
@@ -78,6 +83,19 @@ public class EffectsManager : MonoBehaviour
         }
         
 
+    }
+
+    private void ChangePlayerColor(EffectTypes effect)
+    {
+        //
+        if (effect == EffectTypes.DEFAULT)
+        {
+            PlayerSpriteRenderer.color = Color.white;
+        }
+        else
+        {
+            PlayerSpriteRenderer.color = Color.red;
+        }
     }
 
     //
@@ -101,10 +119,11 @@ public class EffectsManager : MonoBehaviour
                 break;
             case EffectTypes.REVERSE_CONTROLS:
             case EffectTypes.STUN:
-                PlayerControls.canMove = true;
+                PlayerControls.currMoveState = MovementStates.DEFAULT;
                 break;
         }
 
+        ChangePlayerColor(EffectTypes.DEFAULT);
         appliedEffects[(int)effect] = false;
     }
 }
