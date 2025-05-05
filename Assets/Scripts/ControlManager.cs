@@ -135,5 +135,10 @@ public class ControlManager : MonoBehaviour
 
             lastFrameClick = Input.GetMouseButton(0);
         }
+        else
+        {
+            lastFrameClick = false;
+            Flashlight.SetActive(false);
+        }
     }
 }

@@ -129,13 +129,19 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.tag == "Flashlight") && (currState != MazeGhostStates.HIDE))
+        if (collision.gameObject.tag == "Flashlight")
         {
             //on collision with flashlight
-            //scared animation??
-
-            //Run
-            StartScared();
+            if (currState != MazeGhostStates.HIDE)
+            {
+                //scared animation??
+                //Run
+                StartScared();
+            }
+            else if (currState != MazeGhostStates.SCARED)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
