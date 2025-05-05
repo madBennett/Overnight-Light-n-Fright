@@ -7,9 +7,10 @@ public class MazeManager : MonoBehaviour
     //Varibles to Set a random Return point
     [SerializeField] private List<Transform> ReturnSpawnLocs = new List<Transform>();
     [SerializeField] private GameObject ReturnPoint;
-    
+
     //Varibles to Set a random a random number of Disappearingwalls
-    static public float oddsOfActiveDisaperingWall = 0.5f;
+    public float oddsOfActiveDisaperingWall = 0.5f;
+    [SerializeField] private List<GameObject> DisappearingWalls = new List<GameObject>();
 
     //varibles to spawn ghosts
     [SerializeField] private GameObject GhostPrefab;
@@ -27,6 +28,7 @@ public class MazeManager : MonoBehaviour
         ReturnPoint.transform.position = ReturnSpawnLocs[randReturnIndex].position;
 
         SpawnGhosts();
+        ResetDisappearingWalls();
     }
 
     // Update is called once per frame
@@ -35,12 +37,14 @@ public class MazeManager : MonoBehaviour
         if (Time.time - roundStartTime >= returnSpawnRoundTime)
         {
             SpawnGhosts();
+
+            ResetDisappearingWalls();
         }
     }
 
     private void SpawnGhosts()
     {
-        for (int i = 0; i< numGhostToSpawn; i++)
+        for (int i = 0; i < numGhostToSpawn; i++)
         {
             //find point to spawn
             Vector3 spawnPos = new Vector3(Random.Range(-1 * maxXCord, maxXCord), Random.Range(-1 * maxYCord, maxYCord), 0);
@@ -51,6 +55,14 @@ public class MazeManager : MonoBehaviour
 
             //reset timer
             roundStartTime = Time.time;
+        }
+    }
+
+    private void ResetDisappearingWalls()
+    {
+        for (int i = 0; i < DisappearingWalls.Count; i++)
+        {
+            DisappearingWalls[i].SetActive(Random.Range(0f, 1f) >= oddsOfActiveDisaperingWall);
         }
     }
 }

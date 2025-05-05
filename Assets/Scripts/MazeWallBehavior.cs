@@ -9,22 +9,9 @@ public class MazeWallBehavior : MonoBehaviour
 
     [SerializeField] private bool isDisappearingWall = false;
 
-    private void Start()
-    {
-        HideWall();
-    }
-
-    public void HideWall()
-    {
-        if (isDisappearingWall)
-        {
-            gameObject.SetActive(Random.Range(0f, 1f) >= MazeManager.oddsOfActiveDisaperingWall);
-        }
-    }
-
     public void StartHaunt(MazeGhostBehavior ghost)
     {
-        if (!isHaunted)
+        if ((!isHaunted) && (!isDisappearingWall))
         {
             isHaunted = true;
             Ghost = ghost;
