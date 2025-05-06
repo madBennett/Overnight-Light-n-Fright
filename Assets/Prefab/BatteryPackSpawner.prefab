@@ -47,6 +47,9 @@ MonoBehaviour:
   batterySpawnCooldDown: 5
   lastBatterySpawnTime: 0
   batteryPack: {fileID: 7766452581619483082, guid: 45cf01161fce78e4391c3f498ef36f57, type: 3}
+  randLoc: {x: 0, y: 0, z: 0}
+  xRange: {x: 0, y: 0}
+  yRange: {x: 0, y: 0}
   SpawnClip: {fileID: 0}
   audioSource: {fileID: 0}
   volume: 1
