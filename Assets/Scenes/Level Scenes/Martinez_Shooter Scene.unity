@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 478554829101312132, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 478554829101312132, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobGhostPrefab: {fileID: 5146427837328229340, guid: 28479b6c9c381482fa29eb2eaec562cb, type: 3}
-  numberOfGhosts: 5
+  numberOfGhosts: 10
   spawnRadius: 3.5
   speedMultiplier: 1
 --- !u!4 &428688160
@@ -346,7 +346,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &496523057
 PrefabInstance:
@@ -376,12 +376,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1590602987}
     - target: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
+      propertyPath: PlayerSpriteRenderer
+      value: 
+      objectReference: {fileID: 1170165980}
+    - target: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: appliedEffects.Array.data[0]
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
+      propertyPath: appliedEffects.Array.data[1]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6057081000603419723, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6057081000603419723, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -446,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1117104666079951898, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1117104666079951898, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -670,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1863903852211714091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1863903852211714091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -834,8 +842,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1170165980 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8169616856088985674, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  m_PrefabInstance: {fileID: 1009079215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1239453781
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseMaterial: {fileID: 2100000, guid: a506f1ca7f71044e989a43e115dcb119, type: 2}
+  damageMaterial: {fileID: 2100000, guid: 98e5d35f9001c4798a27003e03fbf768, type: 2}
 --- !u!4 &1293150858
 Transform:
   m_ObjectHideFlags: 0
@@ -990,7 +1004,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342032867
 GameObject:
@@ -1241,7 +1255,7 @@ Transform:
   - {fileID: 353306898}
   - {fileID: 862961467}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1755691156 stripped
 MonoBehaviour:

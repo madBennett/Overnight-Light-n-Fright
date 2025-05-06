@@ -2,9 +2,8 @@ Shader "CustomRenderTexture/MOBDAMAGE"
 {
     Properties
     {
-        _MainTex ("MainTex", 2D) = "white" {}
-        _FlashColor ("Flash Color", Color) = (1, 0, 0, 0.5)
-        _Intensity ("Flash Intensity", Range(0, 1)) = 0.8
+        _FlashColor ("Flash Color", Color) = (1, 1, 1, 1)
+        _Intensity ("Flash Intensity", Range(0, 1)) = 1.0
     }
 
     SubShader
@@ -14,20 +13,17 @@ Shader "CustomRenderTexture/MOBDAMAGE"
 
         Pass
         {
-            Blend SrcAlpha OneMinusSrcAlpha
             ZWrite Off
             Cull Off
             Lighting Off
+            Blend SrcAlpha OneMinusSrcAlpha
 
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-
-            float4 _FlashColor;
+            fixed4 _FlashColor;
             float _Intensity;
 
             struct appdata
@@ -38,7 +34,6 @@ Shader "CustomRenderTexture/MOBDAMAGE"
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
 
@@ -46,20 +41,18 @@ Shader "CustomRenderTexture/MOBDAMAGE"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 baseColor = tex2D(_MainTex, i.uv);
-                fixed4 overlay = _FlashColor;
-                overlay.a *= _Intensity;
-
-                return lerp(baseColor, overlay, overlay.a);
+                fixed4 flash = _FlashColor;
+                flash.a *= _Intensity;
+                return flash;
             }
             ENDCG
         }
     }
-    FallBack "Unlit/Transparent"
+
+    FallBack Off
 }

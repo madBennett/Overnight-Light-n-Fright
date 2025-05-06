@@ -220,6 +220,8 @@ public class MobGhostBehavior : MonoBehaviour
 
     private IEnumerator TriggerDamageState()
     {
+        Debug.Log("Entering DAMAGE state");
+
         // Change state to DAMAGE
         currState = MobGhostStates.DAMAGE;
         rigidBody.velocity = Vector2.zero;
@@ -227,7 +229,7 @@ public class MobGhostBehavior : MonoBehaviour
         // Start shader effect
         if (shaderEffects != null)
         {
-            EffectsManager.ApplyEffect(EffectTypes.VISUAL_DISTORTION, VisualTypes.MOBDAMAGE);
+            shaderEffects.ApplyDamageShader();
         }
 
         // Change player color to red
@@ -243,12 +245,14 @@ public class MobGhostBehavior : MonoBehaviour
         // End shader effect
         if (shaderEffects != null)
         {
-            EffectsManager.ReturnToDefalut(EffectTypes.VISUAL_DISTORTION);
+            shaderEffects.RemoveDamageShader();
         }
 
         // reset player color
         if (playerSR != null)
-        playerSR.color = Color.white;
+        {
+            playerSR.color = Color.white;
+        }
 
         // Resume ghost behavior
         StartIdleWander(); // return to WANDER then CHASE
