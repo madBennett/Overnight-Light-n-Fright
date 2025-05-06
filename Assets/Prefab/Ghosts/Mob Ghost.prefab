@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.0025249273}
@@ -143,16 +143,13 @@ MonoBehaviour:
   EffectsManager: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
   idleEnterTime: 1
   idleTime: 1
-  movement: {x: 0, y: 0}
-  effectToApply: 0
-  moveStartTime: 0
   speed: 0.5
-  maxMoveTime: 3
-  rigidBody: {fileID: 5146427837328229314}
-  moveDistance: 0.5
   chaseSpeed: 2
+  fleeSpeed: 2.5
   acceleration: 5
   detectionRange: 3
+  fleeRange: 4
+  rigidBody: {fileID: 5146427837328229314}
   despawnParticles: {fileID: 5146427837667010288}
 --- !u!1 &5146427837667010291
 GameObject:

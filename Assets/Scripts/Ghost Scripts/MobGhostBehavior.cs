@@ -172,17 +172,13 @@ public class MobGhostBehavior : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(TriggerDamageState());
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Flashlight"))
+        else if (collision.gameObject.CompareTag("Flashlight"))
         {
             StartCoroutine(DespawnWithEffect());
         }
