@@ -82,15 +82,15 @@ public class MazeGhostBehavior : AbstractGhostBehavior
                 {
                     StartHunt();
                 }
-                Move();
+                HandleMazeMove();
                 break;
             case MazeGhostStates.SCARED:
                 movement = -1 * (Player.transform.position - transform.position).normalized;
-                Move();
+                HandleMazeMove();
                 break;
             case  MazeGhostStates.HUNT:
                 movement = (Player.transform.position - transform.position).normalized;
-                Move();
+                HandleMazeMove();
                 break;
         }
     }
@@ -144,7 +144,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     private void StartIdle()
     {
         idleEnterTime = Time.time;
-        rigidBody.velocity = Vector2.zero;
+
+        HandleMove(Vector2.zero, 0);
         currState = MazeGhostStates.IDLE;
 
         spriteRenderer.color = colorMap[0];
@@ -185,7 +186,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         moveStartTime = Time.time;
     }
 
-    private void Move()
+    private void HandleMazeMove()
     {
         //check if exceeded move time
         if (((currState == MazeGhostStates.HUNT) 
@@ -198,7 +199,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         else
         {
             //Move in choosen direction move through rigid body
-            rigidBody.velocity = movement * speed;
+            HandleMove(movement, speed);
         }
     }
 
@@ -210,7 +211,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
             //turn off sprite render
             spriteRenderer.enabled = false;
-            rigidBody.velocity = Vector2.zero;
+
+            HandleMove(Vector2.zero, 0);
             collider.enabled = false;
 
             //move pos

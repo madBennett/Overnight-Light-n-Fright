@@ -18,6 +18,8 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public float speed = 1f;
     public Rigidbody2D rigidBody;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -26,5 +28,30 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
         EffectsManager = GameObject.FindGameObjectWithTag("EffectManager").GetComponent<EffectsManager>();
+        animator = GetComponent<Animator>();
+    }
+
+    protected virtual void HandleMove(Vector2 movement, float speed)
+    {
+        //
+        animator.SetBool("isWalking", true);
+
+        if (movement != Vector2.zero)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetFloat("InputX", movement.x);
+            animator.SetFloat("InputY", movement.y);
+            animator.SetFloat("LastInputX", movement.x);
+            animator.SetFloat("LastInputY", movement.y);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+
+        animator.SetFloat("InputX", movement.x);
+        animator.SetFloat("InputY", movement.y);
+
+        rigidBody.velocity = speed * movement;
     }
 }
