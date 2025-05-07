@@ -13,14 +13,13 @@ public class PauseMenuControler : MonoBehaviour
         Time.timeScale = 0;
     }
     public void ClosePauseMenu()
-    {
-        PauseMenu.SetActive(false);
+    {        
         Time.timeScale = 1;
+        PauseMenu.SetActive(false);
     }
 
     public void ReturnToMainMenu()
     {
-
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
