@@ -9,7 +9,6 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public GameObject Player;
     public EffectsManager EffectsManager;
 
-
     //varibles for start move state
     public Vector2 movement;
     public EffectTypes effectToApply;
@@ -33,7 +32,6 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
 
     protected virtual void HandleMove(Vector2 movement, float speed)
     {
-        //
         animator.SetBool("isWalking", true);
 
         if (movement != Vector2.zero)

@@ -95,19 +95,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb2e2087173c4e40b210697b398a754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currState: 0
   isActive: 1
   Player: {fileID: 1863903852211714089, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
   EffectsManager: {fileID: 0}
-  idleEnterTime: 0
-  idleTime: 1
+  movement: {x: 0, y: 0}
+  effectToApply: 0
   speed: 0.5
+  rigidBody: {fileID: 4497068295471736526}
+  currState: 0
+  idleEnterTime: 1
+  idleTime: 1
   chaseSpeed: 2
-  fleeSpeed: 2.5
+  moveSpeed: 2.5
   acceleration: 5
   detectionRange: 3
   fleeRange: 4
-  rigidBody: {fileID: 4497068295471736526}
   despawnParticles: {fileID: 5833499592988190624}
 --- !u!198 &5833499592988190624 stripped
 ParticleSystem:

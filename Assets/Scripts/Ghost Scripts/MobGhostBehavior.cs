@@ -10,51 +10,47 @@ public enum MobGhostStates
     DAMAGE
 }
 
-public class MobGhostBehavior : MonoBehaviour
+public class MobGhostBehavior : AbstractGhostBehavior
 {
     public delegate void GhostDespawned(MobGhostBehavior ghost);
     public event GhostDespawned onGhostDespawned;
 
     public MobGhostStates currState;
-    public bool isActive = false;
-    public GameObject Player;
-    public EffectsManager EffectsManager;
 
     public float idleEnterTime;
     public float idleTime = 1f;
-    public float speed = 1f;
+    public float moveSpeed = 1f;
+    //public float wanderSpeed = 0.1f;
     public float chaseSpeed = 2f;
     public float fleeSpeed = 2.5f;
     public float acceleration = 5f;
     public float detectionRange = 3f;
     public float fleeRange = 4f;
 
-    public Rigidbody2D rigidBody;
-    private GameObject player;
     private Vector3 moveDestination;
 
-    // Cosmetic
     private SpriteRenderer spriteRenderer;
     private Color defaultColor = Color.white;
     private Color chaseColor = Color.red;
     private Color fleeColor = Color.blue;
+    private Color damageColor = Color.black;
+
     private MobShaderController shaderEffects;
     private bool chaseShaderActive = false;
     private bool isChasing = false;
     private bool isFleeing = false;
     public ParticleSystem despawnParticles;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         currState = MobGhostStates.IDLE_WANDER;
         idleEnterTime = Time.time;
-        rigidBody = GetComponent<Rigidbody2D>();
-        Player = GameObject.FindGameObjectWithTag("Player");
-        EffectsManager = GameObject.FindGameObjectWithTag("EffectManager").GetComponent<EffectsManager>();
-        player = Player;
-        shaderEffects = FindObjectOfType<MobShaderController>();
 
+        shaderEffects = FindObjectOfType<MobShaderController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (spriteRenderer != null)
         {
             defaultColor = spriteRenderer.color;
@@ -84,13 +80,15 @@ public class MobGhostBehavior : MonoBehaviour
 
     private void HandleWander()
     {
-        if (player == null) return;
+        if (Player == null) return;
 
         // Move in small random directions
         if (rigidBody.velocity.magnitude < 0.1f)
         {
             Vector2 randomDir = Random.insideUnitCircle.normalized;
-            rigidBody.velocity = randomDir * speed;
+            movement = randomDir; // for animation
+            HandleMove(movement, moveSpeed); // animate
+            //rigidBody.velocity = randomDir * moveSpeed;
         }
 
         // After idleTime seconds, start chasing
@@ -99,8 +97,8 @@ public class MobGhostBehavior : MonoBehaviour
             currState = MobGhostStates.CHASE;
         }
 
-        // If player comes into range earlier, chase immediately
-        if (Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
+        // If Player comes into range earlier, chase immediately
+        if (Vector3.Distance(transform.position, Player.transform.position) <= detectionRange)
         {
             currState = MobGhostStates.CHASE;
         }
@@ -108,15 +106,14 @@ public class MobGhostBehavior : MonoBehaviour
 
     private void HandleChase()
     {
-        if (player == null) return;
+        if (Player == null) return;
 
-        Vector2 direction = (player.transform.position - transform.position).normalized;
-        float targetSpeed = chaseSpeed;
+        Vector2 direction = (Player.transform.position - transform.position).normalized;
+        movement = direction; // for animation
+        HandleMove(movement, chaseSpeed); // animate
+        //rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, direction * chaseSpeed, Time.deltaTime * acceleration);
 
-        // Set velocity towards player
-        rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, direction * targetSpeed, Time.deltaTime * acceleration);
-
-        // Color to chase color
+        // color to chase color
         if (spriteRenderer != null) spriteRenderer.color = chaseColor;
 
         if (!isChasing)
@@ -132,15 +129,18 @@ public class MobGhostBehavior : MonoBehaviour
 
     private void HandleFlee()
     {
-        if (player == null) return;
+        if (Player == null) return;
 
-        Vector2 directionAway = (transform.position - player.transform.position).normalized;
-        rigidBody.velocity = directionAway * fleeSpeed;
+        Vector2 directionAway = (transform.position - Player.transform.position).normalized;
+        movement = directionAway; // for animation
+        HandleMove(movement, moveSpeed); // animate
+        //Body.velocity = directionAway * moveSpeed;
 
+        // color to flee color
         if (spriteRenderer != null) spriteRenderer.color = fleeColor;
 
-        // Once far enough, return to idle
-        if (Vector3.Distance(transform.position, player.transform.position) >= fleeRange)
+        // once far enough, return to idle
+        if (Vector3.Distance(transform.position, Player.transform.position) >= fleeRange)
         {
             isFleeing = false;
             StartIdleWander();
@@ -151,7 +151,12 @@ public class MobGhostBehavior : MonoBehaviour
     {
         idleEnterTime = Time.time;
         currState = MobGhostStates.IDLE_WANDER;
-        rigidBody.velocity = Vector2.zero;
+
+        movement = Vector2.zero;
+        HandleMove(movement, 0f); // stop animation
+        //rigidBody.velocity = Vector2.zero;
+
+        // color to default color
         if (spriteRenderer != null) spriteRenderer.color = defaultColor;
 
         if (shaderEffects != null && chaseShaderActive)
@@ -216,11 +221,13 @@ public class MobGhostBehavior : MonoBehaviour
 
     private IEnumerator TriggerDamageState()
     {
-        Debug.Log("Entering DAMAGE state");
-
         // Change state to DAMAGE
         currState = MobGhostStates.DAMAGE;
-        rigidBody.velocity = Vector2.zero;
+
+        movement = Vector2.zero;
+
+        // color to damage color
+        if (spriteRenderer != null) spriteRenderer.color = damageColor;
 
         // Start shader effect
         if (shaderEffects != null)
@@ -228,7 +235,7 @@ public class MobGhostBehavior : MonoBehaviour
             shaderEffects.ApplyDamageShader();
         }
 
-        // Change player color to red
+        // Change Player color to red
         SpriteRenderer playerSR = Player.GetComponent<SpriteRenderer>();
         if (playerSR != null) 
         {
@@ -244,7 +251,7 @@ public class MobGhostBehavior : MonoBehaviour
             shaderEffects.RemoveDamageShader();
         }
 
-        // reset player color
+        // reset Player color
         if (playerSR != null)
         {
             playerSR.color = Color.white;
