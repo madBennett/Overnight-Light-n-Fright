@@ -14,7 +14,7 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public EffectTypes effectToApply;
 
     //Varibles for move
-    public float speed = 1f;
+    public float speed;
     public Rigidbody2D rigidBody;
 
     private Animator animator;
