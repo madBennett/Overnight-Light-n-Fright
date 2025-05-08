@@ -12,6 +12,7 @@ TagManager:
   - GameManager
   - Scare
   - Wall
+  - AudioManager
   layers:
   - Default
   - TransparentFX

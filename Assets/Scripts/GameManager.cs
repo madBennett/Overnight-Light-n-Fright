@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public float maxEnergy = 100f;
     public ValueBar EnergyBar;
 
-
     // Start is called before the first frame update
     void Start()
     {

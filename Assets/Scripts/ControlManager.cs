@@ -5,7 +5,6 @@ using UnityEngine;
 public enum MovementStates
 {
     DEFAULT,
-    DASH,
     STUN,
     REVERSE
 }
@@ -13,6 +12,7 @@ public enum MovementStates
 public class ControlManager : MonoBehaviour
 {
     private Animator animator;
+    private AudioManager AM;
 
     //Movement
     public MovementStates currMoveState;
@@ -38,6 +38,9 @@ public class ControlManager : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
 
         animator = GetComponent<Animator>();
+
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
     }
 
     // Update is called once per frame
@@ -65,6 +68,7 @@ public class ControlManager : MonoBehaviour
 
     public void Move()
     {
+        //play animations
         animator.SetBool("isWalking", true);
 
         if (movement != Vector2.zero)
@@ -74,6 +78,9 @@ public class ControlManager : MonoBehaviour
             animator.SetFloat("InputY", movement.y);
             animator.SetFloat("LastInputX", movement.x);
             animator.SetFloat("LastInputY", movement.y);
+
+            //play movement audio
+            AM.PlayAudio(AudioClipTypes.WALK);
         }
         else
         {
@@ -127,6 +134,7 @@ public class ControlManager : MonoBehaviour
             if (!lastFrameClick && Input.GetMouseButton(0))
             {
                 Flashlight.SetActive(!Flashlight.activeSelf);
+                AM.PlayAudio(AudioClipTypes.FLASHLIGHT);
             }
 
             lastFrameClick = Input.GetMouseButton(0);

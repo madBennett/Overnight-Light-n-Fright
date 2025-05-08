@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
     private GameManager GM;
+    private AudioManager AM;
 
     //energy
     [SerializeField] private GameObject Flashlight;
@@ -22,6 +23,7 @@ public class PlayerBehavior : MonoBehaviour
         //get objects
         Flashlight = GameObject.FindGameObjectWithTag("Flashlight");
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -30,13 +32,21 @@ public class PlayerBehavior : MonoBehaviour
         //deplet energy for flashlight when active
         if (Flashlight.activeSelf)
         {
-            GM.ChangePlayerEnergy(-1* energyDelpetionRate*  Time.deltaTime);
+            UpdateEnergy(-1* energyDelpetionRate*  Time.deltaTime);
         }
     }
     
-
     private void UpdateEnergy(float changeAmt)
     {
         GM.ChangePlayerEnergy(changeAmt);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            //play audio
+            AM.PlayAudio(AudioClipTypes.HIT_WALL);
+        }
     }
 }
