@@ -23,6 +23,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     //varibles for move
     private float moveStartTime;
     private float maxMoveTime = 3f;
+    public float moveSpeed = 1f;
 
     //Scared Varibles
     [SerializeField] private float hideOdds = 0.05f;
@@ -199,7 +200,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         else
         {
             //Move in choosen direction move through rigid body
-            HandleMove(movement, speed);
+            HandleMove(movement, moveSpeed);
         }
     }
 

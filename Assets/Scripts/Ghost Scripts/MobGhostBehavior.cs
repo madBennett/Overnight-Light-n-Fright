@@ -19,8 +19,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     public float idleEnterTime;
     public float idleTime = 1f;
-    public float moveSpeed = 1f;
-    //public float wanderSpeed = 0.1f;
+    public float wanderSpeed = 0.1f;
     public float chaseSpeed = 2f;
     public float fleeSpeed = 2.5f;
     public float acceleration = 5f;
@@ -87,7 +86,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
         {
             Vector2 randomDir = Random.insideUnitCircle.normalized;
             movement = randomDir; // for animation
-            HandleMove(movement, moveSpeed); // animate
+            HandleMove(movement, wanderSpeed); // animate
             //rigidBody.velocity = randomDir * moveSpeed;
         }
 
@@ -133,7 +132,7 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
         Vector2 directionAway = (transform.position - Player.transform.position).normalized;
         movement = directionAway; // for animation
-        HandleMove(movement, moveSpeed); // animate
+        HandleMove(movement, fleeSpeed); // animate
         //Body.velocity = directionAway * moveSpeed;
 
         // color to flee color
