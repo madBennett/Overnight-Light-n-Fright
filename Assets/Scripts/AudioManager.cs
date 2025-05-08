@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
 {
     public float volume = 1f;
 
+    private float timeBuffer = 1f;
+
     [SerializeField] private AudioSource defaultAudioSource;
 
     [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
@@ -33,6 +35,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        defaultAudioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 
         //inmtialize map
         for (int i = 0; i < (int)AudioClipTypes.NUM_EFFECTS; i++)
@@ -43,8 +46,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClipTypes audioClip, AudioSource audioSource = null)
     {
-        if (playingAudio[(int)audioClip])
+        if (!playingAudio[(int)audioClip])
         {
+            playingAudio[(int)audioClip] = true;
+
             if (audioSource == null)
             {
                 defaultAudioSource.PlayOneShot(audioClips[(int)audioClip], volume);
@@ -54,12 +59,15 @@ public class AudioManager : MonoBehaviour
                 audioSource.PlayOneShot(audioClips[(int)audioClip], volume);
             }
 
-            playingAudio[(int)audioClip] = true;
         }
+
+        StartCoroutine(RevertMap(audioClip));
     }
 
-    private void RevertMap(AudioClipTypes audioClip)
+    private IEnumerator RevertMap(AudioClipTypes audioClip)
     {
+        yield return new WaitForSeconds(audioClips[(int)audioClip].length);
+
         playingAudio[(int)audioClip] = false;
     }
 }

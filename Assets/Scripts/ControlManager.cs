@@ -80,7 +80,7 @@ public class ControlManager : MonoBehaviour
             animator.SetFloat("LastInputY", movement.y);
 
             //play movement audio
-            AM.PlayAudio(AudioClipTypes.WALK);
+            //AM.PlayAudio(AudioClipTypes.WALK);
         }
         else
         {
