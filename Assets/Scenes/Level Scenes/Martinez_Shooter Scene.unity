@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
       propertyPath: words.Array.data[2]
-      value: MOBS
+      value: ATTACK
       objectReference: {fileID: 0}
     - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
       propertyPath: words.Array.data[3]
