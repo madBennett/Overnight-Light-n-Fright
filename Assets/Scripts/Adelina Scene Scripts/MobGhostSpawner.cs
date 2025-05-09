@@ -74,7 +74,6 @@ public class MobGhostSpawner : MonoBehaviour
         }
     }
 
-
     private void CompleteShootTask()
     {
         allWavesComplete = true;
@@ -85,13 +84,16 @@ public class MobGhostSpawner : MonoBehaviour
             PlayerProgress.Instance.CompleteTask(taskIDToComplete);
         }
 
+        // Set flag so intro doesn't play again when returning
+        GameState.returnedFromShootTask = true;
+
         UnlockDoors();
     }
 
     private void LockDoors()
     {
         if (teleportDoor != null)
-            teleportDoor.GetComponent<Collider2D>().enabled = false;
+            teleportDoor.LockDoor();
 
         if (returnToLobby != null)
             returnToLobby.GetComponent<Collider2D>().enabled = false;
@@ -100,7 +102,7 @@ public class MobGhostSpawner : MonoBehaviour
         private void UnlockDoors()
     {
         if (teleportDoor != null)
-            teleportDoor.GetComponent<Collider2D>().enabled = true;
+            teleportDoor.LockDoor();
 
         if (returnToLobby != null)
             returnToLobby.GetComponent<Collider2D>().enabled = true;

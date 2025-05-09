@@ -5,4 +5,5 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     public static bool hasPlayedMainRoomIntro = false;
+    public static bool returnedFromShootTask = false;
 }
