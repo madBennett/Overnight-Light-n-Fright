@@ -585,6 +585,10 @@ PrefabInstance:
       propertyPath: words.Array.data[2]
       value: BULLETS
       objectReference: {fileID: 0}
+    - target: {fileID: 4426388134253567172, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
 --- !u!1001 &1822172174
@@ -873,9 +877,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 381882647192399198, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 381882647192399198, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1117104666079951894, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_Name
       value: Player UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117104666079951897, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1117104666079951898, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_Pivot.x
@@ -967,6 +983,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1419647888837355974, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956389470224016105, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956389470224016105, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956389470224016105, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193907867267704462, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6879754758378050460, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
