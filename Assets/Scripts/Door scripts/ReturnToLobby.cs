@@ -18,12 +18,6 @@ public class ReturnToLobby : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (effectsManager != null)
-            {
-                // Reset visual distortion shader
-                effectsManager.ReturnToDefalut(EffectTypes.VISUAL_DISTORTION);
-            }
-
             if (LevelLoader.Instance != null)
             {
                 LevelLoader.Instance.LoadScene("Lobby Scene");
