@@ -22,6 +22,7 @@ public class IntroTextDisplay : MonoBehaviour
         if (currentScene == "Lobby Scene" && GameState.hasPlayedMainRoomIntro)
         {
             textDisplay.gameObject.SetActive(false);
+            GameState.returnedFromShootTask = false; // reset for future entries
             return;
         }
 

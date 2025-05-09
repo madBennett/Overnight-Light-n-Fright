@@ -30,4 +30,9 @@ public class PlayerProgress : MonoBehaviour
     {
         return completedTasks.Contains(taskID);
     }
+
+    public void ResetAllTasks()
+    {
+        completedTasks.Clear();
+    }
 }

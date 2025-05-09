@@ -11,6 +11,7 @@ public class TeleportDoor : MonoBehaviour
     public DoorData doorData;
 
     private SpriteRenderer spriteRenderer;
+    public Color unlockedColor; // assign this in Inspector
     public Color lockedColor = Color.white; // Color when door locks
 
     private void Start()
@@ -47,7 +48,7 @@ public class TeleportDoor : MonoBehaviour
         }
     }
 
-    private void LockDoor()
+    public void LockDoor()
     {
         // Disable Collider
         GetComponent<Collider2D>().enabled = false;
@@ -56,6 +57,18 @@ public class TeleportDoor : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.color = lockedColor;
+        }
+    }
+
+    public void UnlockDoor()
+    {
+        // Enable Collider
+        GetComponent<Collider2D>().enabled = true;
+
+        // Change color
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = unlockedColor;
         }
     }
 }
