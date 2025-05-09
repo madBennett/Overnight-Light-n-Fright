@@ -5348,6 +5348,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
+      propertyPath: words.Array.data[2]
+      value: CHALLENGES
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
 --- !u!1001 &8648685846264970403
