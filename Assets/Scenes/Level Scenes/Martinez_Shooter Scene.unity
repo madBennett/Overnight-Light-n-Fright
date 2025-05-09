@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 478554829101312135, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 478554829101312136, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
       propertyPath: m_Name
       value: Complete
@@ -520,8 +524,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobGhostPrefab: {fileID: 4497068295471736528, guid: 9c594d5f45cd8425b8db47408bf3678f, type: 3}
-  numberOfGhosts: 10
-  spawnRadius: 3.5
+  numberOfGhosts: 15
+  spawnRadius: 9
   speedMultiplier: 1
 --- !u!4 &428688160
 Transform:
