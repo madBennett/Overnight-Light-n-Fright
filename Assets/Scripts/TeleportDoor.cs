@@ -7,7 +7,7 @@ public class TeleportDoor : MonoBehaviour
 {
     public string sceneToLoad;
     public string doorID;
-    public string requiredTaskID; // NEW: set in Inspector if needed
+    public string requiredTaskID;
     public DoorData doorData;
 
     private SpriteRenderer spriteRenderer;
