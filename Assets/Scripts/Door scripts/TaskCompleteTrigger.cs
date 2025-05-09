@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TaskCompleteTrigger : MonoBehaviour
 {
-    public string taskID; // Like "Task1", "Task2", etc.
+    public string taskID;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

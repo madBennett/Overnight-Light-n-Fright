@@ -8,5 +8,3 @@ public class DoorData : ScriptableObject
 {
     public string lastDoorUsed;
 }
-
-//test

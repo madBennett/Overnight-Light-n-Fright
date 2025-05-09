@@ -24,7 +24,14 @@ public class ReturnToLobby : MonoBehaviour
                 effectsManager.ReturnToDefalut(EffectTypes.VISUAL_DISTORTION);
             }
 
-            SceneManager.LoadScene("Lobby Scene");
+            if (LevelLoader.Instance != null)
+            {
+                LevelLoader.Instance.LoadScene("Lobby Scene");
+            }
+            else
+            {
+                SceneManager.LoadScene("Lobby Scene"); // fallback
+            }
         }
     }
 }

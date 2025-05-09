@@ -34,7 +34,16 @@ public class TeleportDoor : MonoBehaviour
             }
 
             doorData.lastDoorUsed = doorID;
-            SceneManager.LoadScene(sceneToLoad);
+
+            if (LevelLoader.Instance != null)
+            {
+                LevelLoader.Instance.LoadScene(sceneToLoad);
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            }
+
         }
     }
 

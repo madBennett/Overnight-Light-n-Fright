@@ -53,6 +53,15 @@ public class VictoryDoor : MonoBehaviour
             {
                 successUIPopup.SetActive(true);
             }
+            
+            if (LevelLoader.Instance != null)
+            {
+                LevelLoader.Instance.LoadScene("GameWin");
+            }
+            else
+            {
+                SceneManager.LoadScene("GameWin");
+            }
         }
     }
 
