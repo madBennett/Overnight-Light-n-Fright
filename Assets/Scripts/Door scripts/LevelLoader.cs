@@ -15,14 +15,6 @@ public class LevelLoader : MonoBehaviour
         Instance = this;
     }
 
-    // private void Start()
-    // {
-    //     if (transition != null)
-    //     {
-    //         transition.SetTrigger("End");
-    //     }
-    // }
-
     public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadLevel(sceneName));

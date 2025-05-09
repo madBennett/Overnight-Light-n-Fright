@@ -7,6 +7,7 @@ public class MainMenuControler : MonoBehaviour
 {
     public void StartGame()
     {
+        GameState.hasPlayedMainRoomIntro = false;
         SceneManager.LoadScene("Lobby Scene");
     }
 
