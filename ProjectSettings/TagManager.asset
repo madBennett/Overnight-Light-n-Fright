@@ -13,6 +13,10 @@ TagManager:
   - Scare
   - Wall
   - AudioManager
+  - Platform
+  - Lever
+  - Key
+  - Door
   layers:
   - Default
   - TransparentFX

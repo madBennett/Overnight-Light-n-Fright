@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FloatingMaterial
-  m_Shader: {fileID: 4800000, guid: 41cbba180be10474483d9fa92c34e1ed, type: 3}
+  m_Shader: {fileID: 4800000, guid: dc3f284364a08bc4d8835eb6734a50d8, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4

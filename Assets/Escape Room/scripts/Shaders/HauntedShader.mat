@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HauntedShader
-  m_Shader: {fileID: 4800000, guid: 77876b964e6e0f14bad11a84d6d1b241, type: 3}
+  m_Shader: {fileID: 4800000, guid: 35b1b1bb87e22644f8a4287787cef41f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
