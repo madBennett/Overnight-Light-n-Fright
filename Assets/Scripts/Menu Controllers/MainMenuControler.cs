@@ -9,8 +9,17 @@ public class MainMenuControler : MonoBehaviour
     {
         GameState.hasPlayedMainRoomIntro = false;
         GameState.ResetGame();
+
+        // Destroy persistent UI
+        var persistentUI = GameObject.Find("Player UI");
+        if (persistentUI != null)
+        {
+            Destroy(persistentUI);
+        }
+
         SceneManager.LoadScene("Lobby Scene");
     }
+
 
     public void ExitGame()
     {
