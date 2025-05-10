@@ -31,7 +31,16 @@ public class MainMenuControler : MonoBehaviour
             Destroy(audioManager);
         }
 
-        SceneManager.LoadScene("Lobby Scene");
+        // Use LevelLoader to handle the scene transition with fade
+        if (LevelLoader.Instance != null)
+        {
+            LevelLoader.Instance.LoadScene("Lobby Scene");
+        }
+        else
+        {
+            // Fallback in case LevelLoader doesn't exist (optional)
+            SceneManager.LoadScene("Lobby Scene");
+        }    
     }
 
     public void ExitGame()

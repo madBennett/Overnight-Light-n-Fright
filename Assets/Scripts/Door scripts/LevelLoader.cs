@@ -12,7 +12,15 @@ public class LevelLoader : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Prevent duplicates
+        }
     }
 
     public void LoadScene(string sceneName)
@@ -22,8 +30,15 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator LoadLevel(string sceneName)
     {
-        transition.SetTrigger("Start");
+        transition.SetTrigger("Start"); // Start fade to black
         yield return new WaitForSeconds(transitionTime);
+        
         SceneManager.LoadScene(sceneName);
+
+        // Wait one frame to let the new scene load
+        yield return null;
+
+        // Fade back in
+        transition.SetTrigger("End"); // Trigger your fade-in animation
     }
 }
