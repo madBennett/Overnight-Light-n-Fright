@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     //timer
     public float timeRemaining = 300;
     public ValueBar TimeBar;
@@ -13,6 +15,20 @@ public class GameManager : MonoBehaviour
     public static float currEnergy;
     public float maxEnergy = 100f;
     public ValueBar EnergyBar;
+
+    void Awake()
+    {
+        // Check if an instance already exists
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Make it persistent
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

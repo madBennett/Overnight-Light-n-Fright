@@ -17,9 +17,15 @@ public class MainMenuControler : MonoBehaviour
             Destroy(persistentUI);
         }
 
+        // Destroy persistent GameManager
+        var gameManager = GameObject.Find("GameManager");
+        if (gameManager != null)
+        {
+            Destroy(gameManager);
+        }
+
         SceneManager.LoadScene("Lobby Scene");
     }
-
 
     public void ExitGame()
     {
