@@ -24,6 +24,13 @@ public class MainMenuControler : MonoBehaviour
             Destroy(gameManager);
         }
 
+        // Destroy persistent AudioManager
+        var audioManager = GameObject.Find("AudioManager");
+        if (audioManager != null)
+        {
+            Destroy(audioManager);
+        }
+
         SceneManager.LoadScene("Lobby Scene");
     }
 

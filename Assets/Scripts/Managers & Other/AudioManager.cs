@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public enum AudioClipTypes
 {
@@ -20,6 +20,8 @@ public enum AudioClipTypes
 }
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+
     public float volume = 1f;
 
     private float timeBuffer = 1f;
@@ -30,13 +32,42 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private bool[] playingAudio = new bool[(int)AudioClipTypes.NUM_EFFECTS]; //bool map to verify which effect is curretnly active
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Make this object persistent
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate
+        }
+    }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reacquire the player and its AudioSource
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            defaultAudioSource = player.GetComponent<AudioSource>();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        defaultAudioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
-
         //inmtialize map
         for (int i = 0; i < (int)AudioClipTypes.NUM_EFFECTS; i++)
         {
