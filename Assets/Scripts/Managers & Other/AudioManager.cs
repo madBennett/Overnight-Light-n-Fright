@@ -92,8 +92,6 @@ public class AudioManager : MonoBehaviour
     public void HandleWalkAudio(bool enable)
     {
         walkingAudioSource.enabled = enable;
-
-        Debug.Log("Enable");
     }
 
     public void PlayAudio(AudioClipTypes audioClip, AudioSource audioSource = null)
