@@ -22,6 +22,7 @@ public enum VisualTypes
 public class EffectsManager : MonoBehaviour
 {
     [SerializeField] private PlayerBehavior Player;
+    [SerializeField] private AudioManager AM;
 
     [SerializeField] private float effectTime = 2f;
     [SerializeField] private bool switchMode = false;
@@ -44,6 +45,7 @@ public class EffectsManager : MonoBehaviour
         PlayerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<ControlManager>();
         PlayerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
         mainCameraBehavior = Camera.main.GetComponent<CameraBehavior>();
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
 
         //inmtialize map
         for (int i = 0; i < (int)EffectTypes.NUM_EFFECTS; i++)
@@ -56,6 +58,8 @@ public class EffectsManager : MonoBehaviour
     {
         if (!appliedEffects[(int)effect])
         {
+            AM.PlayAudio(AudioClipTypes.EFFECT_APPLIED);
+
             switch (effect)
             {
                 case EffectTypes.VISUAL_DISTORTION:

@@ -173,6 +173,8 @@ public class MobGhostBehavior : AbstractGhostBehavior
             isFleeing = true;
             currState = MobGhostStates.FLEE;
             rigidBody.velocity = Vector2.zero;
+
+            PlayGhostAudio(AudioClipTypes.GHOST_FLEE);
         }
     }
 
@@ -227,6 +229,8 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
         // color to damage color
         if (spriteRenderer != null) spriteRenderer.color = damageColor;
+
+        PlayGhostAudio(AudioClipTypes.GHOST_DAMAGE);
 
         // Start shader effect
         if (shaderEffects != null)

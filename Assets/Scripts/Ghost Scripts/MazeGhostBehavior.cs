@@ -159,6 +159,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         spriteRenderer.color = colorMap[(int)effectToApply];//todo fix sometimes wrong color
 
         currState = MazeGhostStates.HUNT;
+
+        PlayGhostAudio(AudioClipTypes.GHOST_HUNT);
     }
 
     private void StartWander()
@@ -185,6 +187,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
         currState = MazeGhostStates.SCARED;
         moveStartTime = Time.time;
+
+        PlayGhostAudio(AudioClipTypes.GHOST_FLEE);
     }
 
     private void HandleMazeMove()
@@ -224,6 +228,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
 
             currState = MazeGhostStates.HIDE;
 
+            PlayGhostAudio(AudioClipTypes.GHOST_HIDE);
         }
     }
 

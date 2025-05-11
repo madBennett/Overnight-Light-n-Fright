@@ -14,9 +14,13 @@ public class TeleportDoor : MonoBehaviour
     public Color unlockedColor; // assign this in Inspector
     public Color lockedColor = Color.white; // Color when door locks
 
+    [SerializeField] private AudioManager AM;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
 
         if (PlayerProgress.Instance != null && PlayerProgress.Instance.HasCompletedTask(requiredTaskID))
         {
@@ -35,6 +39,8 @@ public class TeleportDoor : MonoBehaviour
             }
 
             doorData.lastDoorUsed = doorID;
+
+            AM.PlayAudio(AudioClipTypes.ENTER_GATE);
 
             if (LevelLoader.Instance != null)
             {

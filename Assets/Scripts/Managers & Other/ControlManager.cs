@@ -50,6 +50,7 @@ public class ControlManager : MonoBehaviour
         if (currMoveState == MovementStates.STUN)
         {
             rigidBody.velocity = Vector2.zero;
+            AM.HandleWalkAudio(false);
             return;
         }
         else
@@ -80,11 +81,12 @@ public class ControlManager : MonoBehaviour
             animator.SetFloat("LastInputY", movement.y);
 
             //play movement audio
-            //AM.PlayAudio(AudioClipTypes.WALK);
+            AM.HandleWalkAudio(true);
         }
         else
         {
             animator.SetBool("isWalking", false);
+            AM.HandleWalkAudio(false);
         }
 
         animator.SetFloat("InputX", movement.x);

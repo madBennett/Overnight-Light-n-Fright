@@ -17,7 +17,11 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
     public float speed;
     public Rigidbody2D rigidBody;
 
-    private Animator animator;
+    protected Animator animator;
+
+    //audio
+    protected AudioManager AM;
+    [SerializeField] protected AudioSource ghostAudioSource;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -28,6 +32,8 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         EffectsManager = GameObject.FindGameObjectWithTag("EffectManager").GetComponent<EffectsManager>();
         animator = GetComponent<Animator>();
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        ghostAudioSource = GetComponent<AudioSource>();
     }
 
     protected virtual void HandleMove(Vector2 movement, float speed)
@@ -51,5 +57,10 @@ public abstract class AbstractGhostBehavior : MonoBehaviour
         animator.SetFloat("InputY", movement.y);
 
         rigidBody.velocity = speed * movement;
+    }
+
+    protected virtual void PlayGhostAudio(AudioClipTypes audio)
+    {
+        AM.PlayAudio(audio, ghostAudioSource);
     }
 }

@@ -21,10 +21,14 @@ public class MobGhostSpawner : MonoBehaviour
     private int currentWave = 0;
     private bool allWavesComplete = false;
 
+    private AudioManager AM;
+
     void Start()
     {
         LockDoors();
         SpawnGhostsInCircle();
+
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     void SpawnGhostsInCircle()
@@ -88,6 +92,8 @@ public class MobGhostSpawner : MonoBehaviour
         GameState.returnedFromShootTask = true;
 
         UnlockDoors();
+
+        AM.PlayAudio(AudioClipTypes.COLLECT_MARKER);
     }
 
     private void LockDoors()

@@ -799,6 +799,7 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
   unlockedColor: {r: 0, g: 0, b: 0, a: 0}
   lockedColor: {r: 1, g: 1, b: 1, a: 1}
+  AM: {fileID: 0}
 --- !u!61 &217524877
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1406,6 +1407,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &473795517 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3978356328943355091, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  m_PrefabInstance: {fileID: 1575224547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &541567852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,6 +2261,7 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
   unlockedColor: {r: 0, g: 0, b: 0, a: 0}
   lockedColor: {r: 1, g: 1, b: 1, a: 1}
+  AM: {fileID: 0}
 --- !u!61 &966892485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2591,8 +2598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 1
   defaultAudioSource: {fileID: 38261779}
+  walkingAudioSource: {fileID: 473795517}
   audioClips:
-  - {fileID: 8300000, guid: 6aee229432a302a4aac709b8773ff615, type: 3}
   - {fileID: 8300000, guid: f9780b2ccf1dbdb44b85cc68a4fa93cc, type: 3}
   - {fileID: 8300000, guid: 60951c000bdc9094f85baab336b2c8cd, type: 3}
   - {fileID: 8300000, guid: b05b03e4a50c87d49876b20cf8ada115, type: 3}
@@ -2724,6 +2731,7 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
   unlockedColor: {r: 0, g: 0, b: 0, a: 0}
   lockedColor: {r: 1, g: 1, b: 1, a: 1}
+  AM: {fileID: 0}
 --- !u!61 &1114854848
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3704,6 +3712,7 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
   unlockedColor: {r: 0, g: 0, b: 0, a: 0}
   lockedColor: {r: 1, g: 1, b: 1, a: 1}
+  AM: {fileID: 0}
 --- !u!61 &1547576186
 BoxCollider2D:
   m_ObjectHideFlags: 0

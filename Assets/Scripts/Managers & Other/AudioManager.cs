@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public enum AudioClipTypes
 {
-    WALK,
     FLASHLIGHT,
     HIT_WALL,
     EFFECT_APPLIED,
@@ -24,9 +23,8 @@ public class AudioManager : MonoBehaviour
 
     public float volume = 1f;
 
-    private float timeBuffer = 1f;
-
     [SerializeField] private AudioSource defaultAudioSource;
+    [SerializeField] private AudioSource walkingAudioSource;
 
     [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
 
@@ -61,7 +59,23 @@ public class AudioManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            defaultAudioSource = player.GetComponent<AudioSource>();
+            //find all audio sources in scene
+            AudioSource[] audioSources = player.GetComponentsInChildren<AudioSource>(true);
+
+            foreach(AudioSource audioSource in audioSources)
+            {
+                audioSource.volume = volume;
+                if (audioSource.name == "Default Audio Source")
+                {
+                    defaultAudioSource = audioSource;
+                }
+                else if (audioSource.name == "Walking Audio Source")
+                {
+                    walkingAudioSource = audioSource;
+                }
+            }
+
+            walkingAudioSource.volume = volume;
         }
     }
 
@@ -73,6 +87,13 @@ public class AudioManager : MonoBehaviour
         {
             playingAudio[i] = false;
         }
+    }
+
+    public void HandleWalkAudio(bool enable)
+    {
+        walkingAudioSource.enabled = enable;
+
+        Debug.Log("Enable");
     }
 
     public void PlayAudio(AudioClipTypes audioClip, AudioSource audioSource = null)

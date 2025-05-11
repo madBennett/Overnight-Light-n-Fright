@@ -9,15 +9,19 @@ public class ReturnToLobby : MonoBehaviour
     public DoorData doorData;
     private EffectsManager effectsManager;
 
+    private AudioManager AM;
+
     private void Start()
     {
         effectsManager = FindObjectOfType<EffectsManager>();
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            AM.PlayAudio(AudioClipTypes.ENTER_GATE);
             if (LevelLoader.Instance != null)
             {
                 LevelLoader.Instance.LoadScene("Lobby Scene");
