@@ -147,7 +147,20 @@ MonoBehaviour:
   effectToApply: 0
   speed: 5
   rigidBody: {fileID: 0}
+  ghostAudioSource: {fileID: 0}
   state: 0
+  BulletPrefab: {fileID: 8775093039677092647, guid: 459166eacb614ba4a98ba712f8bf8d6a, type: 3}
+  ChaseTimeLowerBound: 5
+  ChaseTimeUpperBound: 10
+  ThinkingTime: 1
+  DashPrepTime: 1
+  DashTime: 0.5
+  CooldownTime: 1
+  DashSpeed: 20
+  acceleration: 5
+  bulletCooldown: 0.25
+  timeLastBulletWasShot: 0
+  bulletSpread: 30
 --- !u!1 &574137963
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +312,14 @@ PrefabInstance:
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.x
