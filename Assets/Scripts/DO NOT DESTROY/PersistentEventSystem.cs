@@ -10,12 +10,12 @@ public class PersistentEventSystem : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = this;
+            instance = GetComponent<PersistentEventSystem>();
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != GetComponent<PersistentEventSystem>())
         {
-            Destroy(gameObject); // Prevent duplicate EventSystems
+            Destroy(gameObject);
         }
     }
 }
