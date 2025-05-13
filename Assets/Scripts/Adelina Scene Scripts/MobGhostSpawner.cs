@@ -16,6 +16,9 @@ public class MobGhostSpawner : MonoBehaviour
     public TeleportDoor teleportDoor;              // the door to lock/unlock
     public ReturnToLobby returnToLobby;            // return to lobby
 
+    [Header("Timing Settings")]
+    public float initialSpawnDelay = 3f; // Time buffer before first wave
+
     // track current wave
     private List<GameObject> activeGhosts = new List<GameObject>();
     private int currentWave = 0;
@@ -26,9 +29,14 @@ public class MobGhostSpawner : MonoBehaviour
     void Start()
     {
         LockDoors();
-        SpawnGhostsInCircle();
-
         AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        StartCoroutine(DelayedFirstWave());
+    }
+
+    IEnumerator DelayedFirstWave()
+    {
+        yield return new WaitForSeconds(initialSpawnDelay);
+        SpawnGhostsInCircle();
     }
 
     void SpawnGhostsInCircle()
@@ -108,7 +116,7 @@ public class MobGhostSpawner : MonoBehaviour
         private void UnlockDoors()
     {
         if (teleportDoor != null)
-            teleportDoor.LockDoor();
+            teleportDoor.UnlockDoor();
 
         if (returnToLobby != null)
             returnToLobby.GetComponent<Collider2D>().enabled = true;

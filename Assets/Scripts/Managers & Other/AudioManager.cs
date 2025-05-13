@@ -15,8 +15,10 @@ public enum AudioClipTypes
     GHOST_FLEE,
     GHOST_HIDE,
     GHOST_DAMAGE,
+    TEXT_BOOM,
     NUM_EFFECTS
 }
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -110,6 +112,21 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClipTypes audioClip, AudioSource audioSource = null)
     {
+        // TEXT_BOOM is allowed to overlap, so skip the playingAudio map
+        if (audioClip == AudioClipTypes.TEXT_BOOM)
+        {
+            if (audioSource == null)
+            {
+                defaultAudioSource.PlayOneShot(audioClips[(int)audioClip], volume);
+            }
+            else
+            {
+                audioSource.PlayOneShot(audioClips[(int)audioClip], volume);
+            }
+            return;
+        }
+
+        // Other sounds still follow non-overlapping rule
         if (!playingAudio[(int)audioClip])
         {
             playingAudio[(int)audioClip] = true;
@@ -123,9 +140,8 @@ public class AudioManager : MonoBehaviour
                 audioSource.PlayOneShot(audioClips[(int)audioClip], volume);
             }
 
+            StartCoroutine(RevertMap(audioClip));
         }
-
-        StartCoroutine(RevertMap(audioClip));
     }
 
     private IEnumerator RevertMap(AudioClipTypes audioClip)

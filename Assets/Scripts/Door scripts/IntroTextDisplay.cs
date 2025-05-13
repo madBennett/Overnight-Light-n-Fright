@@ -38,6 +38,13 @@ public class IntroTextDisplay : MonoBehaviour
         for (int i = 0; i < words.Length; i++)
         {
             textDisplay.text = words[i];
+
+            // Play boom sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayAudio(AudioClipTypes.TEXT_BOOM);
+            }
+            
             yield return new WaitForSeconds(wordDelay);
         }
 

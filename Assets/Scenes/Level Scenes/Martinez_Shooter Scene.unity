@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
       propertyPath: words.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
       propertyPath: words.Array.data[0]
@@ -2029,3 +2029,4 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
   unlockedColor: {r: 1, g: 1, b: 1, a: 0}
   lockedColor: {r: 0.22745098, g: 0.007843138, b: 0.007843138, a: 1}
+  AM: {fileID: 0}
