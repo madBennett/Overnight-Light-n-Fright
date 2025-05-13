@@ -26,6 +26,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource defaultAudioSource;
     [SerializeField] private AudioSource walkingAudioSource;
 
+    [SerializeField] private AudioSource ambientAudioSource;
+    [SerializeField] private AudioClip ambientClip;
+
     [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
 
     [SerializeField] private bool[] playingAudio = new bool[(int)AudioClipTypes.NUM_EFFECTS]; //bool map to verify which effect is curretnly active
@@ -77,6 +80,17 @@ public class AudioManager : MonoBehaviour
 
             walkingAudioSource.volume = volume;
         }
+
+               // ambientAudioSource
+        if (ambientAudioSource == null)
+        {
+            ambientAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+        ambientAudioSource.clip = ambientClip;
+        ambientAudioSource.loop = true;
+        ambientAudioSource.volume = volume * 0.5f; // subtle background noise
+        ambientAudioSource.playOnAwake = false;
+        ambientAudioSource.Play();
     }
 
     // Start is called before the first frame update
