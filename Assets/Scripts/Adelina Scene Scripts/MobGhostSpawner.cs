@@ -100,8 +100,6 @@ public class MobGhostSpawner : MonoBehaviour
         GameState.returnedFromShootTask = true;
 
         UnlockDoors();
-
-        AM.PlayAudio(AudioClipTypes.COLLECT_MARKER);
     }
 
     private void LockDoors()
@@ -113,7 +111,7 @@ public class MobGhostSpawner : MonoBehaviour
             returnToLobby.GetComponent<Collider2D>().enabled = false;
     }
 
-        private void UnlockDoors()
+    private void UnlockDoors()
     {
         if (teleportDoor != null)
             teleportDoor.UnlockDoor();
