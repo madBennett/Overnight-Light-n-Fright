@@ -12,6 +12,8 @@ public enum MobGhostStates
 
 public class MobGhostBehavior : AbstractGhostBehavior
 {
+    private AudioManager AM;
+
     public delegate void GhostDespawned(MobGhostBehavior ghost);
     public event GhostDespawned onGhostDespawned;
 
@@ -42,6 +44,8 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     protected override void Start()
     {
+        AM = AudioManager.Instance;
+
         base.Start();
 
         currState = MobGhostStates.IDLE_WANDER;
@@ -87,7 +91,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
             Vector2 randomDir = Random.insideUnitCircle.normalized;
             movement = randomDir; // for animation
             HandleMove(movement, wanderSpeed); // animate
-            //rigidBody.velocity = randomDir * moveSpeed;
         }
 
         // After idleTime seconds, start chasing
@@ -110,7 +113,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
         Vector2 direction = (Player.transform.position - transform.position).normalized;
         movement = direction; // for animation
         HandleMove(movement, chaseSpeed); // animate
-        //rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, direction * chaseSpeed, Time.deltaTime * acceleration);
 
         // color to chase color
         if (spriteRenderer != null) spriteRenderer.color = chaseColor;
@@ -123,6 +125,12 @@ public class MobGhostBehavior : AbstractGhostBehavior
                 chaseShaderActive = true;
                 shaderEffects.AddChasingGhost();
             }
+
+            // play the GHOST_HUNT audio once when chase begins
+            if (AM != null)
+            {
+                AM.PlayAudio(AudioClipTypes.GHOST_CHASE);
+            }
         }
     }
 
@@ -133,7 +141,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
         Vector2 directionAway = (transform.position - Player.transform.position).normalized;
         movement = directionAway; // for animation
         HandleMove(movement, fleeSpeed); // animate
-        //Body.velocity = directionAway * moveSpeed;
 
         // color to flee color
         if (spriteRenderer != null) spriteRenderer.color = fleeColor;
@@ -153,7 +160,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
         movement = Vector2.zero;
         HandleMove(movement, 0f); // stop animation
-        //rigidBody.velocity = Vector2.zero;
 
         // color to default color
         if (spriteRenderer != null) spriteRenderer.color = defaultColor;

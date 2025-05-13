@@ -5,18 +5,20 @@ using UnityEngine.SceneManagement;
 
 public enum AudioClipTypes
 {
-    FLASHLIGHT,
-    HIT_WALL,
-    EFFECT_APPLIED,
-    ENTER_GATE,
-    COLLECT_MARKER,
-    GHOST_IDLE,
-    GHOST_HUNT,
-    GHOST_FLEE,
-    GHOST_HIDE,
-    GHOST_DAMAGE,
-    TEXT_BOOM,
-    NUM_EFFECTS
+    FLASHLIGHT,     // Element 0
+    HIT_WALL,       // Element 1
+    EFFECT_APPLIED, // Element 2
+    ENTER_GATE,     // Element 3
+    COLLECT_MARKER, // Element 4
+    GHOST_IDLE,     // Element 5
+    GHOST_HUNT,     // Element 6
+    GHOST_FLEE,     // Element 7
+    GHOST_HIDE,     // Element 8
+    GHOST_DAMAGE,   // Element 9
+    TEXT_BOOM,      // Element 10
+    GHOST_CHASE,    // Element 11
+    GHOST_DEATH,    // Element 12
+    NUM_EFFECTS 
 }
 
 public class AudioManager : MonoBehaviour
