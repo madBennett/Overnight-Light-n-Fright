@@ -22,7 +22,7 @@ public class IntroTextDisplay : MonoBehaviour
         if (currentScene == "Lobby Scene" && GameState.hasPlayedMainRoomIntro)
         {
             textDisplay.gameObject.SetActive(false);
-            GameState.returnedFromShootTask = false; // reset for future entries
+            //GameState.returnedFromShootTask = false; // reset for future entries
             return;
         }
 
@@ -31,6 +31,11 @@ public class IntroTextDisplay : MonoBehaviour
 
     private IEnumerator DisplayIntroWords(string sceneName)
     {
+        if (sceneName == "Lobby Scene")
+        {
+            GameState.hasPlayedMainRoomIntro = true;
+        }
+
         textDisplay.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(initialDelay);
@@ -50,10 +55,5 @@ public class IntroTextDisplay : MonoBehaviour
 
         yield return new WaitForSeconds(totalDelay);
         textDisplay.gameObject.SetActive(false);
-
-        if (sceneName == "Lobby Scene")
-        {
-            GameState.hasPlayedMainRoomIntro = true;
-        }
     }
 }
