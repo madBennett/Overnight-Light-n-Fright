@@ -551,6 +551,7 @@ MonoBehaviour:
   taskIDToComplete: ShootTask
   teleportDoor: {fileID: 0}
   returnToLobby: {fileID: 4985100639291998433}
+  initialSpawnDelay: 3
 --- !u!4 &428688160
 Transform:
   m_ObjectHideFlags: 0
@@ -564,7 +565,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &496523057
 PrefabInstance:
@@ -1071,7 +1072,7 @@ Transform:
   m_Children:
   - {fileID: 1129808998}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129808997
 GameObject:
@@ -1312,7 +1313,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1590602985
 PrefabInstance:
@@ -1532,7 +1533,7 @@ Transform:
   - {fileID: 1664245665}
   - {fileID: 1810100024}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1698351603
 GameObject:
@@ -1756,6 +1757,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1861822893
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 143690946626795220, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: xRange.x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795220, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: xRange.y
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795220, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: yRange.x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795220, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: yRange.y
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795220, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: randLoc.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795220, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: batterySpawnCooldDown
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795221, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143690946626795227, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
+      propertyPath: m_Name
+      value: BatteryPackSpawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 718d82f7415e2c24baf0c5f205f00dbd, type: 3}
 --- !u!1 &1924446715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 316894272415256208, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
@@ -2029,4 +2111,3 @@ MonoBehaviour:
   doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
   unlockedColor: {r: 1, g: 1, b: 1, a: 0}
   lockedColor: {r: 0.22745098, g: 0.007843138, b: 0.007843138, a: 1}
-  AM: {fileID: 0}

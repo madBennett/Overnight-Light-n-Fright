@@ -115,5 +115,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   batteryAmount: 10
-  despawnCooldDown: 2
+  despawnCooldDown: 30
   spawnTime: 0
