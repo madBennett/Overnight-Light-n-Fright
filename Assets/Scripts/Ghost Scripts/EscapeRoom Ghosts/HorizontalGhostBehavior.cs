@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HorizontalGhostBehavior : NewBehavior2
 {
-    public float patrolDistance = 0.5f;     // How far left/right to go from the starting point
+    public float patrolDistance = 2f;     // How far left/right to go from the starting point
     private Vector2 startPoint;
     private int direction = 1;            // 1 = right, -1 = left
 
