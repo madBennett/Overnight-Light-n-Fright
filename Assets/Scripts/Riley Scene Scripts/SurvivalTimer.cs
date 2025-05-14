@@ -23,7 +23,7 @@ public class SurvivalTimer : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (time > 0)
+        if (time > 0 && !workComplete)
         {
             time -= Time.deltaTime;
 
@@ -32,6 +32,9 @@ public class SurvivalTimer : MonoBehaviour
 
         } else if (!workComplete)
         {
+            GameObject ghost = GameObject.Find("Bullet Ghost");
+            BulletGhost ghostMind = ghost.GetComponent<BulletGhost>();
+            ghostMind.die();
             workComplete = true;
             completeTask();
         }
@@ -45,7 +48,10 @@ public class SurvivalTimer : MonoBehaviour
 
     public void addTime(float secs)
     {
-        time += secs;
-        if (time > startingTime) time = startingTime;
+        if (!workComplete)
+        {
+            time += secs;
+            if (time > startingTime) time = startingTime;
+        }
     }
 }

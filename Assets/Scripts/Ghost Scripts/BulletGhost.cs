@@ -35,6 +35,7 @@ public class BulletGhost : AbstractGhostBehavior
     public float ThinkingTime = 1f;
     public float DashPrepTime = 1f;
     public float DashTime = 0.5f;
+    public float fireTime = 1.5f;
     public float CooldownTime = 1f;
 
     public float DashSpeed = 20f;
@@ -46,6 +47,7 @@ public class BulletGhost : AbstractGhostBehavior
     public float bulletCooldown = 0.25f;
     public float timeLastBulletWasShot = 0f;
     public float bulletSpread = 30f;
+    public float fireStrength = 15f;
 
     private float phaseLength;
 
@@ -62,13 +64,13 @@ public class BulletGhost : AbstractGhostBehavior
         phaseLength = Random.Range(ChaseTimeLowerBound, ChaseTimeUpperBound);
 
 
-        if (GameObject.Find("Survive Timer") == null)
+        if (GameObject.Find("SurviveTimer") == null)
         {
             Debug.Log("No survival timer found! This ghost doesn't work without one!");
             return;
         }
 
-        timeLeftCounter = GameObject.Find("Survive Timer").GetComponent<SurvivalTimer>();
+        timeLeftCounter = GameObject.Find("SurviveTimer").GetComponent<SurvivalTimer>();
 
         
 
@@ -99,7 +101,6 @@ public class BulletGhost : AbstractGhostBehavior
 
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
-                    Debug.Log("Selecting attack!");
                     phaseStartTime = Time.time;
                     phaseLength = ThinkingTime;
                     state = BulletGhostStates.SELECTATTACK;
@@ -119,15 +120,15 @@ public class BulletGhost : AbstractGhostBehavior
                 {
                     phaseStartTime = Time.time;
                     
-                    if (Random.Range(1, 2) == 0) //TODO set back to (0, 2), this is for bullet testing
+                    if (Random.Range(0, 2) == 0) //TODO set back to (0, 2), this is for bullet testing
                     {
-                        Debug.Log("I chose dashing! backing up...");
+
                         phaseLength = DashPrepTime;
                         state = BulletGhostStates.PREPAREDASH;
                         dashDirection = us2Player.normalized;
                     } else
                     {
-                        Debug.Log("I chose bullet!");
+                        phaseLength = fireTime;
                         state = BulletGhostStates.FIRE;
                     }
                 }
@@ -143,7 +144,6 @@ public class BulletGhost : AbstractGhostBehavior
 
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
-                    Debug.Log("Dashing!");
                     targetVel = Vector2.zero;
                     phaseStartTime = Time.time;
                     phaseLength = DashTime;
@@ -162,7 +162,6 @@ public class BulletGhost : AbstractGhostBehavior
 
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
-                    Debug.Log("Finished dashing! cooling down");
                     velocity = dashDirection * speed;
                     phaseStartTime = Time.time;
                     phaseLength = CooldownTime;
@@ -189,7 +188,6 @@ public class BulletGhost : AbstractGhostBehavior
                     phaseStartTime = Time.time;
                     phaseLength = CooldownTime;
                     state = BulletGhostStates.COOLDOWN;
-                    Debug.Log("Cooling down");
                 }
                 break;
 
@@ -202,7 +200,6 @@ public class BulletGhost : AbstractGhostBehavior
                 
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
-                    Debug.Log("Back to chasing!");
                     phaseStartTime = Time.time;
                     phaseLength = Random.Range(ChaseTimeLowerBound, ChaseTimeUpperBound);
                     state = BulletGhostStates.CHASE;
@@ -272,6 +269,11 @@ public class BulletGhost : AbstractGhostBehavior
         GameObject newBullet = GameObject.Instantiate(BulletPrefab);
         newBullet.transform.position = transform.position + aim3;
         Bullet bulletBrain = newBullet.GetComponent<Bullet>();
-        bulletBrain.setVelAndGiveTimer(aim, timeLeftCounter);
+        bulletBrain.setVelAndGiveTimer(aim.normalized * fireStrength, timeLeftCounter);
+    }
+
+    public void die()
+    {
+        GameObject.Destroy(gameObject);
     }
 }
