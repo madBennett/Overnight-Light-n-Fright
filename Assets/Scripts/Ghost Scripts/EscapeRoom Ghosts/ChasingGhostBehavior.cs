@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ChasingGhostBehavior : AbstractGhostBehavior
 {
-    public float chaseSpeed = 3f;
+    public float chaseSpeed = 4f;
     private bool playerInHallway = false;
     private Vector2 lastDirection = Vector2.zero;
 
