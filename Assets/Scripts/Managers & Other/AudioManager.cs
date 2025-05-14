@@ -31,15 +31,15 @@ public class AudioManager : MonoBehaviour
     private Dictionary<AudioClipTypes, float> clipVolumes = new Dictionary<AudioClipTypes, float>()
     {
         { AudioClipTypes.FLASHLIGHT, 1f },
-        { AudioClipTypes.HIT_WALL, 0.5f },
+        { AudioClipTypes.HIT_WALL, 0.1f },
         { AudioClipTypes.EFFECT_APPLIED, 1f },
         { AudioClipTypes.ENTER_GATE, 0.3f },
         { AudioClipTypes.COLLECT_MARKER, 1f },
         { AudioClipTypes.GHOST_IDLE, 1f },
-        { AudioClipTypes.GHOST_HUNT, 1f },
+        { AudioClipTypes.GHOST_HUNT, 0.2f },
         { AudioClipTypes.GHOST_FLEE, 1f },
         { AudioClipTypes.GHOST_HIDE, 1f },
-        { AudioClipTypes.GHOST_DAMAGE, 1f },
+        { AudioClipTypes.GHOST_DAMAGE, .5f },
         { AudioClipTypes.TEXT_BOOM, 0.3f },
         { AudioClipTypes.GHOST_CHASE, 1f },
         { AudioClipTypes.GHOST_DEATH, 1f },
