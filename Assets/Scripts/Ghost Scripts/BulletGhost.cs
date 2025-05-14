@@ -30,6 +30,11 @@ public class BulletGhost : AbstractGhostBehavior
 
     private Vector2 us2Player;
 
+    //shamelessly stolen from mob ghost
+    public delegate void GhostDespawned(BulletGhost ghost);
+    public event GhostDespawned onGhostDespawned;
+    public ParticleSystem despawnParticles;
+
     public float ChaseTimeLowerBound = 5f;
     public float ChaseTimeUpperBound = 10f;
     public float ThinkingTime = 1f;
@@ -38,6 +43,8 @@ public class BulletGhost : AbstractGhostBehavior
     public float fireTime = 1.5f;
     public float CooldownTime = 1f;
 
+    public int numDashes = 3;
+    private int dashesLeft;
     public float DashSpeed = 20f;
 
     public float acceleration = 5f;
@@ -72,7 +79,7 @@ public class BulletGhost : AbstractGhostBehavior
 
         timeLeftCounter = GameObject.Find("SurviveTimer").GetComponent<SurvivalTimer>();
 
-        
+
 
 
     }
@@ -87,7 +94,7 @@ public class BulletGhost : AbstractGhostBehavior
         ourPos.y = transform.position.y;
 
         us2Player = playerPos - ourPos;
-        
+
 
         switch (state)
         {
@@ -119,14 +126,15 @@ public class BulletGhost : AbstractGhostBehavior
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
                     phaseStartTime = Time.time;
-                    
+
                     if (Random.Range(0, 2) == 0) //TODO set back to (0, 2), this is for bullet testing
                     {
-
+                        dashesLeft = numDashes;
                         phaseLength = DashPrepTime;
                         state = BulletGhostStates.PREPAREDASH;
                         dashDirection = us2Player.normalized;
-                    } else
+                    }
+                    else
                     {
                         phaseLength = fireTime;
                         state = BulletGhostStates.FIRE;
@@ -162,10 +170,24 @@ public class BulletGhost : AbstractGhostBehavior
 
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
-                    velocity = dashDirection * speed;
+                    
                     phaseStartTime = Time.time;
-                    phaseLength = CooldownTime;
-                    state = BulletGhostStates.COOLDOWN;
+
+                    dashesLeft--;
+
+                    //dash as many times as specified
+                    if (dashesLeft > 0)
+                    {
+                        velocity = dashDirection * 0.1f;
+                        phaseLength = DashPrepTime;
+                        dashDirection = us2Player.normalized;
+                        state = BulletGhostStates.PREPAREDASH;
+                    } else
+                    {
+                        velocity = dashDirection * speed;
+                        phaseLength = CooldownTime;
+                        state = BulletGhostStates.COOLDOWN;
+                    }
                 }
 
 
@@ -197,7 +219,7 @@ public class BulletGhost : AbstractGhostBehavior
                 //maybe become a bit transparent in this form, maybe be unable to hurt
                 //after a while, transition back to CHASE
                 targetVel = Vector2.zero;
-                
+
                 if (Time.time >= phaseStartTime + phaseLength)
                 {
                     phaseStartTime = Time.time;
@@ -242,7 +264,7 @@ public class BulletGhost : AbstractGhostBehavior
         }
         else if (collision.gameObject.tag == "Wall")
         {
-            
+
         }
     }
 
@@ -274,6 +296,30 @@ public class BulletGhost : AbstractGhostBehavior
 
     public void die()
     {
+        //DespawnWithEffect();
         GameObject.Destroy(gameObject);
     }
+
+
+    //also shamelessly stolen from MobGhost
+    private IEnumerator DespawnWithEffect()
+    {
+        if (despawnParticles != null)
+        {
+            ParticleSystem particles = Instantiate(despawnParticles, transform.position, Quaternion.identity);
+            float duration = particles.main.duration + particles.main.startLifetime.constantMax;
+            particles.Play();
+            Destroy(particles.gameObject, duration);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (onGhostDespawned != null)
+        {
+            onGhostDespawned(this);
+        }
+
+        GameObject.Destroy(gameObject);
+    }
+
 }
