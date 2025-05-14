@@ -17,6 +17,7 @@ TagManager:
   - Lever
   - Key
   - Door
+  - Oscilating Ghost
   layers:
   - Default
   - TransparentFX

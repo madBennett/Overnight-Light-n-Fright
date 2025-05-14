@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InfinityGhostBehavior : AbstractGhostBehavior
+public class InfinityGhostBehavior : NewBehavior2
 {
     private float time = 0f;
     public float loopSpeed = 1f;
