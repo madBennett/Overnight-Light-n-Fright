@@ -27,6 +27,24 @@ public class AudioManager : MonoBehaviour
 
     public float volume = 1f;
 
+    // to adjust audio
+    private Dictionary<AudioClipTypes, float> clipVolumes = new Dictionary<AudioClipTypes, float>()
+    {
+        { AudioClipTypes.FLASHLIGHT, 1f },
+        { AudioClipTypes.HIT_WALL, 0.5f },
+        { AudioClipTypes.EFFECT_APPLIED, 1f },
+        { AudioClipTypes.ENTER_GATE, 0.3f },
+        { AudioClipTypes.COLLECT_MARKER, 1f },
+        { AudioClipTypes.GHOST_IDLE, 1f },
+        { AudioClipTypes.GHOST_HUNT, 1f },
+        { AudioClipTypes.GHOST_FLEE, 1f },
+        { AudioClipTypes.GHOST_HIDE, 1f },
+        { AudioClipTypes.GHOST_DAMAGE, 1f },
+        { AudioClipTypes.TEXT_BOOM, 0.3f },
+        { AudioClipTypes.GHOST_CHASE, 1f },
+        { AudioClipTypes.GHOST_DEATH, 1f },
+    };
+
     [SerializeField] private AudioSource defaultAudioSource;
     [SerializeField] private AudioSource walkingAudioSource;
 
@@ -85,19 +103,18 @@ public class AudioManager : MonoBehaviour
             walkingAudioSource.volume = volume;
         }
 
-               // ambientAudioSource
+        // ambientAudioSource
         if (ambientAudioSource == null)
         {
             ambientAudioSource = gameObject.AddComponent<AudioSource>();
         }
         ambientAudioSource.clip = ambientClip;
         ambientAudioSource.loop = true;
-        ambientAudioSource.volume = volume * 0.5f; // subtle background noise
+        ambientAudioSource.volume = volume * 0.7f; // subtle background noise
         ambientAudioSource.playOnAwake = false;
         ambientAudioSource.Play();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         //inmtialize map
@@ -114,32 +131,34 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClipTypes audioClip, AudioSource audioSource = null)
     {
+        float clipVolume = clipVolumes.ContainsKey(audioClip) ? clipVolumes[audioClip] : 1f;
+
         // TEXT_BOOM is allowed to overlap, so skip the playingAudio map
         if (audioClip == AudioClipTypes.TEXT_BOOM)
         {
             if (audioSource == null)
             {
-                defaultAudioSource.PlayOneShot(audioClips[(int)audioClip], volume);
+                defaultAudioSource.PlayOneShot(audioClips[(int)audioClip], volume * clipVolume);
             }
             else
             {
-                audioSource.PlayOneShot(audioClips[(int)audioClip], volume);
+                audioSource.PlayOneShot(audioClips[(int)audioClip], volume * clipVolume);
             }
             return;
         }
 
-        // Other sounds still follow non-overlapping rule
+        // other sounds still follow non-overlapping rule
         if (!playingAudio[(int)audioClip])
         {
             playingAudio[(int)audioClip] = true;
 
             if (audioSource == null)
             {
-                defaultAudioSource.PlayOneShot(audioClips[(int)audioClip], volume);
+                defaultAudioSource.PlayOneShot(audioClips[(int)audioClip], volume * clipVolume);
             }
             else
             {
-                audioSource.PlayOneShot(audioClips[(int)audioClip], volume);
+                audioSource.PlayOneShot(audioClips[(int)audioClip], volume * clipVolume);
             }
 
             StartCoroutine(RevertMap(audioClip));
