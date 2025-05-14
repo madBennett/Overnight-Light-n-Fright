@@ -601,11 +601,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
       propertyPath: words.Array.data[0]
-      value: ESCAPE
+      value: FIND
       objectReference: {fileID: 0}
     - target: {fileID: 4426388134065878125, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
       propertyPath: words.Array.data[2]
-      value: MAZE
+      value: KEY
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d285b65f90241249e05094b34cf61e, type: 3}
@@ -3960,11 +3960,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &433955658 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4985100639672191590, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
-  m_PrefabInstance: {fileID: 1259420247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &434499534
 Mesh:
   m_ObjectHideFlags: 0
@@ -13783,7 +13778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4985100639672191594, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.73483
+      value: 1.9746505
       objectReference: {fileID: 0}
     - target: {fileID: 4985100639672191594, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
       propertyPath: m_LocalScale.y
@@ -13795,11 +13790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4985100639672191594, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.0122
       objectReference: {fileID: 0}
     - target: {fileID: 4985100639672191594, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: -2.096
       objectReference: {fileID: 0}
     - target: {fileID: 4985100639672191594, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13835,6 +13830,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+--- !u!1 &1259420248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4985100639672191590, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+  m_PrefabInstance: {fileID: 1259420247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1259420249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259420248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5396f643878114ae1a0f952e6a2a2f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Bennett_Maze Scene
+  doorID: Maze Door
+  requiredTaskID: MazeTask
+  doorData: {fileID: 11400000, guid: eb2efa52b44984e8b9c541484624fa9d, type: 2}
+  unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  lockedColor: {r: 0, g: 0.9056604, b: 0.46539494, a: 1}
+  AM: {fileID: 0}
 --- !u!1001 &1260710332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17712,12 +17731,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdefe9a044f59e34f83c8fde7896f5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReturnSpawnLocs:
+  KeySpawnLocs:
   - {fileID: 596921370}
   - {fileID: 1581637166}
   - {fileID: 911888409}
   - {fileID: 2098840914}
-  ReturnPoint: {fileID: 433955658}
+  KeyPoint: {fileID: 2140280456}
   oddsOfActiveDisaperingWall: 0.5
   DisappearingWalls:
   - {fileID: 1202367118}
@@ -17747,7 +17766,7 @@ MonoBehaviour:
   - {fileID: 1975356110}
   GhostPrefab: {fileID: 5229574546387589240, guid: c4b29b1fdc3e231428beee67725cc77f, type: 3}
   numGhostToSpawn: 10
-  returnSpawnRoundTime: 60
+  KeySpawnRoundTime: 60
   maxXCord: 20
   maxYCord: 12
 --- !u!4 &1574497714 stripped
@@ -25082,6 +25101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
+--- !u!1 &2140280456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 478554829101312136, guid: 40e6d64ed0e518541aef2666b5353b6c, type: 3}
+  m_PrefabInstance: {fileID: 2140280455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &143690948156021580
 PrefabInstance:
   m_ObjectHideFlags: 0

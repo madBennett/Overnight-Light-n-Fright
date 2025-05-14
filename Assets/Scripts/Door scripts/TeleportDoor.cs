@@ -24,6 +24,11 @@ public class TeleportDoor : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Debug.Log(PlayerProgress.Instance.HasCompletedTask(requiredTaskID));
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
