@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     //timer
     public float baseTime = 100f;
-    public float maxTime = 300f;
+    public float maxTime = 100f;
     public float incTime = 50f;
     public float timeRemaining;
     public ValueBar TimeBar;
@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
     {
         TimeBar.setValue(timeRemaining);
 
+
+        
+
         float remainingMins = Mathf.Floor(timeRemaining / 60);
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
 
@@ -86,6 +89,13 @@ public class GameManager : MonoBehaviour
     public void AddTime()
     {
         timeRemaining += incTime;
+        
+        if (timeRemaining > maxTime)
+        {
+            maxTime = timeRemaining;
+            TimeBar.setMaxValue(timeRemaining);
+        }
+
         UpdateTimer();
     }
 
