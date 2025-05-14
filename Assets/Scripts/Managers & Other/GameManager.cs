@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     //timer
-    public float timeRemaining = 300;
+    public float baseTime = 100f;
+    public float maxTime = 300f;
+    public float incTime = 50f;
+    public float timeRemaining;
     public ValueBar TimeBar;
 
     //energy
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // Destroy duplicate
         }
+
+        timeRemaining = baseTime;
     }
 
     // Start is called before the first frame update
@@ -40,7 +45,8 @@ public class GameManager : MonoBehaviour
         EnergyBar.setMaxValue(maxEnergy);
 
         //set Time
-        TimeBar.setMaxValue(timeRemaining);
+        TimeBar.setMaxValue(maxTime);
+        TimeBar.setValue(timeRemaining);
     }
 
     // Update is called once per frame
@@ -75,6 +81,12 @@ public class GameManager : MonoBehaviour
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
 
         TimeBar.Text.text = "Time Remaining " + remainingMins + ":" + remaingingSecs;
+    }
+
+    public void AddTime()
+    {
+        timeRemaining += incTime;
+        UpdateTimer();
     }
 
     public void ChangePlayerEnergy(float changeAmt)
