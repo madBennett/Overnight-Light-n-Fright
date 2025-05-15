@@ -2252,6 +2252,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &246043351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.950876
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.530308
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042886, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688945409703042905, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
+      propertyPath: m_Name
+      value: Death Ghost Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 589b85c0879264c4d97b00794098e3a3, type: 3}
 --- !u!1 &247578073 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7779596618078257264, guid: 13675b302e085a0428b6230f5691ba5e, type: 3}
@@ -16477,7 +16534,7 @@ Transform:
   - {fileID: 1345599857}
   - {fileID: 1962172002}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1489318097
 GameObject:
@@ -17709,7 +17766,7 @@ Transform:
   - {fileID: 911888409}
   - {fileID: 2098840914}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1567027904
 MonoBehaviour:
