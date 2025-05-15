@@ -589,11 +589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.014492989
+      value: -1.514493
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2366,5 +2366,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 7070750403819502923, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+      propertyPath: TaskID
+      value: DexTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070750403819502923, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+      propertyPath: lockedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f18b765a6f15c40428cd3ba058609e34, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
