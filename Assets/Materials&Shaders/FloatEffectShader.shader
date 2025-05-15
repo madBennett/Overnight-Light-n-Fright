@@ -3,8 +3,8 @@ Shader "Custom/FloatEffectWithTexture"
     Properties
     {
         _MainTex ("Base Texture", 2D) = "white" { }
-        _FloatStrength ("Float Strength", Float) = 3
-        _FloatSpeed ("Float Speed", Float) = 2
+        _FloatStrength ("Float Strength", Float) = 0.5
+        _FloatSpeed ("Float Speed", Float) = 0.1
     }
     SubShader
     {

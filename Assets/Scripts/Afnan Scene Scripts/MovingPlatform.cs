@@ -5,8 +5,8 @@ public class MovingPlatform : MonoBehaviour
 {
     public Transform pointA;
     public Transform pointB;
-    public float moveSpeed = 2f;
-    public float pauseDuration = 3f; // How long to wait at each end
+    public float moveSpeed = 1f;
+    public float pauseDuration = 2f; // How long to wait at each end
 
     private Vector3 nextPosition;
     private bool isWaiting = false;
