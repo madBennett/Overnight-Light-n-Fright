@@ -610,6 +610,14 @@ PrefabInstance:
       propertyPath: appliedEffects.Array.data[1]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
+      propertyPath: visualMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68d4ac8c2c3118f4ea6c5661232858d2, type: 2}
+    - target: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
+      propertyPath: visualMaterials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a506f1ca7f71044e989a43e115dcb119, type: 2}
     - target: {fileID: 6057081000603419723, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1282,8 +1290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bbe9759f392b405997e3fade0a434a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseMaterial: {fileID: 2100000, guid: a506f1ca7f71044e989a43e115dcb119, type: 2}
-  damageMaterial: {fileID: 2100000, guid: 98e5d35f9001c4798a27003e03fbf768, type: 2}
 --- !u!4 &1293150858
 Transform:
   m_ObjectHideFlags: 0

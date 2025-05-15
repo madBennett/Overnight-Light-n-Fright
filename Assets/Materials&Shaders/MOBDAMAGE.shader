@@ -2,55 +2,70 @@ Shader "CustomRenderTexture/MOBDAMAGE"
 {
     Properties
     {
-        _FlashColor ("Flash Color", Color) = (1, 1, 1, 1)
-        _Intensity ("Flash Intensity", Range(0, 1)) = 1.0
+        _MainTex ("Screen", 2D) = "black" {}
+        _OverlayColor ("Overlay Color", Color) = (0, 0, 0, 1) // Full black
+        _OverlayAlpha ("Overlay Alpha", Range(0,1)) = 1.0
+        [HideInInspector] _texcoord("", 2D) = "white" {}
     }
 
     SubShader
     {
-        Tags { "Queue"="Overlay" "RenderType"="Transparent" }
+        Tags { "RenderType"="Opaque" "Queue"="Overlay" "RenderPipeline"="UniversalRenderPipeline" }
         LOD 100
 
         Pass
         {
-            ZWrite Off
+            Name "MOBDAMAGEPass"
+            Tags { "LightMode" = "UniversalForward" }
+
             Cull Off
-            Lighting Off
+            ZWrite Off
+            ZTest Always
             Blend SrcAlpha OneMinusSrcAlpha
 
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "UnityCG.cginc"
+            #pragma target 3.0
 
-            fixed4 _FlashColor;
-            float _Intensity;
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-            struct appdata
+            struct Attributes
             {
-                float4 vertex : POSITION;
+                float4 positionOS : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            struct v2f
+            struct Varyings
             {
-                float4 vertex : SV_POSITION;
+                float4 positionCS : SV_POSITION;
+                float2 uv : TEXCOORD0;
             };
 
-            v2f vert (appdata v)
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
+            float4 _MainTex_ST;
+
+            float4 _OverlayColor;
+            float _OverlayAlpha;
+
+            Varyings vert(Attributes IN)
             {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                return o;
+                Varyings OUT;
+                OUT.positionCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
+                return OUT;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag(Varyings i) : SV_Target
             {
-                fixed4 flash = _FlashColor;
-                flash.a *= _Intensity;
-                return flash;
+                float4 sceneColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                float4 overlay = _OverlayColor;
+                overlay.a *= _OverlayAlpha;
+
+                return lerp(sceneColor, overlay, overlay.a);
             }
-            ENDCG
+            ENDHLSL
         }
     }
 
