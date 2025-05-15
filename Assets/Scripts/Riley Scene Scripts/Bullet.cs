@@ -7,7 +7,9 @@ public class Bullet : AbstractGhostBehavior
 
     private Vector2 vel;
     private SurvivalTimer timeLeftCounter;
-    
+
+    private GameObject timeIncreaseIndicator;
+
 
     // Start is called before the first frame update
     protected override void Start()
@@ -28,8 +30,9 @@ public class Bullet : AbstractGhostBehavior
         
     }
 
-    public void setVelAndGiveTimer(Vector2 newVel, SurvivalTimer timerReference)
+    public void setVelAndGiveTimer(Vector2 newVel, SurvivalTimer timerReference, GameObject timeIndicator)
     {
+        timeIncreaseIndicator = timeIndicator;
         vel.x = newVel.x;
         vel.y = newVel.y;
         timeLeftCounter = timerReference;
@@ -47,7 +50,11 @@ public class Bullet : AbstractGhostBehavior
 
                 timeLeftCounter.addTime(5f);
 
-                
+                Vector3 abovePlayer = Player.transform.position;
+                abovePlayer.y = abovePlayer.y + 1;
+                Object.Instantiate(timeIncreaseIndicator, abovePlayer, Quaternion.identity);
+
+
             }
         }
         else if (collision.gameObject.tag == "Wall")
