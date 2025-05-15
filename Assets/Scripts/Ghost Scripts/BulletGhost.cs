@@ -60,6 +60,11 @@ public class BulletGhost : AbstractGhostBehavior
 
     private float phaseStartTime;
 
+    public GameObject timeIncreaseIndicator;
+
+    public float invulnTime = 1.25f;
+    private float lastHit = 0f;
+
 
     protected override void Start()
     {
@@ -147,7 +152,7 @@ public class BulletGhost : AbstractGhostBehavior
                 //dash preparation behavior
                 //rear back for a dash
                 //then transition to DASH
-
+                dashDirection = us2Player.normalized;
                 targetVel = dashDirection * DashSpeed * -1;
 
                 if (Time.time >= phaseStartTime + phaseLength)
@@ -255,9 +260,14 @@ public class BulletGhost : AbstractGhostBehavior
 
         if (collision.gameObject.tag == "Player")
         {
-            if (true) //REPLACE IF NECESSARY with conditions that prevent ghost from hitting (post-hit immunity frames or something)
+            if (Time.time >= lastHit + invulnTime) //REPLACE IF NECESSARY with conditions that prevent ghost from hitting (post-hit immunity frames or something)
             {
+                lastHit = Time.time;
                 EffectsManager.ApplyEffect(effectToApply);
+
+                Vector3 abovePlayer = Player.transform.position;
+                abovePlayer.y = abovePlayer.y + 1;
+                Object.Instantiate(timeIncreaseIndicator, abovePlayer, Quaternion.identity);
 
                 timeLeftCounter.addTime(5f);
             }
@@ -291,7 +301,7 @@ public class BulletGhost : AbstractGhostBehavior
         GameObject newBullet = GameObject.Instantiate(BulletPrefab);
         newBullet.transform.position = transform.position + aim3;
         Bullet bulletBrain = newBullet.GetComponent<Bullet>();
-        bulletBrain.setVelAndGiveTimer(aim.normalized * fireStrength, timeLeftCounter);
+        bulletBrain.setVelAndGiveTimer(aim.normalized * fireStrength, timeLeftCounter, timeIncreaseIndicator);
     }
 
     public void die()
