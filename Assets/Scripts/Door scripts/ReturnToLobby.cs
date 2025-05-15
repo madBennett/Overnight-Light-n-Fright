@@ -11,6 +11,8 @@ public class ReturnToLobby : MonoBehaviour
 
     private AudioManager AM;
 
+    public bool isLocked = true;
+
     private void Start()
     {
         effectsManager = FindObjectOfType<EffectsManager>();
@@ -21,15 +23,28 @@ public class ReturnToLobby : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            AM.PlayAudio(AudioClipTypes.ENTER_GATE);
-            if (LevelLoader.Instance != null)
+            if (!isLocked)
             {
-                LevelLoader.Instance.LoadScene("Lobby Scene");
+                LoadLobby();
             }
             else
             {
-                SceneManager.LoadScene("Lobby Scene"); // fallback
+                //play locked door audio
             }
+        }
+    }
+
+    private void LoadLobby()
+    {
+        AM.PlayAudio(AudioClipTypes.ENTER_GATE);
+
+        if (LevelLoader.Instance != null)
+        {
+            LevelLoader.Instance.LoadScene("Lobby Scene");
+        }
+        else
+        {
+            SceneManager.LoadScene("Lobby Scene"); // fallback
         }
     }
 }

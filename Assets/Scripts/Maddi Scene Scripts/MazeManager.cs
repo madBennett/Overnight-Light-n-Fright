@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MazeManager : MonoBehaviour
 {
-    //Varibles to Set a random Return point
-    [SerializeField] private List<Transform> ReturnSpawnLocs = new List<Transform>();
-    [SerializeField] private GameObject ReturnPoint;
+    //Varibles to Set a random Key point
+    [SerializeField] private List<Transform> KeySpawnLocs = new List<Transform>();
+    [SerializeField] private GameObject Key;
 
     //Varibles to Set a random a random number of Disappearingwalls
     public float oddsOfActiveDisaperingWall = 0.5f;
@@ -15,7 +15,7 @@ public class MazeManager : MonoBehaviour
     //varibles to spawn ghosts
     [SerializeField] private GameObject GhostPrefab;
     [SerializeField] private int numGhostToSpawn = 5;
-    [SerializeField] private float returnSpawnRoundTime = 60f;
+    [SerializeField] private float KeySpawnRoundTime = 60f;
     private float roundStartTime = 0f;
     [SerializeField] private float maxXCord = 20f;
     [SerializeField] private float maxYCord = 12f;
@@ -24,8 +24,8 @@ public class MazeManager : MonoBehaviour
     void Start()
     {
         //set varibles for random spawn
-        int randReturnIndex = Random.Range(0, ReturnSpawnLocs.Count);
-        ReturnPoint.transform.position = ReturnSpawnLocs[randReturnIndex].position;
+        int randKeyIndex = Random.Range(0, KeySpawnLocs.Count);
+        Key.transform.position = KeySpawnLocs[randKeyIndex].position;
 
         SpawnGhosts();
         ResetDisappearingWalls();
@@ -34,7 +34,7 @@ public class MazeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - roundStartTime >= returnSpawnRoundTime)
+        if (Time.time - roundStartTime >= KeySpawnRoundTime)
         {
             SpawnGhosts();
 

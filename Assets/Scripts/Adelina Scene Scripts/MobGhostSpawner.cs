@@ -13,8 +13,6 @@ public class MobGhostSpawner : MonoBehaviour
     [Header("Wave Settings")]
     public int maxWaves = 5;                       // total number of waves
     public string taskIDToComplete = "ShootTask";  // task ID to mark complete
-    public TeleportDoor teleportDoor;              // the door to lock/unlock
-    public ReturnToLobby returnToLobby;            // return to lobby
 
     [Header("Timing Settings")]
     public float initialSpawnDelay = 3f; // Time buffer before first wave
@@ -28,7 +26,6 @@ public class MobGhostSpawner : MonoBehaviour
 
     void Start()
     {
-        LockDoors();
         AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         StartCoroutine(DelayedFirstWave());
     }
@@ -98,25 +95,5 @@ public class MobGhostSpawner : MonoBehaviour
 
         // Set flag so intro doesn't play again when returning
         GameState.returnedFromShootTask = true;
-
-        UnlockDoors();
-    }
-
-    private void LockDoors()
-    {
-        if (teleportDoor != null)
-            teleportDoor.LockDoor();
-
-        if (returnToLobby != null)
-            returnToLobby.GetComponent<Collider2D>().enabled = false;
-    }
-
-    private void UnlockDoors()
-    {
-        if (teleportDoor != null)
-            teleportDoor.UnlockDoor();
-
-        if (returnToLobby != null)
-            returnToLobby.GetComponent<Collider2D>().enabled = true;
     }
 }

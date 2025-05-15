@@ -1054,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.2287364
+      value: 4.4027147
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3472,6 +3472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RETURN
       objectReference: {fileID: 0}
+    - target: {fileID: 4985100639672191592, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+      propertyPath: isLocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4985100639672191594, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3516,6 +3520,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7070750403819502923, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+      propertyPath: TaskID
+      value: EscapeTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070750403819502923, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
+      propertyPath: lockedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2748b47c509074184b84ae0d1a186454, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0ca2f8e3c784564baa20c231eecf79, type: 3}
 --- !u!1 &1994238208 stripped
