@@ -4,7 +4,7 @@ using System.Collections;
 public class LeverTrigger : MonoBehaviour
 {
     public GameObject gateObject;           // The gate to open/close
-    public float gateOpenDuration = 1.0f;     // How long the gate stays open
+    public float gateOpenDuration = 0.5f;     // How long the gate stays open
     public Animator leverAnimator;          // Lever animation controller
     private AudioSource audioSource;
 
