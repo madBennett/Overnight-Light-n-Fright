@@ -2505,6 +2505,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1023681559891862151, guid: 8fb3331c2ed5744f1ae6b28c011cf64e, type: 3}
+      propertyPath: words.Array.data[2]
+      value: +50 SECONDS
+      objectReference: {fileID: 0}
     - target: {fileID: 1408790993949565288, guid: 8fb3331c2ed5744f1ae6b28c011cf64e, type: 3}
       propertyPath: m_Name
       value: Outro Text Display
@@ -3026,7 +3030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.992557
+      value: 4.40024
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.y

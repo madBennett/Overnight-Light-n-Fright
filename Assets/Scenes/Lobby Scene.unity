@@ -3341,6 +3341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 921594008}
   transitionTime: 1
+  currentlyLoading: 0
   PlayerUI: {fileID: 0}
 --- !u!4 &1489226488
 Transform:

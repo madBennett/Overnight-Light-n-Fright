@@ -7,6 +7,8 @@ public enum DeathStates
 {
     WAIT,
     CHASE,
+    STARTLUNGE,
+    LUNGE,
     NUM_STATES
 }
 
@@ -23,8 +25,18 @@ public class DeathGhost : AbstractGhostBehavior
     private Vector2 ourPos;
 
     private Vector2 us2Player;
+    
 
-    private float acceleration = 5f;
+    public float lungeStartRange = 5f;
+    public float lungeCooldown = 5f;
+    public float lungeWait = 0.75f;
+    public float lungeTime = 0.5f;
+    public float lungeSpeed = 7.5f;
+    private float lastLungeTime = 0f;
+    private float phaseStartTime = 0f;
+    private Vector2 lungeDir;
+
+    public float acceleration = 5f;
 
     protected override void Start()
     {
@@ -53,32 +65,62 @@ public class DeathGhost : AbstractGhostBehavior
 
                 if (game.YourTimeIsUp)
                 {
+                    Debug.Log("Began the chase!");
                     state = DeathStates.CHASE;
                 }
                 break;
 
             case DeathStates.CHASE:
-                velocity = us2Player;
+                targetVel = us2Player * speed;
+
+                if ((us2Player.magnitude <= lungeStartRange) && Time.time >= lastLungeTime + lungeCooldown)
+                {
+                    Debug.Log("Readying for a lunge!");
+
+                    phaseStartTime = Time.time;
+                    state = DeathStates.STARTLUNGE;
+                }
+                break;
+
+            case DeathStates.STARTLUNGE:
+                targetVel = Vector2.zero;
+
+                if (Time.time >= phaseStartTime + lungeWait)
+                {
+                    Debug.Log("Lunging!");
+                    lastLungeTime = Time.time;
+
+                    phaseStartTime = Time.time;
+                    lungeDir = us2Player.normalized;
+                    velocity = lungeDir * lungeSpeed;
+                    state = DeathStates.LUNGE;
+                }
+                break;
+
+            case DeathStates.LUNGE:
+                targetVel = lungeDir * lungeSpeed;
+                if (Time.time >= phaseStartTime + lungeTime)
+                {
+                    Debug.Log("Done lunging!");
+                    state = DeathStates.CHASE;
+                }
                 break;
 
         }
 
-        //Vector2 deltaV = targetVel - velocity;
-        //Vector2 accel = (deltaV.magnitude >= 0.1) ? deltaV.normalized * speed : Vector2.zero;
+        Vector2 deltaV = targetVel - velocity;
+        Vector2 accel = (deltaV.magnitude >= 0.1) ? deltaV.normalized * acceleration : Vector2.zero;
 
-        //velocity = velocity + (accel * Time.deltaTime);
+        velocity = velocity + (accel * Time.deltaTime);
 
 
         //Whatever Velocity is, move it
-        //if (state != BulletGhostStates.DASH) //except if we're dashing, dashing uses separate rules
-        //{
             HandleMove(velocity, 1f); //we use 1 because speed is used in the making of the velocity vector.
-        //}
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !LevelLoader.Instance.currentlyLoading) //dont kill while walking through a door
         {
 
             GameOver();
