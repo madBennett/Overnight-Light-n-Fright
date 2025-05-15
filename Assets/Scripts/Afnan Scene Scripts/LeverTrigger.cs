@@ -4,7 +4,7 @@ using System.Collections;
 public class LeverTrigger : MonoBehaviour
 {
     public GameObject gateObject;  // The gate to disappear
-    public float hideDuration = 0.75f; // Duration to hide the gate
+    public float hideDuration = 0.25f; // Duration to hide the gate
 
     private void OnTriggerEnter2D(Collider2D other)
     {

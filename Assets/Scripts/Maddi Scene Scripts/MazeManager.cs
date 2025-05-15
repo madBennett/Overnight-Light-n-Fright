@@ -6,7 +6,7 @@ public class MazeManager : MonoBehaviour
 {
     //Varibles to Set a random Key point
     [SerializeField] private List<Transform> KeySpawnLocs = new List<Transform>();
-    [SerializeField] private GameObject KeyPoint;
+    [SerializeField] private GameObject Key;
 
     //Varibles to Set a random a random number of Disappearingwalls
     public float oddsOfActiveDisaperingWall = 0.5f;
@@ -25,7 +25,7 @@ public class MazeManager : MonoBehaviour
     {
         //set varibles for random spawn
         int randKeyIndex = Random.Range(0, KeySpawnLocs.Count);
-        KeyPoint.transform.position = KeySpawnLocs[randKeyIndex].position;
+        Key.transform.position = KeySpawnLocs[randKeyIndex].position;
 
         SpawnGhosts();
         ResetDisappearingWalls();

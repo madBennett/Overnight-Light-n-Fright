@@ -23,15 +23,17 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     //varibles for move
     private float moveStartTime;
     private float maxMoveTime = 3f;
-    public float moveSpeed = 1f;
+    public float defaultSpeed = 1f;
 
     //Scared Varibles
     [SerializeField] private float hideOdds = 0.05f;
     [SerializeField] private float hideCoolDown = 2f;
     private float lastHideTime = 0f;
+    [SerializeField] private float scaredSpeed = 5f;
 
     //hunt
     [SerializeField] private float detectionRange = 5f;
+    [SerializeField] private float huntSpeed = 2f;
 
     //color varibles
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -52,7 +54,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         isActive = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = colorMap[0];
-        speed = 3;
+        speed = defaultSpeed;
 
         collider = GetComponent<Collider2D>();
     }
@@ -158,6 +160,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         effectToApply = (EffectTypes)(Random.Range(1, (int)EffectTypes.NUM_EFFECTS - 1));
         spriteRenderer.color = colorMap[(int)effectToApply];//todo fix sometimes wrong color
 
+        speed = huntSpeed;
+
         currState = MazeGhostStates.HUNT;
 
         PlayGhostAudio(AudioClipTypes.GHOST_HUNT);
@@ -177,6 +181,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         int randIndex = Random.Range(0, numDir - 1);
         movement = cardDir[randIndex];
 
+        speed = defaultSpeed;
+
         currState = MazeGhostStates.WANDER;
         moveStartTime = Time.time;
     }
@@ -184,6 +190,8 @@ public class MazeGhostBehavior : AbstractGhostBehavior
     private void StartScared()
     {
         //
+
+        speed = scaredSpeed;
 
         currState = MazeGhostStates.SCARED;
         moveStartTime = Time.time;
@@ -204,7 +212,7 @@ public class MazeGhostBehavior : AbstractGhostBehavior
         else
         {
             //Move in choosen direction move through rigid body
-            HandleMove(movement, moveSpeed);
+            HandleMove(movement, speed);
         }
     }
 

@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class ChasingGhostBehavior : AbstractGhostBehavior
 {
+    public float chaseSpeed = 4f;
     private bool playerInHallway = false;
+    private Vector2 lastDirection = Vector2.zero;
 
     protected override void Start()
     {
@@ -14,28 +16,25 @@ public class ChasingGhostBehavior : AbstractGhostBehavior
     {
         if (!isActive || !playerInHallway || Player == null) return;
 
-        // Only chase vertically
+        // Only chase downward
         Vector2 direction = ((Vector2)Player.transform.position - (Vector2)transform.position);
-        direction.x = 0;
-        direction = direction.normalized;
 
-        HandleMove(direction, speed);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        if (direction.y < 0)
         {
-            playerInHallway = true;
+            lastDirection = new Vector2(0, -1);
         }
+
+        HandleMove(lastDirection, chaseSpeed);
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void SetPlayerInHallway(bool inHallway)
     {
-        if (other.CompareTag("Player"))
+        playerInHallway = inHallway;
+
+        if (!inHallway)
         {
-            playerInHallway = false;
-            HandleMove(Vector2.zero, 0f); // Stop moving when player leaves
+            // Stop when player leaves hallway
+            HandleMove(Vector2.zero, 0f);
         }
     }
 }

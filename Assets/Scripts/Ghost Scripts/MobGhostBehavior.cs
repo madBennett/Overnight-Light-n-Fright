@@ -12,8 +12,6 @@ public enum MobGhostStates
 
 public class MobGhostBehavior : AbstractGhostBehavior
 {
-    private AudioManager AM;
-
     public delegate void GhostDespawned(MobGhostBehavior ghost);
     public event GhostDespawned onGhostDespawned;
 
@@ -44,8 +42,6 @@ public class MobGhostBehavior : AbstractGhostBehavior
 
     protected override void Start()
     {
-        AM = AudioManager.Instance;
-
         base.Start();
 
         currState = MobGhostStates.IDLE_WANDER;

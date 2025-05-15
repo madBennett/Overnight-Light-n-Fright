@@ -24,6 +24,9 @@ public class PlayerProgress : MonoBehaviour
     public void CompleteTask(string taskID)
     {
         completedTasks.Add(taskID);
+        //and add to timer via GameManager
+        GameManager man = GameObject.Find("GameManager").GetComponent<GameManager>();
+        man.AddTime();
     }
 
     public bool HasCompletedTask(string taskID)
