@@ -47,6 +47,7 @@ public class VictoryDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("The Game Should Be Over");
         if (other.CompareTag("Player") && isUnlocked)
         {
             if (successUIPopup != null)
