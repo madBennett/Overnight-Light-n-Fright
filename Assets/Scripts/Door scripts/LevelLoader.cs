@@ -9,11 +9,13 @@ public class LevelLoader : MonoBehaviour
 
     public Animator transition;
     public float transitionTime = 1f;
+    public bool currentlyLoading;
 
     [SerializeField] private GameObject PlayerUI;
 
     private void Awake()
     {
+        currentlyLoading = false;
         if (Instance == null)
         {
             Instance = this;
@@ -34,6 +36,8 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator LoadLevel(string sceneName)
     {
+        currentlyLoading = true;
+
         transition.SetTrigger("Start"); // Start fade to black
         yield return new WaitForSeconds(transitionTime);
         
@@ -52,5 +56,6 @@ public class LevelLoader : MonoBehaviour
         }
         PlayerUI.SetActive(sceneName != "MainMenu" || sceneName != "GameWin" || sceneName != "GameLoss");
 
+        currentlyLoading = false;
     }
 }

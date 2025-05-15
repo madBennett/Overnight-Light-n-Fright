@@ -42,7 +42,8 @@ public class SurvivalTimer : MonoBehaviour
 
     void completeTask()
     {
-        uiText.text = "Survived!";
+        GameObject.Find("ExplTxt").SetActive(false);
+        uiText.text = "Free!";
         PlayerProgress.Instance.CompleteTask("DexTask");
     }
 

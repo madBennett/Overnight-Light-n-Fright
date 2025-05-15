@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
         if (timeRemaining < 0)
         {
             timeRemaining = 0;
+            //Begin Game Over Sequence
             YourTimeIsUp = true;
+            TimeBar.Text.text = "YOUR TIME IS UP";
         }
         else
         {
@@ -91,7 +93,10 @@ public class GameManager : MonoBehaviour
 
     public void AddTime()
     {
-        timeRemaining += incTime;
+        if (!YourTimeIsUp)
+        {
+            timeRemaining += incTime;
+        }
         
         if (timeRemaining > maxTime)
         {
