@@ -16,7 +16,8 @@ public enum VisualTypes
 {
     MOBCHASE,
     MOBDAMAGE,
-    INVERT_COLORS
+    INVERT_COLORS,
+    RESPAWN_JITTER
 }
 
 public class EffectsManager : MonoBehaviour

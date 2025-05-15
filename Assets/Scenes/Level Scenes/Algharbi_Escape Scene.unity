@@ -644,7 +644,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
 --- !u!1 &251557260 stripped
 GameObject:
@@ -1300,7 +1301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.8705664
+      value: 3.9854636
       objectReference: {fileID: 0}
     - target: {fileID: 316894272415256220, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1364,6 +1365,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
+--- !u!114 &588389530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 316894272415256209, guid: 9c1f7cf9cb3ab874e82ba412a45a180e, type: 3}
+  m_PrefabInstance: {fileID: 588389529}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f212f1d9188f347aa6e499cf32318f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647457276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 1
@@ -1760,6 +1772,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+--- !u!114 &801676915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4748989975070169129, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  m_PrefabInstance: {fileID: 801676914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138185340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072887c49b5b6e24ebc425589b33eb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &801676916 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8169616856088985674, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  m_PrefabInstance: {fileID: 801676914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &801676917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3202657474735805668, guid: fafc85bb2d090ee419356017a34c23f4, type: 3}
+  m_PrefabInstance: {fileID: 801676914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138185340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a76ab861ee29449dba3f18249da1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &804773909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,7 +2400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 0.5
@@ -2458,17 +2497,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
---- !u!114 &1205569840 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6057081000603419722, guid: 428ac1e440839274cbbb4457526497a8, type: 3}
-  m_PrefabInstance: {fileID: 251557259}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251557260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c5e3a3c22cf2b44a02901509c17cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1205569841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2481,6 +2509,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6776491881c462a4596661cf93132834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 801676917}
+  AM: {fileID: 0}
+  effectTime: 2
+  switchMode: 0
+  appliedEffects: 0000000000
+  PlayerSpriteRenderer: {fileID: 801676916}
+  visualMaterials:
+  - {fileID: 2100000, guid: e279e354fb1a173479d3f4fafc12b988, type: 2}
+  mainCameraBehavior: {fileID: 588389530}
+  PlayerControls: {fileID: 801676915}
 --- !u!1 &1241752148 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
@@ -2500,7 +2538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 2
@@ -3870,7 +3908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 1
@@ -4005,7 +4043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 2
@@ -4124,7 +4162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 2
@@ -4521,7 +4559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Player: {fileID: 1138185340}
-  EffectsManager: {fileID: 1205569840}
+  EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 1
