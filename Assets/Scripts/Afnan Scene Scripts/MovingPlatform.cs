@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
@@ -7,31 +6,46 @@ public class MovingPlatform : MonoBehaviour
     public Transform pointA;
     public Transform pointB;
     public float moveSpeed = 2f;
+    public float pauseDuration = 3f; // How long to wait at each end
 
     private Vector3 nextPosition;
+    private bool isWaiting = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         nextPosition = pointB.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (isWaiting) return;
+
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, moveSpeed * Time.deltaTime);
 
         if (transform.position == nextPosition)
         {
-            nextPosition = (nextPosition == pointA.position) ? pointB.position : pointA.position;
+            StartCoroutine(WaitBeforeMoving());
         }
+    }
+
+    private IEnumerator WaitBeforeMoving()
+    {
+        isWaiting = true;
+
+        // Wait at current point
+        yield return new WaitForSeconds(pauseDuration);
+
+        // Switch to the other point
+        nextPosition = (nextPosition == pointA.position) ? pointB.position : pointA.position;
+
+        isWaiting = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.transform.parent = transform;
+            collision.transform.parent = transform;
         }
     }
 
@@ -39,7 +53,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.transform.parent = null;
+            collision.transform.parent = null;
         }
     }
 }
