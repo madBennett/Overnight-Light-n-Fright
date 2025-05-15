@@ -3,11 +3,23 @@ using System.Collections;
 
 public class LeverTrigger : MonoBehaviour
 {
-    public GameObject gateObject;           // The gate to disappear
-    public float hideDuration = 0.25f;      // Duration to hide the gate
-    public Animator leverAnimator;          // The Animator component on the lever
+    public GameObject gateObject;           // The gate to open/close
+    public float gateOpenDuration = 1.0f;     // How long the gate stays open
+    public Animator leverAnimator;          // Lever animation controller
+    private AudioSource audioSource;
 
-    private bool hasBeenPulled = false;     // To prevent repeated triggers
+    private bool hasBeenPulled = false;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        //  Ensure the gate is active at start
+        if (gateObject != null && !gateObject.activeSelf)
+        {
+            gateObject.SetActive(true);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,21 +27,23 @@ public class LeverTrigger : MonoBehaviour
         {
             hasBeenPulled = true;
 
-            // Trigger the flip animation
+            // Play animation
             if (leverAnimator != null)
-            {
                 leverAnimator.SetTrigger("Flip");
-            }
 
-            // Start the gate hide routine
-            StartCoroutine(HideGateTemporarily());
+            // Play sound
+            if (audioSource != null && audioSource.clip != null)
+                audioSource.Play();
+
+            // Open gate for a duration
+            StartCoroutine(OpenThenCloseGate());
         }
     }
 
-    private IEnumerator HideGateTemporarily()
+    private IEnumerator OpenThenCloseGate()
     {
-        gateObject.SetActive(false);
-        yield return new WaitForSeconds(hideDuration);
-        gateObject.SetActive(true);
+        gateObject.SetActive(false); // Open
+        yield return new WaitForSeconds(gateOpenDuration);
+        gateObject.SetActive(true);  // Close
     }
 }
