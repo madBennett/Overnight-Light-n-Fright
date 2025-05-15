@@ -1,28 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MovingPlatform : MonoBehaviour
 {
     public Transform pointA;
     public Transform pointB;
     public float moveSpeed = 4f;
-    public float pauseDuration = 1f; // How long to wait at each end
+    public float pauseDuration = 1f;
 
     private Vector3 nextPosition;
     private bool isWaiting = false;
+    private Rigidbody2D rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.simulated = true;
+
         nextPosition = pointB.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isWaiting) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, nextPosition, moveSpeed * Time.deltaTime);
+        Vector3 newPos = Vector3.MoveTowards(transform.position, nextPosition, moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(newPos);
 
-        if (transform.position == nextPosition)
+        if (newPos == nextPosition)
         {
             StartCoroutine(WaitBeforeMoving());
         }
@@ -31,29 +38,8 @@ public class MovingPlatform : MonoBehaviour
     private IEnumerator WaitBeforeMoving()
     {
         isWaiting = true;
-
-        // Wait at current point
         yield return new WaitForSeconds(pauseDuration);
-
-        // Switch to the other point
         nextPosition = (nextPosition == pointA.position) ? pointB.position : pointA.position;
-
         isWaiting = false;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.transform.parent = transform;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.transform.parent = null;
-        }
     }
 }
