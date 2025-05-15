@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float incTime = 50f;
     public float timeRemaining;
     public ValueBar TimeBar;
+    public bool YourTimeIsUp;
 
     //energy
     public static float currEnergy;
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
         //set Time
         TimeBar.setMaxValue(maxTime);
         TimeBar.setValue(timeRemaining);
+
+        YourTimeIsUp = false;
     }
 
     // Update is called once per frame
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
         if (timeRemaining < 0)
         {
             timeRemaining = 0;
-            //trigger game over
+            YourTimeIsUp = true;
         }
         else
         {
