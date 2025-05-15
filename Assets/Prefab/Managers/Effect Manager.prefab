@@ -45,10 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  AM: {fileID: 0}
   effectTime: 2
   switchMode: 0
   appliedEffects: 0000000000
   PlayerSpriteRenderer: {fileID: 0}
+  UserStatusImage: {fileID: 0}
+  noiseMaterial: {fileID: 2100000, guid: 040bcdcbad6642d4284ead1d6d58e96d, type: 2}
   visualMaterials:
   - {fileID: 2100000, guid: a506f1ca7f71044e989a43e115dcb119, type: 2}
   - {fileID: 2100000, guid: 98e5d35f9001c4798a27003e03fbf768, type: 2}

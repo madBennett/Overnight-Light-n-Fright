@@ -19,6 +19,8 @@ TagManager:
   - Door
   - Oscilating Ghost
   - Hallway
+  - PlayerUI
+  - UserStatusImage
   layers:
   - Default
   - TransparentFX
