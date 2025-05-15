@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MobShaderController : MonoBehaviour
 {
-    public Material chaseMaterial;
-    public Material damageMaterial;
     private int chasingGhostCount = 0;
     private bool chaseShaderActive = false;
 
@@ -19,7 +17,7 @@ public class MobShaderController : MonoBehaviour
         if (effectsManager != null)
         {
             Debug.Log("[MobShaderController] Activating Damage Shader");
-            effectsManager.ApplyEffect(EffectTypes.VISUAL_DISTORTION, VisualTypes.MOBCHASE);
+            effectsManager.ApplyEffect(EffectTypes.VISUAL_DISTORTION, VisualTypes.MOBDAMAGE);
         }
     }
 
