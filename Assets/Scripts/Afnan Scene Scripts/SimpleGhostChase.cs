@@ -22,13 +22,9 @@ public class SimpleGhostChase : MonoBehaviour
         rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
     }
 
+    // ✅ Call this from a trigger to start chasing
     public void ActivateChase()
     {
         isChasing = true;
-    }
-
-    public void StopChase()
-    {
-        isChasing = false;
     }
 }

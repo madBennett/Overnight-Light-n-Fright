@@ -3,16 +3,22 @@ using System.Collections;
 
 public class LeverTrigger : MonoBehaviour
 {
-    public Animator leverAnimator;
-    public AudioSource audioSource;
-    public DoorController targetDoor;   // ✅ Specific door to open
-    public float resetDelay = 1f;
+    public GameObject gateObject;           // The gate to open/close
+    public float gateOpenDuration = 0.25f;     // How long the gate stays open
+    public Animator leverAnimator;          // Lever animation controller
+    private AudioSource audioSource;
 
     private bool hasBeenPulled = false;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        //  Ensure the gate is active at start
+        if (gateObject != null && !gateObject.activeSelf)
+        {
+            gateObject.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,20 +27,23 @@ public class LeverTrigger : MonoBehaviour
         {
             hasBeenPulled = true;
 
-            leverAnimator?.SetTrigger("Flip");
+            // Play animation
+            if (leverAnimator != null)
+                leverAnimator.SetTrigger("Flip");
+
+            // Play sound
             if (audioSource != null && audioSource.clip != null)
                 audioSource.Play();
 
-            // ✅ Open specific door
-            targetDoor?.Open();
-
-            StartCoroutine(ResetLeverAfterDelay());
+            // Open gate for a duration
+            StartCoroutine(OpenThenCloseGate());
         }
     }
 
-    private IEnumerator ResetLeverAfterDelay()
+    private IEnumerator OpenThenCloseGate()
     {
-        yield return new WaitForSeconds(resetDelay);
-        hasBeenPulled = false;
+        gateObject.SetActive(false); // Open
+        yield return new WaitForSeconds(gateOpenDuration);
+        gateObject.SetActive(true);  // Close
     }
 }
