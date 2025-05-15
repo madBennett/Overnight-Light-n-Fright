@@ -4450,7 +4450,7 @@ MonoBehaviour:
   isActive: 1
   Player: {fileID: 1138185340}
   EffectsManager: {fileID: 1205569840}
-  movement: {x: 1, y: 1}
+  movement: {x: 0, y: 0}
   effectToApply: 0
   speed: 2
   rigidBody: {fileID: 909647469}
