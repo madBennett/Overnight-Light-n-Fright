@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float incTime = 50f;
     public float timeRemaining;
     public ValueBar TimeBar;
+    public bool YourTimeIsUp = false;
 
     //energy
     public static float currEnergy;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         FindObjectsInCurrScene();
+        YourTimeIsUp = false;
 
         //set Energy
         currEnergy = maxEnergy;
@@ -57,7 +59,8 @@ public class GameManager : MonoBehaviour
         if (timeRemaining < 0)
         {
             timeRemaining = 0;
-            //trigger game over
+
+            YourTimeIsUp = true;
         }
         else
         {
@@ -84,6 +87,8 @@ public class GameManager : MonoBehaviour
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
 
         TimeBar.Text.text = "Time Remaining " + remainingMins + ":" + remaingingSecs;
+
+        
     }
 
     public void AddTime()

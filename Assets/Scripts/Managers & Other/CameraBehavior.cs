@@ -39,10 +39,29 @@ public class CameraBehavior : MonoBehaviour
         
         float camHalfHeight = mainCam.orthographicSize;
         float camHalfWidth = camHalfHeight * mainCam.aspect;
-        targetMaxX = XUpperBound - camHalfWidth;
-        targetMinX = XLowerBound + camHalfWidth;
-        targetMaxY = YUpperBound - camHalfHeight;
-        targetMinY = YLowerBound + camHalfHeight;
+
+        if ((XUpperBound - XLowerBound) >= (camHalfWidth*2f)) //if we fit properly within X bounds
+        {
+            targetMaxX = XUpperBound - camHalfWidth;
+            targetMinX = XLowerBound + camHalfWidth;
+        } else //if we don't fit properly within X bounds
+        {
+            float avgBounds = (XUpperBound + XLowerBound) / 2f;
+            targetMinX = avgBounds;
+            targetMaxX = avgBounds;
+        }
+
+        if ((YUpperBound - YLowerBound) >= (camHalfHeight * 2f)) //if we fit properly within Y bounds
+        {
+            targetMaxY = YUpperBound - camHalfHeight;
+            targetMinY = YLowerBound + camHalfHeight;
+        }
+        else //if we don't fit properly within Y bounds
+        {
+            float avgBounds = (YUpperBound + YLowerBound) / 2f;
+            targetMinY = avgBounds;
+            targetMaxY = avgBounds;
+        }
     }
 
 
