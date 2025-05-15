@@ -208,6 +208,11 @@ public class MobGhostBehavior : AbstractGhostBehavior
             shaderEffects.RemoveChasingGhost();
         }
 
+        if (AM != null)
+        {
+            AM.PlayAudio(AudioClipTypes.GHOST_DEATH);
+        }
+
         if (despawnParticles != null)
         {
             ParticleSystem particles = Instantiate(despawnParticles, transform.position, Quaternion.identity);
