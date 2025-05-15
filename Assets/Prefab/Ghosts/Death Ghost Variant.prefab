@@ -123,7 +123,13 @@ MonoBehaviour:
   EffectsManager: {fileID: 0}
   movement: {x: 0, y: 0}
   effectToApply: 0
-  speed: 5
+  speed: 1
   rigidBody: {fileID: 0}
   ghostAudioSource: {fileID: 0}
   state: 0
+  lungeStartRange: 2.5
+  lungeCooldown: 5
+  lungeWait: 0.75
+  lungeTime: 0.5
+  lungeSpeed: 10
+  acceleration: 10
