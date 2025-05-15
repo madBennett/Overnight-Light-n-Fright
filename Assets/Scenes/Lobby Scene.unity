@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6432bbee9f1c974a9fb6d878bf28b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outroTextDisplay: {fileID: 0}
 --- !u!4 &73156564
 Transform:
   m_ObjectHideFlags: 0
@@ -2538,7 +2539,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5ac3bd930ca144afdb001d5452420c9f, type: 3}
   - {fileID: 8300000, guid: a1eedf7b708c041c38bfac3387e6df2f, type: 3}
   - {fileID: 8300000, guid: 84a6a086020444a7cb1df426a54fa62d, type: 3}
-  - {fileID: 8300000, guid: a1eedf7b708c041c38bfac3387e6df2f, type: 3}
+  - {fileID: 8300000, guid: 6ea6dc77f5aee4d158219899cc262a76, type: 3}
   playingAudio: 00000000000000000000000000
 --- !u!4 &1099466686
 Transform:
