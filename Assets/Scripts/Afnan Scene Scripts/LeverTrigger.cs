@@ -3,9 +3,9 @@ using System.Collections;
 
 public class LeverTrigger : MonoBehaviour
 {
-    public GameObject gateObject;           // The gate to open/close
-    public float gateOpenDuration = 0.25f;     // How long the gate stays open
-    public Animator leverAnimator;          // Lever animation controller
+    public GameObject gateObject;            // The door to open/close
+    public float gateOpenDuration = 1.5f;    // How long the door stays open
+    public Animator leverAnimator;           // Lever animation controller
     private AudioSource audioSource;
 
     private bool hasBeenPulled = false;
@@ -14,11 +14,9 @@ public class LeverTrigger : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        //  Ensure the gate is active at start
-        if (gateObject != null && !gateObject.activeSelf)
-        {
+        // Ensure door starts closed
+        if (gateObject != null)
             gateObject.SetActive(true);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,7 +25,7 @@ public class LeverTrigger : MonoBehaviour
         {
             hasBeenPulled = true;
 
-            // Play animation
+            // Animate lever
             if (leverAnimator != null)
                 leverAnimator.SetTrigger("Flip");
 
@@ -35,15 +33,22 @@ public class LeverTrigger : MonoBehaviour
             if (audioSource != null && audioSource.clip != null)
                 audioSource.Play();
 
-            // Open gate for a duration
-            StartCoroutine(OpenThenCloseGate());
+            // Open door and start reset
+            if (gateObject != null)
+                gateObject.SetActive(false); // "Open" the door by hiding it
+
+            StartCoroutine(ResetLeverAndCloseDoor());
         }
     }
 
-    private IEnumerator OpenThenCloseGate()
+    private IEnumerator ResetLeverAndCloseDoor()
     {
-        gateObject.SetActive(false); // Open
         yield return new WaitForSeconds(gateOpenDuration);
-        gateObject.SetActive(true);  // Close
+
+        // Close the door again
+        if (gateObject != null)
+            gateObject.SetActive(true); // "Close" the door
+
+        hasBeenPulled = false; // Lever becomes reusable again
     }
 }
