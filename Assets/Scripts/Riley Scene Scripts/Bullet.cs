@@ -45,7 +45,7 @@ public class Bullet : AbstractGhostBehavior
             {
                 EffectsManager.ApplyEffect(effectToApply);
 
-                timeLeftCounter.addTime(10f);
+                timeLeftCounter.addTime(5f);
 
                 
             }

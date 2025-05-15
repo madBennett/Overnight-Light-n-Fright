@@ -259,7 +259,7 @@ public class BulletGhost : AbstractGhostBehavior
             {
                 EffectsManager.ApplyEffect(effectToApply);
 
-                timeLeftCounter.addTime(10f);
+                timeLeftCounter.addTime(5f);
             }
         }
         else if (collision.gameObject.tag == "Wall")
