@@ -52,7 +52,7 @@ MonoBehaviour:
   words:
   - CHALLENGE
   - COMPLETE
-  - +50 SECONDS
+  - +60 SECONDS
 --- !u!1 &1408790993998842306
 GameObject:
   m_ObjectHideFlags: 0
