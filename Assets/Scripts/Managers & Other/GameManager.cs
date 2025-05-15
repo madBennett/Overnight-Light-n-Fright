@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         float remainingMins = Mathf.Floor(timeRemaining / 60);
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
 
-        TimeBar.Text.text = "Time Remaining " + remainingMins + ":" + remaingingSecs;
+        TimeBar.Text.text = string.Format("Time Remaining {0:00} : {1:00}", remainingMins, remaingingSecs);
     }
 
     public void AddTime()
