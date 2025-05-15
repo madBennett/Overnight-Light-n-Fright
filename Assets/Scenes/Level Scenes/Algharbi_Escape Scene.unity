@@ -154,8 +154,8 @@ Transform:
   - {fileID: 1241752154}
   - {fileID: 1831227434}
   - {fileID: 135628605}
-  - {fileID: 329201035}
   - {fileID: 377480750}
+  - {fileID: 329201035}
   - {fileID: 909647467}
   - {fileID: 1578562807}
   m_Father: {fileID: 0}
@@ -962,7 +962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalScale.x
@@ -974,11 +974,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.3
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.64
+      value: -8.97
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   ghostAudioSource: {fileID: 0}
   moveSpeed: 1
-  moveHeight: 2
+  moveHeight: 5
   centerPoint: {x: 0, y: 0}
 --- !u!114 &135628608
 MonoBehaviour:
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   rigidBody: {fileID: 329201037}
   ghostAudioSource: {fileID: 0}
   moveSpeed: 1
-  moveWidth: 2
+  moveWidth: 5
   centerPoint: {x: 0, y: 0}
 --- !u!114 &329201039
 MonoBehaviour:
@@ -2029,7 +2029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347352423}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.4483, y: -0.96, z: 0}
+  m_LocalPosition: {x: 4.9918, y: -0.96, z: 0}
   m_LocalScale: {x: 9.396128, y: 0.53327614, z: 4.70535}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2054,7 +2054,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 0.8442602, y: 1}
+    newSize: {x: 0.959952, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -2108,7 +2108,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.8442602, y: 1}
+  m_Size: {x: 0.959952, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2495,8 +2495,8 @@ MonoBehaviour:
   speed: 2
   rigidBody: {fileID: 377480752}
   ghostAudioSource: {fileID: 0}
-  moveSpeed: 1
-  moveWidth: 2
+  moveSpeed: 2
+  moveWidth: 5
   centerPoint: {x: 0, y: 0}
 --- !u!1001 &396236587
 PrefabInstance:
@@ -3120,7 +3120,6 @@ Transform:
   m_Children:
   - {fileID: 1479001639}
   - {fileID: 1173257034}
-  - {fileID: 1312247513}
   - {fileID: 1196745744}
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -3473,7 +3472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762680898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -4.03, z: 0}
+  m_LocalPosition: {x: -1, y: -1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3770,8 +3769,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804773909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8246, y: -2.0611, z: -0.017444063}
-  m_LocalScale: {x: 0.7774305, y: 0.82186425, z: 1}
+  m_LocalPosition: {x: 4.4539, y: -2.3396, z: -0.017444063}
+  m_LocalScale: {x: 2.0358508, y: 1.3789239, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1245854625}
@@ -3923,7 +3922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865433076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1.66, z: 0}
+  m_LocalPosition: {x: -1, y: -5.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4185,11 +4184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.54
+      value: -9.08
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.69
+      value: -10.05
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4289,7 +4288,7 @@ MonoBehaviour:
   rigidBody: {fileID: 909647469}
   ghostAudioSource: {fileID: 0}
   moveSpeed: 1
-  moveWidth: 2
+  moveWidth: 5
   centerPoint: {x: 0, y: 0}
 --- !u!1 &1040410779
 GameObject:
@@ -4519,7 +4518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveSpeed: 2
   waveHeight: 0.5
-  moveSpeed: 1
+  moveSpeed: 2
   moveRange: 2
 --- !u!114 &1056107440
 MonoBehaviour:
@@ -5097,6 +5096,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d8ec9626bf2854e9cdac6470e12051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  Player: {fileID: 1138185340}
+  EffectsManager: {fileID: 1205569840}
+  movement: {x: 0, y: 0}
+  effectToApply: 0
+  speed: 2
+  rigidBody: {fileID: 1566777868}
+  ghostAudioSource: {fileID: 0}
   moveSpeed: 2
 --- !u!114 &1173257036
 MonoBehaviour:
@@ -5105,7 +5112,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173257026}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0176e3d513eb0d14790bc692a44cd43c, type: 3}
   m_Name: 
@@ -5123,6 +5130,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetDelay: 5
+--- !u!114 &1173257038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173257026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdebd051d9e831f4388c82a8d6bc2c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1181788126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5225,7 +5244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
       propertyPath: m_LocalScale.x
@@ -5291,6 +5310,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
   m_PrefabInstance: {fileID: 1196745743}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1196745746 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8877294868262508741, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+  m_PrefabInstance: {fileID: 1196745743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1196745752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5303,7 +5327,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d8ec9626bf2854e9cdac6470e12051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
+  isActive: 1
+  Player: {fileID: 1138185340}
+  EffectsManager: {fileID: 1205569840}
+  movement: {x: 0, y: 0}
+  effectToApply: 0
+  speed: 2
+  rigidBody: {fileID: 1196745746}
+  ghostAudioSource: {fileID: 0}
+  moveSpeed: 2
 --- !u!114 &1196745753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5770,114 +5802,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1312247512
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 647457277}
-    m_Modifications:
-    - target: {fileID: 5254893533379795477, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: dece8e9318c2bad4b991fe025a4c3725, type: 3}
-    - target: {fileID: 5254893533379795477, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5478005
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.6977665
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-      propertyPath: m_Name
-      value: Ghost (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
---- !u!4 &1312247513 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8877294868262508740, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-  m_PrefabInstance: {fileID: 1312247512}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1312247514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8877294868262508763, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
-  m_PrefabInstance: {fileID: 1312247512}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1312247521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312247514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d8ec9626bf2854e9cdac6470e12051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.5
---- !u!114 &1312247522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312247514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0176e3d513eb0d14790bc692a44cd43c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1327349932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5975,7 +5899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostsToActivate:
   - {fileID: 1196745752}
-  - {fileID: 1312247521}
+  - {fileID: 0}
 --- !u!61 &1331263421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6041,7 +5965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352279636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -4.78, z: 0}
+  m_LocalPosition: {x: -1, y: 1.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6305,8 +6229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64990868071fffb439a77954affdb81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveSpeed: 4
-  waveHeight: 0.5
+  waveSpeed: 7
+  waveHeight: 1
   objectToHideWhenCollected: {fileID: 199951421}
 --- !u!1 &1479001637
 GameObject:
@@ -6717,6 +6641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+--- !u!50 &1566777868 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8877294868262508741, guid: d0ee06f0560ebe24e8208b68196d0a81, type: 3}
+  m_PrefabInstance: {fileID: 1566777867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1569750751
 GameObject:
   m_ObjectHideFlags: 0
@@ -6956,7 +6885,7 @@ MonoBehaviour:
   EffectsManager: {fileID: 1205569840}
   movement: {x: 0, y: 0}
   effectToApply: 0
-  speed: 2
+  speed: 3
   rigidBody: {fileID: 0}
   ghostAudioSource: {fileID: 0}
   moveSpeed: 1
@@ -7115,7 +7044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622049198}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.11, y: -4.9, z: 0.04328303}
+  m_LocalPosition: {x: -7.09, y: -3.29, z: 0.04328303}
   m_LocalScale: {x: 2.680903, y: 2.4464436, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

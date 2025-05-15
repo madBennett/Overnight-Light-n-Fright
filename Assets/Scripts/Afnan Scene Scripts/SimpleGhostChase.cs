@@ -1,34 +1,31 @@
 using UnityEngine;
 
-public class SimpleGhostChase : MonoBehaviour
+public class SimpleGhostChase : NewBehavior2
 {
     public float moveSpeed = 2f;
-    private bool isChasing = false;
 
-    private Transform player;
-    private Rigidbody2D rb;
-
-    void Start()
+    protected override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
+        isActive = false; // ghost waits until activated
     }
 
     void FixedUpdate()
     {
-        if (!isChasing || player == null) return;
+        if (!isActive || Player == null) return;
 
-        Vector2 direction = ((Vector2)player.position - rb.position).normalized;
-        rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        Vector2 direction = ((Vector2)Player.transform.position - (Vector2)transform.position).normalized;
+        HandleMove(direction, moveSpeed);
     }
 
     public void ActivateChase()
     {
-        isChasing = true;
+        isActive = true;
     }
 
     public void StopChase()
     {
-        isChasing = false;
+        isActive = false;
+        HandleMove(Vector2.zero, 0f); // Stop ghost and animation
     }
 }

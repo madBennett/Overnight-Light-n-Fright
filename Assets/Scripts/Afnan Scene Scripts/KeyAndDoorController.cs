@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class KeyAndDoorController : MonoBehaviour
 {
@@ -36,13 +37,24 @@ public class KeyAndDoorController : MonoBehaviour
         {
             if (hasKey)
             {
-                doorObject.SetActive(false);
                 Debug.Log("Door unlocked!");
+                doorObject.SetActive(false);
+                StartCoroutine(ReappearDoorAfterDelay(2f)); // 🕑 reappear after 2 seconds
             }
             else
             {
                 Debug.Log("Touched door, but no key yet.");
             }
+        }
+    }
+
+    private IEnumerator ReappearDoorAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (doorObject != null)
+        {
+            doorObject.SetActive(true);
+            Debug.Log("Door reappeared.");
         }
     }
 }
