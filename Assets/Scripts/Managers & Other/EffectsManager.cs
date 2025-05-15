@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum EffectTypes
 {
@@ -30,6 +31,8 @@ public class EffectsManager : MonoBehaviour
 
     //color effects
     [SerializeField] private SpriteRenderer PlayerSpriteRenderer;
+    [SerializeField] private Image UserStatusImage;
+    [SerializeField] private Material noiseMaterial;
 
     //visual effects
     [SerializeField] private List<Material> visualMaterials;
@@ -46,6 +49,7 @@ public class EffectsManager : MonoBehaviour
         PlayerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
         mainCameraBehavior = Camera.main.GetComponent<CameraBehavior>();
         AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        UserStatusImage = GameObject.FindGameObjectWithTag("UserStatusImage").GetComponent<Image>();
 
         //inmtialize map
         for (int i = 0; i < (int)EffectTypes.NUM_EFFECTS; i++)
@@ -65,16 +69,20 @@ public class EffectsManager : MonoBehaviour
                 case EffectTypes.VISUAL_DISTORTION:
                     mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
                     MobChaseRenderFeature.Instance?.EnableEffect();
+                    UserStatusImage.material = noiseMaterial;
                     break;
                 case EffectTypes.REVERSE_CONTROLS:
                     PlayerControls.currMoveState = MovementStates.REVERSE;
+                    UserStatusImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
                     break;
                 case EffectTypes.STUN:
                     PlayerControls.currMoveState = MovementStates.STUN;
+                    UserStatusImage.color = Color.cyan;
                     break;
                 case EffectTypes.DAMAGE:
                     mainCameraBehavior.currMat = (visualMaterials[(int)visEffect]);
                     MobChaseRenderFeature.Instance?.EnableEffect();
+                    UserStatusImage.color = Color.red;
                     break;
             }
 
@@ -118,13 +126,22 @@ public class EffectsManager : MonoBehaviour
         switch (effect)
         {
             case EffectTypes.VISUAL_DISTORTION:
+                UserStatusImage.material = null;
+                mainCameraBehavior.currMat = null;
+                MobChaseRenderFeature.Instance?.DisableEffect();
+                break;
             case EffectTypes.DAMAGE:
+                UserStatusImage.color = Color.white;
                 mainCameraBehavior.currMat = null;
                 MobChaseRenderFeature.Instance?.DisableEffect();
                 break;
             case EffectTypes.REVERSE_CONTROLS:
+                UserStatusImage.rectTransform.rotation = Quaternion.Euler(Vector3.zero);
+                PlayerControls.currMoveState = MovementStates.DEFAULT;
+                break;
             case EffectTypes.STUN:
                 PlayerControls.currMoveState = MovementStates.DEFAULT;
+                UserStatusImage.color = Color.white;
                 break;
         }
 

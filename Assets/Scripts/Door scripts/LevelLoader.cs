@@ -10,12 +10,16 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
+    [SerializeField] private GameObject PlayerUI;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Persist across scenes
+
+            PlayerUI = GameObject.FindGameObjectWithTag("PlayerUI");
         }
         else
         {
@@ -40,5 +44,13 @@ public class LevelLoader : MonoBehaviour
 
         // Fade back in
         transition.SetTrigger("End"); // Trigger your fade-in animation
+
+        if (sceneName == "Lobby Scene")
+        {
+            //refetch ui varible
+            PlayerUI = GameObject.FindGameObjectWithTag("PlayerUI");
+        }
+        PlayerUI.SetActive(sceneName != "MainMenu" || sceneName != "GameWin" || sceneName != "GameLoss");
+
     }
 }
