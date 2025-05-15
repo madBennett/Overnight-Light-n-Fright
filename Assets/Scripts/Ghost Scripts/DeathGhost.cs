@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum DeathStates
 {
@@ -72,6 +73,30 @@ public class DeathGhost : AbstractGhostBehavior
         //if (state != BulletGhostStates.DASH) //except if we're dashing, dashing uses separate rules
         //{
             HandleMove(velocity, 1f); //we use 1 because speed is used in the making of the velocity vector.
+        //}
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+            GameOver();
+
+        }
+    }
+
+    public void GameOver()
+    {
+        //LevelLoader disabled because I felt it was more appropriate if it was more sudden
+        
+        //if (LevelLoader.Instance != null)
+        //{
+            //LevelLoader.Instance.LoadScene("GameLoss");
+        //}
+        //else
+        //{
+            SceneManager.LoadScene("GameLoss");
         //}
     }
 }
