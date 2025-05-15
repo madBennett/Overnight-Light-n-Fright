@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+EffectsManager1.ApplyEffect(EffectTypes.VISUAL_DISTORTION, VisualTypes.RESPAWN_JITTER);
 
 public class EffectsManager1 : MonoBehaviour
 {
@@ -26,7 +26,6 @@ public class EffectsManager1 : MonoBehaviour
 
     void Start()
     {
-        FindObjectOfType<EffectsManager1>()?.ApplyEffect(EffectTypes.VISUAL_DISTORTION, VisualTypes.RESPAWN_JITTER);
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
         PlayerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<ControlManager>();
         PlayerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
