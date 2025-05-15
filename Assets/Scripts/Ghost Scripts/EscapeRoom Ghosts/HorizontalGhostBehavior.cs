@@ -2,34 +2,28 @@ using UnityEngine;
 
 public class HorizontalGhostBehavior : NewBehavior2
 {
-    public float patrolDistance = 4f;     // How far left/right to go from the starting point
-    private Vector2 startPoint;
-    private int direction = 2;            // 1 = right, -1 = left
+    private float time = 0f;
+    public float moveSpeed = 1f;      // Speed of looping motion
+    public float moveWidth = 2f;      // Horizontal distance to move
+    public Vector2 centerPoint = Vector2.zero; // Starting center point
 
     protected override void Start()
     {
         base.Start();
         isActive = true;
-
-        // Remember where the ghost starts
-        startPoint = transform.position;
+        centerPoint = transform.position; // Start at placed position
     }
 
     void FixedUpdate()
     {
         if (!isActive) return;
 
-        float targetX = startPoint.x + patrolDistance * direction;
-        float currentX = transform.position.x;
+        time += Time.fixedDeltaTime * moveSpeed;
 
-        // If reached or passed the target, flip direction
-        if ((direction == 1 && currentX >= targetX) || (direction == -1 && currentX <= targetX))
-        {
-            direction *= -1;
-        }
+        float xOffset = Mathf.Sin(time) * moveWidth;
+        Vector2 targetPos = centerPoint + new Vector2(xOffset, 0);
+        Vector2 direction = (targetPos - (Vector2)transform.position).normalized;
 
-        // Move horizontally based on direction
-        Vector2 moveDir = new Vector2(direction, 0).normalized;
-        HandleMove(moveDir, speed);
+        HandleMove(direction, speed);
     }
 }
