@@ -34,7 +34,7 @@ public class ReturnToLobby : MonoBehaviour
         }
     }
 
-    private void LoadLobby()
+    public void LoadLobby()
     {   
         AM.PlayAudio(AudioClipTypes.ENTER_GATE);
 

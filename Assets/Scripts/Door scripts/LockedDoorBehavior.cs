@@ -8,15 +8,16 @@ public class LockedDoorBehavior : MonoBehaviour
     [SerializeField] private Sprite unlockedSprite;
     [SerializeField] private Sprite lockedSprite;
 
-    [SerializeField] private string TaskID;
+    [SerializeField] public string TaskID;
     [SerializeField] private ReturnToLobby returnPt;
 
     // Start is called before the first frame update
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = returnPt.isLocked ? lockedSprite : unlockedSprite;
         returnPt = GetComponent<ReturnToLobby>();
+        spriteRenderer.sprite = returnPt.isLocked ? lockedSprite : unlockedSprite;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,11 +26,14 @@ public class LockedDoorBehavior : MonoBehaviour
         {
             if (PlayerProgress.Instance.HasCompletedTask(TaskID))
             {
-                returnPt.isLocked = false;
-
-                //change sprite
-                spriteRenderer.sprite = unlockedSprite;
+                returnPt.LoadLobby();
             }
         }
+    }
+
+    public void UnlockDoor()
+    {
+        returnPt.isLocked = false;
+        spriteRenderer.sprite = unlockedSprite;
     }
 }

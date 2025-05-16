@@ -36,6 +36,16 @@ public class PlayerProgress : MonoBehaviour
 
         // play outro complete message
         OutroTextDisplay.Instance.ShowMessage();
+        
+        // UNLOCK DOORS associated with this task
+        LockedDoorBehavior[] allDoors = FindObjectsOfType<LockedDoorBehavior>();
+        foreach (LockedDoorBehavior door in allDoors)
+        {
+            if (door.TaskID == taskID)
+            {
+                door.UnlockDoor();
+            }
+        }
     }
 
     public bool HasCompletedTask(string taskID)
