@@ -2,11 +2,15 @@
 
 ## Game Name: Overnight-Light-n-Fright
 
+## Video Demo
+
+https://www.youtube.com/watch?v=F13QSJn4tys
+
 ## Game Description: 
 
 Overnight-Light-n-Fright is a ghost-themed 2D pixel art top-down single-player ghost game with four main rooms/challenges. Each section will have a unique state machine ghost that behaves differently and will apply multiple kinds of shader effects to the player. The player can complete the rooms in any order they like and will be locked in each room until the challenge is completed. To win the game, the player must complete the challenges in all four rooms within the allotted time. If the player runs out of time before all challenges are completed, they lose the game. In all rooms, the player will have a flashlight to kill or scare ghosts away, depending on that ghost’s behavior. The player cannot die; however, the player will be stunned or have some kind of punishment from the ghost that will cause them to potentially run out of time and lose the game.
 
-The Maze room:  Reach the end of the maze while various ghosts chase you.  Use the flashlight to scare them off and send them running.  Don't let the ghost get to you or they could distort your vision, reverse your controls, or stun you.  The ghost goes in between an idle, move, attack, and run state.  On an interaction with a flashlight the ghost will run away from the player.  However, if the ghost is able to get in range of the player it can attack.  When it attacks it can apply various effects to the player such as visual distortion via shaders, reversing the controls, preventing player movement, or damage the player.  When the player is not within a certain range it will idly wander the maze.  The player's goal is to reach the end of the maze as quickly as possible, but the ghost sneaking up on the player and attacking them will delay the player's progress..
+The Maze room:  Reach the end of the maze while various ghosts chase you.  Use the flashlight to scare them off and send them running.  Don't let the ghost get to you or they could distort your vision, reverse your controls, or stun you.  The ghost goes in between an idle, move, attack, and run state.  On an interaction with a flashlight the ghost will run away from the player.  However, if the ghost is able to get in range of the player it can attack.  When it attacks it can apply various effects to the player such as visual distortion via shaders, reversing the controls, preventing player movement, or damage the player.  When the player is not within a certain range it will idly wander the maze.  The player's goal is to reach the end of the maze as quickly as possible, but the ghost sneaking up on the player and attacking them will delay the player's progress.
 
 The Shooter Room is a fast-paced, survival-style challenge where the player must fend off waves of Mob Ghosts using their flashlight. The objective is to survive multiple waves by strategically using the flashlight to destroy approaching ghosts. Mob Ghosts follow a unique state machine: they begin in a Wander state, moving randomly, and shift into a Chase state when the player enters their detection range, aggressively pursuing them. If a ghost collides with the player, the player is temporarily stunned, losing valuable time. (during which the screen and all ghosts are also frozen/stunned) Two custom shaders enhance the intensity of the room: Mob Ghost Damage, which flashes the screen red and distorts visuals when the player is hit, and Mob Ghost Chase, which adds visual distortion around the screen when ghosts are actively chasing. Each wave becomes progressively harder, introducing more ghosts, faster speeds, and tighter chase conditions. The player must clear all waves to unlock the exit and complete the room, relying on quick reflexes, spatial awareness, and flashlight control to avoid being overwhelmed and losing time.
 
@@ -31,7 +35,7 @@ Afnan Algharbi
 aalgharbi5447@sdsu.edu 
 
 ## Role/Tasks: 
-- **Madison Bennett:** Responsible for the Maze room, Effect controller, effect indicators, player controls, base ghost state machine, maze ghost state machine(with pathing), scene UI, created flashlight, a custom shader, audio implementation, will aid in the implementation of animations.
+- **Madison Bennett:** Responsible for the Maze room, Effect controller, effect indicators, player controls, base ghost state machine, maze ghost state machine, scene UI, created flashlight, audio implementation, will aid in the implementation of animations.
 
 - **Adelina Martinez:** Responsible for the Shooter-based survival room. Creating a “Mob Ghost” State machine and a “Mob Spawner” script that will spawn waves/mobs of ghosts for the player to fight off with their flashlight. Will create a custom “Mob Ghost Damage” shader when the ghost hits the player, as well as a custom visual distortion shader “Mob Ghost Chase” when the player is being chased/pursued. Will work with Maddi to animate ghosts and players as well as create the environment and art. Generally responsible for tracking member tasks and taking notes at each meeting.
 
