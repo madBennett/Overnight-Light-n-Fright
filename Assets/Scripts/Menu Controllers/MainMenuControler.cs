@@ -43,6 +43,11 @@ public class MainMenuControler : MonoBehaviour
         }    
     }
 
+    public void OpenInstruction()
+    {
+        SceneManager.LoadScene("Instruction Scene");
+    }
+
     public void ExitGame()
     {
         //exit app
