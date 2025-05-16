@@ -21,6 +21,7 @@ public enum AudioClipTypes
     WALK,           // Element 13
     AMBIENT,        // Element 14
     COLLECT_LIGHT,  // Element 15
+    LOCKED_DOOR,    // Element 16
     NUM_EFFECTS 
 }
 
@@ -49,6 +50,7 @@ public class AudioManager : MonoBehaviour
         { AudioClipTypes.WALK, 0.7f },
         { AudioClipTypes.AMBIENT, 0.75f },
         { AudioClipTypes.COLLECT_LIGHT, 1f },
+        { AudioClipTypes.LOCKED_DOOR, 1f },
     };
 
     [SerializeField] private AudioSource defaultAudioSource;
