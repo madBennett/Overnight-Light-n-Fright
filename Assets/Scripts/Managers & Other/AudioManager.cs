@@ -19,7 +19,8 @@ public enum AudioClipTypes
     GHOST_CHASE,    // Element 11
     GHOST_DEATH,    // Element 12
     WALK,           // Element 13
-    AMBIENT,       // Element 14
+    AMBIENT,        // Element 14
+    COLLECT_LIGHT,  // Element 15
     NUM_EFFECTS 
 }
 
@@ -47,6 +48,7 @@ public class AudioManager : MonoBehaviour
         { AudioClipTypes.GHOST_DEATH, 1f },
         { AudioClipTypes.WALK, 0.7f },
         { AudioClipTypes.AMBIENT, 0.75f },
+        { AudioClipTypes.COLLECT_LIGHT, 1f },
     };
 
     [SerializeField] private AudioSource defaultAudioSource;

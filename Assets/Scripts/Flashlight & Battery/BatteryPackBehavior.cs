@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BatteryPackBehavior : MonoBehaviour
 {
+    private AudioManager AM;
+
     //set default varibles
     [SerializeField] private float batteryAmount = 10f;
     [SerializeField] private float despawnCooldDown = 2f;
@@ -14,6 +16,7 @@ public class BatteryPackBehavior : MonoBehaviour
     {
         //set cooldown time
         spawnTime = Time.time;
+        AM = AudioManager.Instance;
     }
 
     // Update is called once per frame
@@ -34,6 +37,12 @@ public class BatteryPackBehavior : MonoBehaviour
             collision.gameObject.SendMessage("UpdateEnergy", batteryAmount);
             Destroy(gameObject);
             Debug.Log("Destroy)");
+        }
+
+        // play noise
+        if (AM != null)
+        {
+            AM.PlayAudio(AudioClipTypes.COLLECT_LIGHT);
         }
     }
 
