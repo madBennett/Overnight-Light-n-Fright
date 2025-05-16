@@ -41,7 +41,9 @@ aalgharbi5447@sdsu.edu
 
 - **Riley Penguini:** Dexterity-based room and its own shaders. Also currently responsible for camera movement/control and flashlight behavior (and certain aspects of game design, particularly the basic overall structure of the game.). Further tasks will be decided on as they appear.
 
-- **Afnan Algharbi:** Responsible for enabling transitions between the scenes from the lobby to the other rooms of each task which includes the locking/ unlocking of the entries to each scene as well as tracking the progress of the tasks completion. The game starts at the lobby then the player is able to choose any task to go to which are separate rooms. Upon the completion of each task, the player gets to return to the lobby and each completed task leads to locking the gate in question. This continues until all 4 Gates are locked which unlock the final gate to victory leading out of the lobby. Also, responsible for implementing the Escape room task which includes the full implementation and setting up of the ghost state machine, the custom distortion shader, and the hidden object mini game. 
+- **Afnan Algharbi:** Responsible for enabling transitions between the scenes from the lobby to the other rooms of each task which includes the locking/ unlocking of the entries to each scene as well as tracking the progress of the tasks completion. The game starts at the lobby then the player is able to choose any task to go to which are separate rooms. Upon the completion of each task, the player gets to return to the lobby and each completed task leads to locking the gate in question. This continues until all 4 Gates are locked which unlock the final gate to victory leading out of the lobby. Also, responsible for implementing the Escape room task which includes the full implementation of the puzzle pieces, setting up of the ghost state machine, the custom shaders for the collected items, etc.
+
+- Note: Everyone helped around in different areas. 
 
 ## Post Midway Review Goals: 
 - Environments and art 
