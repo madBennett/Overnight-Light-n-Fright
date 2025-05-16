@@ -11,6 +11,8 @@ public class LockedDoorBehavior : MonoBehaviour
     [SerializeField] public string TaskID;
     [SerializeField] private ReturnToLobby returnPt;
 
+    [SerializeField] private AudioManager AM;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -18,6 +20,7 @@ public class LockedDoorBehavior : MonoBehaviour
         returnPt = GetComponent<ReturnToLobby>();
         spriteRenderer.sprite = returnPt.isLocked ? lockedSprite : unlockedSprite;
 
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +30,10 @@ public class LockedDoorBehavior : MonoBehaviour
             if (PlayerProgress.Instance.HasCompletedTask(TaskID))
             {
                 returnPt.LoadLobby();
+            }
+            else
+            {
+                AM.PlayAudio(AudioClipTypes.LOCKED_DOOR);
             }
         }
     }
