@@ -572,6 +572,7 @@ MonoBehaviour:
   lockedSprite: {fileID: 21300000, guid: bb31e0dfcb09842ceb642df093cd4155, type: 3}
   TaskID: DexTask
   returnPt: {fileID: 449358468}
+  AM: {fileID: 0}
 --- !u!114 &449358468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2431,7 +2432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000019550323, y: 33.9}
+  m_AnchoredPosition: {x: 0.000019550323, y: 41}
   m_SizeDelta: {x: 107.0149, y: 40.0766}
   m_Pivot: {x: 0.50000024, y: 0.50000024}
 --- !u!114 &1505246602
@@ -2878,7 +2879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 337.1, y: -249.1}
+  m_AnchoredPosition: {x: 337.1, y: -174}
   m_SizeDelta: {x: 120.6828, y: 37.3082}
   m_Pivot: {x: 0.5607899, y: -0.00000012665987}
 --- !u!114 &1786801961
