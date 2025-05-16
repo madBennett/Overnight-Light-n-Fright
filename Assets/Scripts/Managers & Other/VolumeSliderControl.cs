@@ -20,6 +20,6 @@ public class VolumeSliderControl : MonoBehaviour
         {
             AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         }
-        AM.volume = volumeSlider.value;
+        AM.UpdateAudio(volumeSlider.value);
     }
 }

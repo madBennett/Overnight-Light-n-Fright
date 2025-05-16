@@ -18,6 +18,8 @@ public enum AudioClipTypes
     TEXT_BOOM,      // Element 10
     GHOST_CHASE,    // Element 11
     GHOST_DEATH,    // Element 12
+    WALK,           // Element 13
+    AMBIENT,       // Element 14
     NUM_EFFECTS 
 }
 
@@ -43,6 +45,8 @@ public class AudioManager : MonoBehaviour
         { AudioClipTypes.TEXT_BOOM, 0.3f },
         { AudioClipTypes.GHOST_CHASE, 1f },
         { AudioClipTypes.GHOST_DEATH, 1f },
+        { AudioClipTypes.WALK, 0.7f },
+        { AudioClipTypes.AMBIENT, 0.75f },
     };
 
     [SerializeField] private AudioSource defaultAudioSource;
@@ -170,5 +174,13 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(audioClips[(int)audioClip].length);
 
         playingAudio[(int)audioClip] = false;
+    }
+
+    public void UpdateAudio(float newVolume)
+    {
+        volume = newVolume;
+
+        walkingAudioSource.volume = volume * clipVolumes[AudioClipTypes.WALK];
+        ambientAudioSource.volume = volume * clipVolumes[AudioClipTypes.AMBIENT];
     }
 }
