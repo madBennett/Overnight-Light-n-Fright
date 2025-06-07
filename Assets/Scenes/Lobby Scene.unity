@@ -3802,6 +3802,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6879754760065684145, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_Value
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879754760065684145, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6879754760065684147, guid: ef11738e7d129b649aec5b398dad6c7c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -20
@@ -4318,10 +4326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2b6374ef6cba84984262e84e9f8d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTime: 100
-  maxTime: 100
-  incTime: 50
-  timeRemaining: 100
+  baseTime: 120
+  maxTime: 120
+  incTime: 60
+  timeRemaining: 120
   TimeBar: {fileID: 0}
   YourTimeIsUp: 0
   maxEnergy: 100

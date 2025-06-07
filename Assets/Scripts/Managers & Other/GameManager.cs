@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     //timer
-    public float baseTime = 100f;
-    public float maxTime = 100f;
-    public float incTime = 50f;
+    public float baseTime = 120f;
+    public float maxTime = 120f;
+    public float incTime = 60f;
     public float timeRemaining;
     public ValueBar TimeBar;
     public bool YourTimeIsUp;
@@ -81,9 +81,6 @@ public class GameManager : MonoBehaviour
     private void UpdateTimer()
     {
         TimeBar.setValue(timeRemaining);
-
-
-        
 
         float remainingMins = Mathf.Floor(timeRemaining / 60);
         float remaingingSecs = Mathf.Floor(timeRemaining % 60);
